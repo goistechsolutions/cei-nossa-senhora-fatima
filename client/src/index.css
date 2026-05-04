@@ -1,3 +1,8 @@
+/*
+Direção visual escolhida: Editorial Lúdico Humanista.
+O CSS define uma base creme acolhedora, roxo institucional, turquesa de vitalidade, amarelo de esperança, sombras suaves, cartões orgânicos e microanimações discretas para reforçar a página como demonstração premium dos ativos visuais do CEI.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -43,83 +48,85 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
+  --radius: 1rem;
+  --background: oklch(0.985 0.022 88);
+  --foreground: oklch(0.22 0.026 272);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
+  --card-foreground: oklch(0.22 0.026 272);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  --popover-foreground: oklch(0.22 0.026 272);
+  --primary: oklch(0.43 0.146 319);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.93 0.046 190);
+  --secondary-foreground: oklch(0.25 0.08 250);
+  --muted: oklch(0.955 0.028 88);
+  --muted-foreground: oklch(0.47 0.03 272);
+  --accent: oklch(0.86 0.13 85);
+  --accent-foreground: oklch(0.32 0.1 319);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  --border: oklch(0.88 0.035 88);
+  --input: oklch(0.88 0.035 88);
+  --ring: oklch(0.63 0.14 205);
+  --chart-1: oklch(0.63 0.14 205);
+  --chart-2: oklch(0.43 0.146 319);
+  --chart-3: oklch(0.86 0.13 85);
+  --chart-4: oklch(0.68 0.13 155);
+  --chart-5: oklch(0.48 0.14 255);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.22 0.026 272);
+  --sidebar-primary: oklch(0.43 0.146 319);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.93 0.046 190);
+  --sidebar-accent-foreground: oklch(0.25 0.08 250);
+  --sidebar-border: oklch(0.88 0.035 88);
+  --sidebar-ring: oklch(0.63 0.14 205);
 }
 
 .dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
+  --background: oklch(0.18 0.045 272);
+  --foreground: oklch(0.96 0.016 88);
+  --card: oklch(0.22 0.05 272);
+  --card-foreground: oklch(0.96 0.016 88);
+  --popover: oklch(0.22 0.05 272);
+  --popover-foreground: oklch(0.96 0.016 88);
+  --primary: oklch(0.7 0.145 319);
+  --primary-foreground: oklch(0.15 0.04 272);
+  --secondary: oklch(0.3 0.06 205);
+  --secondary-foreground: oklch(0.94 0.02 88);
+  --muted: oklch(0.28 0.04 272);
+  --muted-foreground: oklch(0.74 0.025 88);
+  --accent: oklch(0.79 0.12 85);
+  --accent-foreground: oklch(0.16 0.04 272);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.63 0.14 205);
+  --sidebar: oklch(0.22 0.05 272);
+  --sidebar-foreground: oklch(0.96 0.016 88);
+  --sidebar-primary: oklch(0.7 0.145 319);
+  --sidebar-primary-foreground: oklch(0.15 0.04 272);
+  --sidebar-accent: oklch(0.3 0.06 205);
+  --sidebar-accent-foreground: oklch(0.94 0.02 88);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.63 0.14 205);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -131,27 +138,19 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
+
+  ::selection {
+    background: #ffd166;
+    color: #572e80;
+  }
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -160,18 +159,57 @@
     min-width: 0;
   }
 
+  .font-display {
+    font-family: "Baloo 2", "Nunito Sans", system-ui, sans-serif;
+  }
+
+  .section-kicker {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    background: rgba(139, 58, 155, 0.1);
+    padding: 0.55rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #572e80;
+  }
+
+  .section-kicker::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: #2bcdcd;
+    box-shadow: 0 0 0 5px rgba(43, 205, 205, 0.14);
+  }
+
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
+  }
+}
+
+@layer utilities {
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1.5deg); }
+  }
+
+  .animate-gentle-float {
+    animation: gentle-float 6s ease-in-out infinite;
   }
 }
