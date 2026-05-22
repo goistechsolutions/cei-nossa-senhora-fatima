@@ -34,6 +34,8 @@ const assets = {
   cards: "/manus-storage/cards_servicos_institucionais_site_a0c45430.png",
   pattern: "/manus-storage/background_pattern_confetes_premium_ae50dc8d.png",
   footer: "/manus-storage/background_footer_ondas_mascotes_0c1efcd2.png",
+  logo: "/manus-storage/ilustracao_nossa_senhora_fatima_recriada_4f8b0782.png",
+  logotipo: "/manus-storage/Nome_3d3735fe.png",
 };
 
 const officialBase = "https://www.ceinsf.com.br/ceinsf";
@@ -194,14 +196,9 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[#FFF8EA] text-[#16192B]">
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/60 bg-[#FFF8EA]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-8">
-          <a href="#topo" className="group flex items-center gap-3" aria-label="Ir para o início da demonstração">
-            <span className="grid h-12 w-12 place-items-center rounded-[1.2rem] bg-[#572E80] text-white shadow-[0_12px_28px_rgba(87,46,128,0.22)] transition-transform group-hover:-rotate-3 group-hover:scale-105">
-              <Sparkles className="h-6 w-6" />
-            </span>
-            <span className="leading-tight">
-              <strong className="block font-display text-xl text-[#572E80]">CEI Nossa Senhora</strong>
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#26768D]">Fátima • Fartura-SP</span>
-            </span>
+          <a href="#topo" className="group flex items-center gap-2" aria-label="Ir para o início da demonstração">
+            <img src={assets.logo} alt="Logo Nossa Senhora de Fátima" className="h-14 w-auto transition-transform group-hover:scale-105" />
+            <img src={assets.logotipo} alt="CEI Nossa Senhora de Fátima" className="h-10 w-auto" />
           </a>
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegação principal">
             <a href="#topo" className="nav-link-active">Home</a>
