@@ -10,7 +10,7 @@
 - [x] Implementar `news.create` (protegido - admin)
 - [x] Implementar `news.update` (protegido - admin)
 - [x] Implementar `news.delete` (protegido - admin)
-- [ ] Escrever testes vitest para procedures
+- [x] Escrever testes vitest para procedures
 
 ## Fase 3: Frontend - Restauração e Integração
 - [x] Restaurar páginas originais (Historia, MissaoVisaoValores, etc)
@@ -30,3 +30,14 @@
 - [x] Validar mobile responsiveness
 - [x] Verificar performance e carregamento
 - [x] Salvar checkpoint final
+
+
+## Fase 6: Gerenciamento de Conteúdo de Seções
+- [x] Criar schema `content_sections` com campos de texto para cada seção
+- [x] Criar schema `user_permissions` para controlar acesso por seção
+- [x] Rodar `pnpm db:push` para migrar
+- [x] Implementar procedures tRPC para CRUD de conteúdo
+- [x] Criar painel administrativo com editor de seções
+- [ ] Integrar conteúdo dinâmico no frontend
+- [ ] Testar e validar fluxo completo
+- [ ] Salvar checkpoint final

@@ -15,6 +15,13 @@
       "when": 1780175921202,
       "tag": "0001_low_marvel_boy",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1780176516260,
+      "tag": "0002_cheerful_tusk",
+      "breakpoints": true
     }
   ]
 }

@@ -3,7 +3,12 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, adminProcedure } from "./_core/trpc";
 import { z } from "zod";
-import { getPublishedNews, getNewsById, createNews, updateNews, deleteNews } from "./db";
+import { 
+  getPublishedNews, getNewsById, createNews, updateNews, deleteNews,
+  getAllContentSections, getContentSectionByKey, createOrUpdateContentSection,
+  getUserPermissionForSection, getUserPermissionsForAllSections, grantUserPermission, revokeUserPermission
+} from "./db";
+import { TRPCError } from "@trpc/server";
 
 export const appRouter = router({
   system: systemRouter,
@@ -69,6 +74,94 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return await deleteNews(input.id);
+      }),
+  }),
+
+  content: router({
+    // Get all sections (public)
+    getAllSections: publicProcedure.query(async () => {
+      return await getAllContentSections();
+    }),
+
+    // Get specific section (public)
+    getSection: publicProcedure
+      .input(z.object({ sectionKey: z.string() }))
+      .query(async ({ input }) => {
+        return await getContentSectionByKey(input.sectionKey);
+      }),
+
+    // Update section content (requires edit permission)
+    updateSection: adminProcedure
+      .input(
+        z.object({
+          sectionKey: z.string().min(1),
+          sectionName: z.string().min(1).max(255),
+          content: z.string().min(1),
+          subtitle: z.string().optional(),
+          description: z.string().optional(),
+          cta: z.string().optional(),
+          ctaLink: z.string().optional(),
+          imageUrl: z.string().optional(),
+          metadata: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        // Check if user has edit permission for this section
+        const permission = await getUserPermissionForSection(ctx.user.id, input.sectionKey);
+        
+        if (!permission && ctx.user.role !== 'admin') {
+          throw new TRPCError({
+            code: 'FORBIDDEN',
+            message: 'You do not have permission to edit this section',
+          });
+        }
+
+        return await createOrUpdateContentSection({
+          ...input,
+          updatedBy: ctx.user.id,
+        });
+      }),
+
+    // Get user permissions for all sections
+    getUserPermissions: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) {
+        throw new TRPCError({
+          code: 'UNAUTHORIZED',
+          message: 'You must be logged in',
+        });
+      }
+
+      return await getUserPermissionsForAllSections(ctx.user.id);
+    }),
+
+    // Grant permission to user (admin only)
+    grantPermission: adminProcedure
+      .input(
+        z.object({
+          userId: z.number(),
+          sectionKey: z.string(),
+          permission: z.enum(['view', 'edit', 'manage']),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        return await grantUserPermission({
+          userId: input.userId,
+          sectionKey: input.sectionKey,
+          permission: input.permission,
+          grantedBy: ctx.user.id,
+        });
+      }),
+
+    // Revoke permission from user (admin only)
+    revokePermission: adminProcedure
+      .input(
+        z.object({
+          userId: z.number(),
+          sectionKey: z.string(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        return await revokeUserPermission(input.userId, input.sectionKey);
       }),
   }),
 });

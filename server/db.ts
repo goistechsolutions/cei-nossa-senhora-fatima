@@ -1,6 +1,6 @@
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, news, InsertNews } from "../drizzle/schema";
+import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -171,6 +171,135 @@ export async function deleteNews(id: number) {
     return result;
   } catch (error) {
     console.error("[Database] Failed to delete news:", error);
+    throw error;
+  }
+}
+
+
+// Content Section queries
+export async function getAllContentSections() {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get content sections: database not available");
+    return [];
+  }
+
+  try {
+    const result = await db.select().from(contentSections).orderBy(contentSections.sectionKey);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get content sections:", error);
+    return [];
+  }
+}
+
+export async function getContentSectionByKey(sectionKey: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get content section: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.select().from(contentSections).where(eq(contentSections.sectionKey, sectionKey)).limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get content section:", error);
+    return undefined;
+  }
+}
+
+export async function createOrUpdateContentSection(data: InsertContentSection) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create/update content section: database not available");
+    return undefined;
+  }
+
+  try {
+    const existing = await getContentSectionByKey(data.sectionKey);
+    
+    if (existing) {
+      const result = await db.update(contentSections).set(data).where(eq(contentSections.sectionKey, data.sectionKey));
+      return result;
+    } else {
+      const result = await db.insert(contentSections).values(data);
+      return result;
+    }
+  } catch (error) {
+    console.error("[Database] Failed to create/update content section:", error);
+    throw error;
+  }
+}
+
+// User Permissions queries
+export async function getUserPermissionForSection(userId: number, sectionKey: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user permission: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db
+      .select()
+      .from(userPermissions)
+      .where(and(eq(userPermissions.userId, userId), eq(userPermissions.sectionKey, sectionKey)))
+      .limit(1);
+    
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get user permission:", error);
+    return undefined;
+  }
+}
+
+export async function getUserPermissionsForAllSections(userId: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user permissions: database not available");
+    return [];
+  }
+
+  try {
+    const result = await db.select().from(userPermissions).where(eq(userPermissions.userId, userId));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get user permissions:", error);
+    return [];
+  }
+}
+
+export async function grantUserPermission(data: InsertUserPermission) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot grant permission: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(userPermissions).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to grant permission:", error);
+    throw error;
+  }
+}
+
+export async function revokeUserPermission(userId: number, sectionKey: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot revoke permission: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db
+      .delete(userPermissions)
+      .where(and(eq(userPermissions.userId, userId), eq(userPermissions.sectionKey, sectionKey)));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to revoke permission:", error);
     throw error;
   }
 }

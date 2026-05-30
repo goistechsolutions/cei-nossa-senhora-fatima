@@ -107,12 +107,24 @@ export default function Home() {
 
               {/* Admin Link */}
               {user?.role === 'admin' && (
-                <div className="mt-6">
+                <div className="mt-6 space-y-2">
+                  <a 
+                    href="/admin" 
+                    className="block text-sm text-teal-600 hover:text-teal-700 underline font-semibold"
+                  >
+                    → Painel Administrativo
+                  </a>
+                  <a 
+                    href="/admin/content" 
+                    className="block text-xs text-teal-500 hover:text-teal-600"
+                  >
+                    Gerenciar Conteúdo
+                  </a>
                   <a 
                     href="/admin/news" 
-                    className="text-sm text-teal-600 hover:text-teal-700 underline"
+                    className="block text-xs text-teal-500 hover:text-teal-600"
                   >
-                    → Gerenciar Notícias
+                    Gerenciar Notícias
                   </a>
                 </div>
               )}

@@ -44,3 +44,43 @@ export const news = mysqlTable("news", {
 
 export type News = typeof news.$inferSelect;
 export type InsertNews = typeof news.$inferInsert;
+
+/**
+ * Content sections table for managing dynamic text content
+ * Stores editable content for each section of the website
+ */
+export const contentSections = mysqlTable("content_sections", {
+  id: int("id").autoincrement().primaryKey(),
+  sectionKey: varchar("sectionKey", { length: 100 }).notNull().unique(), // 'hero', 'diferenciais', 'galeria', etc
+  sectionName: varchar("sectionName", { length: 255 }).notNull(), // Display name
+  content: text("content").notNull(), // Main content/text
+  subtitle: text("subtitle"), // Optional subtitle
+  description: text("description"), // Optional description
+  cta: varchar("cta", { length: 255 }), // Call-to-action text
+  ctaLink: varchar("ctaLink", { length: 500 }), // CTA link
+  imageUrl: varchar("imageUrl", { length: 500 }), // Optional image URL
+  metadata: text("metadata"), // JSON metadata for additional fields
+  updatedBy: int("updatedBy").notNull(), // user id who last updated
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ContentSection = typeof contentSections.$inferSelect;
+export type InsertContentSection = typeof contentSections.$inferInsert;
+
+/**
+ * User permissions table for role-based access control
+ * Defines which users can edit which sections
+ */
+export const userPermissions = mysqlTable("user_permissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(), // user id
+  sectionKey: varchar("sectionKey", { length: 100 }).notNull(), // section identifier
+  permission: mysqlEnum("permission", ["view", "edit", "manage"]).default("view").notNull(), // view, edit, manage
+  grantedBy: int("grantedBy").notNull(), // user id who granted permission
+  grantedAt: timestamp("grantedAt").defaultNow().notNull(),
+  expiresAt: timestamp("expiresAt"), // Optional expiration date
+});
+
+export type UserPermission = typeof userPermissions.$inferSelect;
+export type InsertUserPermission = typeof userPermissions.$inferInsert;

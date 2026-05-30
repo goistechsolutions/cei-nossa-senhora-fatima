@@ -9,6 +9,8 @@ import Projetos from '@/pages/Projetos'
 import Transparencia from '@/pages/Transparencia'
 import Contato from '@/pages/Contato'
 import AdminNews from '@/pages/admin/AdminNews'
+import AdminContent from '@/pages/admin/AdminContent'
+import AdminDashboard from '@/pages/admin/AdminDashboard'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/transparencia" component={Transparencia} />
           <Route path="/contato" component={Contato} />
           <Route path="/admin/news" component={AdminNews} />
+          <Route path="/admin/content" component={AdminContent} />
+          <Route path="/admin" component={AdminDashboard} />
         </main>
         <Footer />
       </div>
