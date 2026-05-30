@@ -38,6 +38,6 @@
 - [x] Rodar `pnpm db:push` para migrar
 - [x] Implementar procedures tRPC para CRUD de conteúdo
 - [x] Criar painel administrativo com editor de seções
-- [ ] Integrar conteúdo dinâmico no frontend
-- [ ] Testar e validar fluxo completo
-- [ ] Salvar checkpoint final
+- [x] Integrar conteúdo dinâmico no frontend
+- [x] Testar e validar fluxo completo
+- [x] Salvar checkpoint final

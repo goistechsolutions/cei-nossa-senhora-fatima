@@ -1,8 +1,9 @@
 import { ArrowRight } from 'lucide-react'
 import { INSTITUTION, VISUAL_ASSETS } from '@/lib/constants'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
-import { trpc } from '@/lib/trpc'
 import { useAuth } from '@/_core/hooks/useAuth'
+import { useContentSection } from '@/hooks/useContentSection'
+import { trpc } from '@/lib/trpc'
 
 export default function Home() {
   const { user } = useAuth()
@@ -11,6 +12,12 @@ export default function Home() {
   const { ref: galeriaRef, isVisible: galeriaVisible } = useScrollAnimation()
   const { ref: noticiasRef, isVisible: noticiasVisible } = useScrollAnimation()
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
+
+  // Fetch conteúdo dinâmico das seções
+  const heroContent = useContentSection('hero')
+  const diferencialContent = useContentSection('diferenciais')
+  const galeriaContent = useContentSection('galeria')
+  const ctaContent = useContentSection('cta_final')
 
   // Fetch notícias dinâmicas do banco de dados
   const { data: noticias = [], isLoading: noticiasLoading } = trpc.news.list.useQuery()
@@ -78,16 +85,24 @@ export default function Home() {
             {/* Conteúdo à Esquerda */}
             <div className="animate-fade-in-left">
               <h1 className="font-fredoka-one text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight text-teal-600">
-                Alegria Estruturada
+                {heroContent.isLoading ? 'Carregando...' : (heroContent.title || 'Alegria Estruturada')}
               </h1>
               
               <p className="font-poppins text-lg text-gray-700 mb-4 leading-relaxed">
-                Na <strong>CEI Nossa Senhora de Fátima</strong>, oferecemos educação infantil gratuita com excelência, transparência e muito amor.
+                {heroContent.isLoading ? 'Carregando...' : (heroContent.content || 'Na CEI Nossa Senhora de Fátima, oferecemos educação infantil graáita com excelência, transparência e muito amor.')}
               </p>
 
-              <p className="font-poppins text-base text-gray-600 mb-8 leading-relaxed">
-                Localizada em Fartura-SP, nossa instituição filantrópica une a vivacidade infantil com estrutura pedagógica rigorosa, focando no desenvolvimento integral da primeira infância.
-              </p>
+              {heroContent.subtitle && (
+                <p className="font-poppins text-base text-gray-600 mb-8 leading-relaxed">
+                  {heroContent.subtitle}
+                </p>
+              )}
+              
+              {!heroContent.subtitle && (
+                <p className="font-poppins text-base text-gray-600 mb-8 leading-relaxed">
+                  Localizada em Fartura-SP, nossa instituição filantropíca une a vivacidade infantil com estrutura pedagógica rigorosa, focando no desenvolvimento integral da primeira infância.
+                </p>
+              )}
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
