@@ -1,36 +1,49 @@
-import { useState } from 'react'
-import { Menu, X, Search } from 'lucide-react'
+import { useState } from "react";
+import { Menu, X, Search } from "lucide-react";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', href: '/', badge: 1 },
-    { label: 'História', href: '/historia', badge: 2 },
-    { label: 'Missão, Visão e Valores', href: '/missao-visao-valores', badge: 3 },
-    { label: 'Estrutura', href: '/estrutura', badge: 4 },
-    { label: 'Projetos', href: '/projetos', badge: 5 },
-    { label: 'Transparência', href: '/transparencia', badge: 6 },
-    { label: 'Contato', href: '/contato', badge: 7 }
-  ]
+    { label: "Home", href: "/", badge: 1 },
+    { label: "História", href: "/historia", badge: 2 },
+    {
+      label: "Missão, Visão e Valores",
+      href: "/missao-visao-valores",
+      badge: 3,
+    },
+    { label: "Estrutura", href: "/estrutura", badge: 4 },
+    { label: "Projetos", href: "/projetos", badge: 5 },
+    { label: "Transparência", href: "/transparencia", badge: 6 },
+    { label: "Contato", href: "/contato", badge: 7 },
+  ];
 
   return (
     <>
       <header className="bg-white sticky top-0 z-50 shadow-sm">
         <nav className="container flex items-center justify-between py-4">
           {/* Logo com Border Pontilhado - Estilo B12 */}
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <a
+            href="/"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+          >
             <div className="w-16 h-16 rounded-lg border-2 border-dashed border-green-500 flex items-center justify-center bg-white">
               <div className="text-center">
                 <div className="text-2xl">👑</div>
-                <div className="text-xs font-fredoka font-bold text-purple-600 leading-tight">Nossa<br/>Senhora<br/>Fátima</div>
+                <div className="text-xs font-fredoka font-bold text-purple-600 leading-tight">
+                  Nossa
+                  <br />
+                  Senhora
+                  <br />
+                  Fátima
+                </div>
               </div>
             </div>
           </a>
 
           {/* Menu Desktop com Badges */}
           <div className="hidden md:flex items-center gap-1 lg:gap-3">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <a
                 key={item.href}
                 href={item.href}
@@ -53,7 +66,11 @@ export default function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              {isMenuOpen ? <X size={24} className="text-gray-700" /> : <Menu size={24} className="text-gray-700" />}
+              {isMenuOpen ? (
+                <X size={24} className="text-gray-700" />
+              ) : (
+                <Menu size={24} className="text-gray-700" />
+              )}
             </button>
           </div>
         </nav>
@@ -65,7 +82,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-200">
             <div className="container py-4 space-y-1">
-              {navItems.map((item) => (
+              {navItems.map(item => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -80,5 +97,5 @@ export default function Header() {
         )}
       </header>
     </>
-  )
+  );
 }

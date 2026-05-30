@@ -4,6 +4,7 @@ import { trpc } from '@/lib/trpc'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { ImageSelector } from '@/components/ImageSelector'
 import { toast } from 'sonner'
 import { Save, AlertCircle } from 'lucide-react'
 import { useLocation } from 'wouter'
@@ -241,27 +242,11 @@ export default function AdminContent() {
                   </div>
 
                   {/* Imagem */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      URL da Imagem (opcional)
-                    </label>
-                    <Input
-                      type="url"
-                      value={formData.imageUrl}
-                      onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                      placeholder="https://..."
-                    />
-                    {formData.imageUrl && (
-                      <div className="mt-3">
-                        <img
-                          src={formData.imageUrl}
-                          alt="Preview"
-                          className="max-w-xs h-auto rounded-lg"
-                          onError={() => toast.error('Erro ao carregar imagem')}
-                        />
-                      </div>
-                    )}
-                  </div>
+                  <ImageSelector
+                    sectionKey={selectedSection}
+                    selectedImageUrl={formData.imageUrl}
+                    onSelect={(url) => setFormData({ ...formData, imageUrl: url })}
+                  />
 
                   {/* Metadados */}
                   <div>

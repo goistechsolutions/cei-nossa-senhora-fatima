@@ -10,6 +10,7 @@ import {
   getAllGalleryImages, getGalleryImageById, createGalleryImage, updateGalleryImage, deleteGalleryImage
 } from "./db";
 import { storagePut } from "./storage";
+import { compressImage, calculateCompressionRatio } from "./imageCompression";
 import { TRPCError } from "@trpc/server";
 
 export const appRouter = router({
@@ -193,31 +194,40 @@ export const appRouter = router({
       )
       .mutation(async ({ input, ctx }) => {
         try {
-          const buffer = Buffer.from(input.fileData, 'base64');
-          const fileSize = buffer.length;
-          const timestamp = Date.now();
-          const storageKey = `gallery/${timestamp}-${input.filename}`;
+          const originalBuffer = Buffer.from(input.fileData, 'base64');
+          const originalSize = originalBuffer.length;
 
-          const { url } = await storagePut(storageKey, buffer, input.mimeType);
+          const { compressed, width, height } = await compressImage(
+            input.fileData,
+            { maxWidth: 2000, maxHeight: 2000, quality: 85, format: 'webp' }
+          );
+
+          const compressedSize = compressed.length;
+          const compressionRatio = calculateCompressionRatio(originalSize, compressedSize);
+          const timestamp = Date.now();
+          const storageKey = `gallery/${timestamp}-${input.filename.replace(/\.[^/.]+$/, '')}.webp`;
+
+          const { url } = await storagePut(storageKey, compressed, 'image/webp');
 
           await createGalleryImage({
             filename: input.filename,
             storageKey,
             storageUrl: url,
-            mimeType: input.mimeType,
-            fileSize,
+            mimeType: 'image/webp',
+            fileSize: compressedSize,
+            width,
+            height,
             alt: input.alt,
             sectionKey: input.sectionKey,
             tags: input.tags,
             uploadedBy: ctx.user.id,
+            metadata: JSON.stringify({ originalSize, compressedSize, compressionRatio: `${compressionRatio}%` }),
           });
 
-          return { success: true, url, storageKey };
+          return { success: true, url, storageKey, compression: { originalSize, compressedSize, ratio: compressionRatio } };
         } catch (error) {
-          throw new TRPCError({
-            code: 'INTERNAL_SERVER_ERROR',
-            message: 'Failed to upload image',
-          });
+          console.error('Upload error:', error);
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to upload image' });
         }
       }),
 

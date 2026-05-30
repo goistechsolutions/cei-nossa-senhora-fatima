@@ -1,17 +1,17 @@
-import { Router, Route } from 'wouter'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Home from '@/pages/Home'
-import Historia from '@/pages/Historia'
-import MissaoVisaoValores from '@/pages/MissaoVisaoValores'
-import Estrutura from '@/pages/Estrutura'
-import Projetos from '@/pages/Projetos'
-import Transparencia from '@/pages/Transparencia'
-import Contato from '@/pages/Contato'
-import AdminNews from '@/pages/admin/AdminNews'
-import AdminContent from '@/pages/admin/AdminContent'
-import AdminDashboard from '@/pages/admin/AdminDashboard'
-import AdminGallery from '@/pages/admin/AdminGallery'
+import { Router, Route } from "wouter";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Home from "@/pages/Home";
+import Historia from "@/pages/Historia";
+import MissaoVisaoValores from "@/pages/MissaoVisaoValores";
+import Estrutura from "@/pages/Estrutura";
+import Projetos from "@/pages/Projetos";
+import Transparencia from "@/pages/Transparencia";
+import Contato from "@/pages/Contato";
+import AdminNews from "@/pages/admin/AdminNews";
+import AdminContent from "@/pages/admin/AdminContent";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminGallery from "@/pages/admin/AdminGallery";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Footer />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

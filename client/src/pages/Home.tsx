@@ -3,6 +3,7 @@ import { INSTITUTION, VISUAL_ASSETS } from '@/lib/constants'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { useAuth } from '@/_core/hooks/useAuth'
 import { useContentSection } from '@/hooks/useContentSection'
+import { PublicGallery } from '@/components/PublicGallery'
 import { trpc } from '@/lib/trpc'
 
 export default function Home() {
@@ -199,7 +200,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Galeria de Fotos - Estilo B12 */}
+      {/* Galeria de Fotos - DINÂMICA com Lightbox */}
       <section ref={galeriaRef} className="py-20 md:py-28 bg-gray-50 relative" style={{
         backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-galeria-S7FcsVcRz3iZgEzXC3aWFP.webp)',
         backgroundSize: 'cover',
@@ -208,39 +209,7 @@ export default function Home() {
       }}>
         <div className="absolute inset-0 bg-white/70"></div>
         <div className="container relative z-10">
-          <div className="mb-16 text-center">
-            <h2 className="font-fredoka-one text-4xl md:text-5xl mb-4 text-teal-600">
-              Galeria de Fotos
-            </h2>
-            <p className="font-poppins text-lg text-gray-700 max-w-2xl mx-auto">
-              Conheça os ambientes, as atividades e o dia a dia da nossa instituição
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galeriaFotos.map((foto, idx) => (
-              <div
-                key={idx}
-                className={`relative overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all group cursor-pointer h-64 bg-gradient-to-br from-teal-100 to-purple-100 hover:scale-105 transform ${
-                  galeriaVisible ? 'animate-scale-in' : 'opacity-0'
-                }`}
-                style={{
-                  animationDelay: galeriaVisible ? `${idx * 0.1}s` : '0s'
-                }}
-              >
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex flex-col items-center justify-center p-6">
-                  <div className="text-5xl mb-4 group-hover:scale-125 transition-transform">📸</div>
-                  <h3 className="font-fredoka-one text-xl text-white text-center mb-2">
-                    {foto.titulo}
-                  </h3>
-                  <p className="font-poppins text-sm text-white text-center">
-                    {foto.descricao}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <PublicGallery sectionKey="galeria" columns={3} showTitle={true} />
         </div>
       </section>
 

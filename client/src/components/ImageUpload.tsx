@@ -1,106 +1,110 @@
-import { useState, useRef } from 'react'
-import { Upload, X, Loader2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
-import { trpc } from '@/lib/trpc'
+import { useState, useRef } from "react";
+import { Upload, X, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 interface ImageUploadProps {
-  onUploadSuccess?: (url: string, storageKey: string) => void
-  sectionKey?: string
-  maxSizeMB?: number
+  onUploadSuccess?: (url: string, storageKey: string) => void;
+  sectionKey?: string;
+  maxSizeMB?: number;
 }
 
-export function ImageUpload({ onUploadSuccess, sectionKey, maxSizeMB = 10 }: ImageUploadProps) {
-  const [isDragging, setIsDragging] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [preview, setPreview] = useState<string | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
+export function ImageUpload({
+  onUploadSuccess,
+  sectionKey,
+  maxSizeMB = 10,
+}: ImageUploadProps) {
+  const [isDragging, setIsDragging] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const uploadMutation = trpc.gallery.upload.useMutation({
-    onSuccess: (data) => {
-      toast.success('Imagem enviada com sucesso!')
-      setSelectedFile(null)
-      setPreview(null)
-      onUploadSuccess?.(data.url, data.storageKey)
+    onSuccess: data => {
+      toast.success("Imagem enviada com sucesso!");
+      setSelectedFile(null);
+      setPreview(null);
+      onUploadSuccess?.(data.url, data.storageKey);
     },
-    onError: (error) => {
-      toast.error(error.message || 'Erro ao enviar imagem')
+    onError: error => {
+      toast.error(error.message || "Erro ao enviar imagem");
     },
-  })
+  });
 
   const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
+    e.preventDefault();
+    setIsDragging(true);
+  };
 
   const handleDragLeave = () => {
-    setIsDragging(false)
-  }
+    setIsDragging(false);
+  };
 
   const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
-    const files = e.dataTransfer.files
+    e.preventDefault();
+    setIsDragging(false);
+    const files = e.dataTransfer.files;
     if (files.length > 0) {
-      handleFileSelect(files[0])
+      handleFileSelect(files[0]);
     }
-  }
+  };
 
   const handleFileSelect = (file: File) => {
-    const maxSizeBytes = maxSizeMB * 1024 * 1024
+    const maxSizeBytes = maxSizeMB * 1024 * 1024;
 
-    if (!file.type.startsWith('image/')) {
-      toast.error('Por favor, selecione uma imagem válida')
-      return
+    if (!file.type.startsWith("image/")) {
+      toast.error("Por favor, selecione uma imagem válida");
+      return;
     }
 
     if (file.size > maxSizeBytes) {
-      toast.error(`Arquivo muito grande. Máximo: ${maxSizeMB}MB`)
-      return
+      toast.error(`Arquivo muito grande. Máximo: ${maxSizeMB}MB`);
+      return;
     }
 
-    setSelectedFile(file)
+    setSelectedFile(file);
 
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      setPreview(e.target?.result as string)
-    }
-    reader.readAsDataURL(file)
-  }
+    const reader = new FileReader();
+    reader.onload = e => {
+      setPreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.currentTarget.files
+    const files = e.currentTarget.files;
     if (files && files.length > 0) {
-      handleFileSelect(files[0])
+      handleFileSelect(files[0]);
     }
-  }
+  };
 
   const handleUpload = async () => {
     if (!selectedFile) {
-      toast.error('Selecione uma imagem')
-      return
+      toast.error("Selecione uma imagem");
+      return;
     }
 
-    const reader = new FileReader()
-    reader.onload = async (e) => {
-      const base64 = (e.target?.result as string).split(',')[1]
+    const reader = new FileReader();
+    reader.onload = async e => {
+      const base64 = (e.target?.result as string).split(",")[1];
       await uploadMutation.mutateAsync({
         filename: selectedFile.name,
         fileData: base64,
         mimeType: selectedFile.type,
         sectionKey,
-      })
-    }
-    reader.readAsDataURL(selectedFile)
-  }
+      });
+    };
+    reader.readAsDataURL(selectedFile);
+  };
 
   const handleClear = () => {
-    setSelectedFile(null)
-    setPreview(null)
+    setSelectedFile(null);
+    setPreview(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ''
+      fileInputRef.current.value = "";
     }
-  }
+  };
 
   return (
     <div className="w-full">
@@ -110,8 +114,8 @@ export function ImageUpload({ onUploadSuccess, sectionKey, maxSizeMB = 10 }: Ima
         onDrop={handleDrop}
         className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
           isDragging
-            ? 'border-teal-600 bg-teal-50'
-            : 'border-gray-300 bg-gray-50 hover:border-teal-600'
+            ? "border-teal-600 bg-teal-50"
+            : "border-gray-300 bg-gray-50 hover:border-teal-600"
         }`}
       >
         <input
@@ -173,7 +177,7 @@ export function ImageUpload({ onUploadSuccess, sectionKey, maxSizeMB = 10 }: Ima
                 Enviando...
               </>
             ) : (
-              'Enviar Imagem'
+              "Enviar Imagem"
             )}
           </Button>
           <Button
@@ -186,5 +190,5 @@ export function ImageUpload({ onUploadSuccess, sectionKey, maxSizeMB = 10 }: Ima
         </div>
       )}
     </div>
-  )
+  );
 }

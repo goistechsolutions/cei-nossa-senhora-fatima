@@ -53,3 +53,23 @@
 - [x] Integrar com editor de seções
 - [x] Testar e validar fluxo completo
 - [x] Salvar checkpoint final
+
+
+## Fase 8: Melhorias Sugeridas - Integração com Editor de Seções
+- [x] Criar componente `ImageSelector` para seleção de imagens da galeria
+- [x] Adicionar campo de seleção de imagem em `AdminContent.tsx`
+- [x] Integrar com procedures de galeria para listar imagens
+- [x] Testar seleção e vinculação de imagens
+
+## Fase 9: Compressão Automática de Imagens
+- [x] Instalar dependência de compressão (sharp)
+- [x] Criar função de compressão no backend
+- [x] Integrar compressão no procedure `gallery.upload`
+- [x] Testar qualidade e redução de tamanho
+
+## Fase 10: Galeria Pública com Lightbox
+- [x] Criar componente `Lightbox` interativo
+- [x] Criar componente `PublicGallery` para exibição
+- [x] Integrar galeria na página Home (seção Galeria)
+- [x] Testar navegação e responsividade
+- [x] Salvar checkpoint final
