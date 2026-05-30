@@ -1,10 +1,19 @@
 import mysql from 'mysql2/promise';
+import { URL } from 'url';
+
+// Parse DATABASE_URL corretamente
+const dbUrl = new URL(process.env.DATABASE_URL || 'mysql://root@localhost/test');
+const host = dbUrl.hostname;
+const user = dbUrl.username;
+const password = dbUrl.password;
+const database = dbUrl.pathname.substring(1); // Remove leading /
 
 const connection = await mysql.createConnection({
-  host: process.env.DATABASE_URL?.split('@')[1]?.split(':')[0] || 'localhost',
-  user: process.env.DATABASE_URL?.split('//')[1]?.split(':')[0] || 'root',
-  password: process.env.DATABASE_URL?.split(':')[2]?.split('@')[0] || '',
-  database: process.env.DATABASE_URL?.split('/').pop() || 'cei_db',
+  host,
+  user,
+  password,
+  database,
+  ssl: {},
 });
 
 const realData = {
@@ -46,6 +55,7 @@ const realData = {
       sectionKey: 'cta_final',
       title: 'Pronto para Fazer Parte de Nossa Comunidade?',
       subtitle: 'Entre em contato conosco para conhecer melhor o CEI Nossa Senhora de Fátima ou agende uma visita.',
+      content: 'Agende uma visita e conheça nossa instituição pessoalmente.',
       ctaText: 'Entrar em Contato',
       ctaLink: '/contato',
       metadata: JSON.stringify({ priority: 5, published: true }),
@@ -99,13 +109,13 @@ try {
   // Insert content sections
   for (const section of realData.contentSections) {
     await connection.execute(
-      `INSERT INTO content_sections (sectionKey, title, subtitle, content, ctaText, ctaLink, imageUrl, metadata, createdAt, updatedAt)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+      `INSERT INTO content_sections (sectionKey, sectionName, subtitle, content, cta, ctaLink, imageUrl, metadata, updatedBy, updatedAt, createdAt)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, NOW(), NOW())
        ON DUPLICATE KEY UPDATE
-       title = VALUES(title),
+       sectionName = VALUES(sectionName),
        subtitle = VALUES(subtitle),
        content = VALUES(content),
-       ctaText = VALUES(ctaText),
+       cta = VALUES(cta),
        ctaLink = VALUES(ctaLink),
        imageUrl = VALUES(imageUrl),
        metadata = VALUES(metadata),
@@ -127,8 +137,8 @@ try {
   // Insert news
   for (const newsItem of realData.news) {
     await connection.execute(
-      `INSERT INTO news (title, description, category, icon, publishedAt, isPublished, createdAt, updatedAt)
-       VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())`,
+      `INSERT INTO news (title, description, category, icon, publishedAt, isPublished, createdBy, updatedAt)
+       VALUES (?, ?, ?, ?, ?, ?, 1, NOW())`,
       [
         newsItem.title,
         newsItem.description,
