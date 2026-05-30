@@ -1,252 +1,158 @@
-/*
-Direção visual escolhida: Editorial Lúdico Humanista.
-O CSS define uma base creme acolhedora, roxo institucional, turquesa de vitalidade, amarelo de esperança, sombras suaves, cartões orgânicos e microanimações discretas para reforçar a página como demonstração premium dos ativos visuais do CEI.
-*/
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap');
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@theme {
+  --color-red: #FF4444;
+  --color-orange: #FF9500;
+  --color-yellow: #FFD166;
+  --color-green: #4CAF50;
+  --color-turquoise: #2BCDCD;
+  --color-blue: #2196F3;
+  --color-purple: #9C27B0;
+  --color-dark: #1A1A1A;
+  --color-light: #FFFFFF;
+  --color-cream: #F5F1E8;
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-:root {
-  --radius: 1rem;
-  --background: oklch(0.985 0.022 88);
-  --foreground: oklch(0.22 0.026 272);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.026 272);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.026 272);
-  --primary: oklch(0.43 0.146 319);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.93 0.046 190);
-  --secondary-foreground: oklch(0.25 0.08 250);
-  --muted: oklch(0.955 0.028 88);
-  --muted-foreground: oklch(0.47 0.03 272);
-  --accent: oklch(0.86 0.13 85);
-  --accent-foreground: oklch(0.32 0.1 319);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.88 0.035 88);
-  --input: oklch(0.88 0.035 88);
-  --ring: oklch(0.63 0.14 205);
-  --chart-1: oklch(0.63 0.14 205);
-  --chart-2: oklch(0.43 0.146 319);
-  --chart-3: oklch(0.86 0.13 85);
-  --chart-4: oklch(0.68 0.13 155);
-  --chart-5: oklch(0.48 0.14 255);
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.22 0.026 272);
-  --sidebar-primary: oklch(0.43 0.146 319);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.93 0.046 190);
-  --sidebar-accent-foreground: oklch(0.25 0.08 250);
-  --sidebar-border: oklch(0.88 0.035 88);
-  --sidebar-ring: oklch(0.63 0.14 205);
-}
-
-.dark {
-  --background: oklch(0.18 0.045 272);
-  --foreground: oklch(0.96 0.016 88);
-  --card: oklch(0.22 0.05 272);
-  --card-foreground: oklch(0.96 0.016 88);
-  --popover: oklch(0.22 0.05 272);
-  --popover-foreground: oklch(0.96 0.016 88);
-  --primary: oklch(0.7 0.145 319);
-  --primary-foreground: oklch(0.15 0.04 272);
-  --secondary: oklch(0.3 0.06 205);
-  --secondary-foreground: oklch(0.94 0.02 88);
-  --muted: oklch(0.28 0.04 272);
-  --muted-foreground: oklch(0.74 0.025 88);
-  --accent: oklch(0.79 0.12 85);
-  --accent-foreground: oklch(0.16 0.04 272);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.63 0.14 205);
-  --sidebar: oklch(0.22 0.05 272);
-  --sidebar-foreground: oklch(0.96 0.016 88);
-  --sidebar-primary: oklch(0.7 0.145 319);
-  --sidebar-primary-foreground: oklch(0.15 0.04 272);
-  --sidebar-accent: oklch(0.3 0.06 205);
-  --sidebar-accent-foreground: oklch(0.94 0.02 88);
-  --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.63 0.14 205);
+  --font-fredoka: Fredoka, sans-serif;
+  --font-fredoka-one: Fredoka One, sans-serif;
+  --font-poppins: Poppins, sans-serif;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 8.5rem;
-  }
-
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    @apply bg-white text-gray-900;
+    font-family: var(--font-fredoka);
   }
 
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-fredoka-one);
+    font-weight: 700;
   }
 
-  ::selection {
-    background: #ffd166;
-    color: #572e80;
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
   }
-}
 
-@layer components {
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  a {
+    @apply text-red-500 hover:text-orange-500 transition-colors;
+  }
+
+  button {
+    font-family: var(--font-fredoka);
+    @apply font-semibold rounded-full transition-all;
+  }
+
   .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
-  .font-display {
-    font-family: "Baloo 2", "Nunito Sans", system-ui, sans-serif;
-  }
-
-  .section-kicker {
-    display: inline-flex;
-    width: fit-content;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 999px;
-    background: rgba(139, 58, 155, 0.1);
-    padding: 0.55rem 0.9rem;
-    font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #572e80;
-  }
-
-  .section-kicker::before {
-    content: "";
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 999px;
-    background: #2bcdcd;
-    box-shadow: 0 0 0 5px rgba(43, 205, 205, 0.14);
-  }
-
-  .nav-link,
-  .nav-link-active {
-    display: inline-flex;
-    align-items: center;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 900;
-    color: rgba(34, 36, 58, 0.82);
-    transition: color 180ms ease, transform 180ms ease;
-  }
-
-  .nav-link:hover,
-  .nav-link-active:hover {
-    color: #8b3a9b;
-    transform: translateY(-1px);
-  }
-
-  .nav-link-active {
-    color: #ec64a5;
-  }
-
-  .mobile-nav-pill {
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    padding: 0.65rem 0.85rem;
-    text-align: center;
-    box-shadow: 0 10px 24px rgba(43, 38, 68, 0.08);
-    transition: background 180ms ease, transform 180ms ease;
-  }
-
-  .mobile-nav-pill:hover {
-    background: #ffffff;
-    transform: translateY(-1px);
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      max-width: 1280px;
-    }
+    @apply mx-auto px-4 md:px-6 lg:px-8;
   }
 }
 
 @layer utilities {
-  @keyframes gentle-float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(1.5deg); }
+  .gradient-rainbow {
+    background: linear-gradient(
+      135deg,
+      #FF4444 0%,
+      #FF9500 16.67%,
+      #FFD166 33.33%,
+      #4CAF50 50%,
+      #2BCDCD 66.67%,
+      #2196F3 83.33%,
+      #9C27B0 100%
+    );
   }
 
-  .animate-gentle-float {
-    animation: gentle-float 6s ease-in-out infinite;
+  .gradient-rainbow-text {
+    background: linear-gradient(
+      135deg,
+      #FF4444 0%,
+      #FF9500 16.67%,
+      #FFD166 33.33%,
+      #4CAF50 50%,
+      #2BCDCD 66.67%,
+      #2196F3 83.33%,
+      #9C27B0 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-vibrant {
+    box-shadow: 0 4px 20px rgba(255, 68, 68, 0.2);
+  }
+
+  .shadow-vibrant-lg {
+    box-shadow: 0 8px 30px rgba(255, 68, 68, 0.3);
+  }
+
+  .font-fredoka {
+    font-family: var(--font-fredoka);
+  }
+
+  .font-fredoka-one {
+    font-family: var(--font-fredoka-one);
+  }
+
+  .font-poppins {
+    font-family: var(--font-poppins);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-red-500;
+  }
+}
+
+@layer animations {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes rainbow-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-rainbow {
+    background-size: 200% 200%;
+    animation: rainbow-shift 6s ease infinite;
   }
 }
