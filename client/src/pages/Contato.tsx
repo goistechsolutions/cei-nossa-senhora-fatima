@@ -24,7 +24,13 @@ export default function Contato() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-white">
+      <section className="relative py-20 md:py-32 overflow-hidden bg-white" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/hero-background-contato-jKBMCQwZF6TThCEB2pAS6s.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/60"></div>
         <div className="container relative z-10">
           <div className="max-w-3xl">
             <h1 className="font-fredoka-one text-5xl md:text-6xl mb-6 leading-tight text-teal-600">

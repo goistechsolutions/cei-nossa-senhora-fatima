@@ -52,8 +52,14 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section - Estilo B12 */}
-      <section id="home" className="relative py-16 md:py-24 bg-white overflow-hidden">
-        <div className="container">
+      <section id="home" className="relative py-16 md:py-24 bg-white overflow-hidden" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/hero-background-home-QpMp3MTCVAJpAXNSndTBMy.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/60"></div>
+        <div className="container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Conteúdo à Esquerda */}
             <div className="animate-fade-in-left">
