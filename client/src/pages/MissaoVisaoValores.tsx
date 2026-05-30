@@ -2,26 +2,10 @@ export default function MissaoVisaoValores() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-purple-50 via-white to-pink-50">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-rainbow opacity-5 rounded-full blur-3xl"></div>
-        
+      <section className="relative py-20 md:py-32 overflow-hidden bg-white">
         <div className="container relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-block mb-6">
-              <span className="bg-purple-600 text-white font-fredoka font-semibold px-4 py-2 rounded-full text-sm">
-                🎯 MISSÃO, VISÃO E VALORES
-              </span>
-            </div>
-            
-            <h1 
-              className="font-fredoka-one text-5xl md:text-6xl mb-6 leading-tight"
-              style={{
-                background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
+            <h1 className="font-fredoka-one text-5xl md:text-6xl mb-6 leading-tight text-teal-600">
               Missão, Visão e Valores
             </h1>
             
@@ -33,23 +17,15 @@ export default function MissaoVisaoValores() {
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-16">
             {/* Missão */}
-            <div className="mb-16">
-              <h2 
-                className="font-fredoka-one text-4xl mb-8"
-                style={{
-                  background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}
-              >
+            <div>
+              <h2 className="font-fredoka-one text-4xl mb-8 text-teal-600">
                 Nossa Missão
               </h2>
-              <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border-l-4 border-red-500">
+              <div className="bg-white rounded-lg p-8 shadow-md border-l-4 border-teal-600">
                 <p className="font-poppins text-lg text-gray-700 leading-relaxed">
                   Oferecer educação infantil de qualidade, gratuita e acessível, promovendo o desenvolvimento integral das crianças em um ambiente acolhedor, seguro e estruturado, com foco na pedagogia do afeto, respeito às diferenças e preparação para a vida em sociedade.
                 </p>
@@ -57,19 +33,11 @@ export default function MissaoVisaoValores() {
             </div>
 
             {/* Visão */}
-            <div className="mb-16">
-              <h2 
-                className="font-fredoka-one text-4xl mb-8"
-                style={{
-                  background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}
-              >
+            <div>
+              <h2 className="font-fredoka-one text-4xl mb-8 text-teal-600">
                 Nossa Visão
               </h2>
-              <div className="bg-gradient-to-br from-yellow-50 to-green-50 rounded-2xl p-8 border-l-4 border-yellow-500">
+              <div className="bg-white rounded-lg p-8 shadow-md border-l-4 border-teal-600">
                 <p className="font-poppins text-lg text-gray-700 leading-relaxed">
                   Ser reconhecida como instituição de excelência em educação infantil, referência em metodologia pedagógica inovadora, transparência e compromisso com o desenvolvimento integral das crianças, contribuindo para a formação de cidadãos conscientes, críticos e humanizados.
                 </p>
@@ -78,15 +46,7 @@ export default function MissaoVisaoValores() {
 
             {/* Valores */}
             <div>
-              <h2 
-                className="font-fredoka-one text-4xl mb-8"
-                style={{
-                  background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}
-              >
+              <h2 className="font-fredoka-one text-4xl mb-8 text-teal-600">
                 Nossos Valores
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -98,7 +58,7 @@ export default function MissaoVisaoValores() {
                   { titulo: 'Inclusão', descricao: 'Acolhimento de todas as crianças, independentemente de suas diferenças.' },
                   { titulo: 'Sustentabilidade', descricao: 'Responsabilidade ambiental e social em nossas práticas educacionais.' }
                 ].map((valor, idx) => (
-                  <div key={idx} className="bg-gradient-to-br from-cream to-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all border-l-4 border-teal-500">
+                  <div key={idx} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all border border-teal-200">
                     <h3 className="font-fredoka-one text-xl text-teal-600 mb-3">{valor.titulo}</h3>
                     <p className="font-poppins text-gray-700 leading-relaxed">{valor.descricao}</p>
                   </div>
@@ -106,6 +66,21 @@ export default function MissaoVisaoValores() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-teal-600">
+        <div className="container text-center">
+          <h2 className="font-fredoka-one text-4xl text-white mb-6">
+            Conheça Nossos Projetos
+          </h2>
+          <a
+            href="/projetos"
+            className="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-fredoka font-semibold rounded-lg hover:bg-gray-100 transition-all border-2 border-dashed border-white"
+          >
+            Saiba Mais
+          </a>
         </div>
       </section>
     </main>

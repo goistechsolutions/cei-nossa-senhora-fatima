@@ -1,7 +1,12 @@
 import { ArrowRight } from 'lucide-react'
 import { INSTITUTION, VISUAL_ASSETS } from '@/lib/constants'
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 export default function Home() {
+  const { ref: diferencialRef, isVisible: diferencialVisible } = useScrollAnimation()
+  const { ref: galeriaRef, isVisible: galeriaVisible } = useScrollAnimation()
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
+
   const diferenciais = [
     {
       titulo: 'Educação Gratuita',
@@ -36,102 +41,68 @@ export default function Home() {
   ]
 
   const galeriaFotos = [
-    {
-      titulo: 'Sala de Aula',
-      descricao: 'Ambientes coloridos e acolhedores para aprendizado'
-    },
-    {
-      titulo: 'Atividades Lúdicas',
-      descricao: 'Brincadeiras e atividades que estimulam criatividade'
-    },
-    {
-      titulo: 'Horta Educativa',
-      descricao: 'Aprendizado prático sobre natureza e sustentabilidade'
-    },
-    {
-      titulo: 'Recreação',
-      descricao: 'Espaços seguros para diversão e movimento'
-    },
-    {
-      titulo: 'Refeições',
-      descricao: 'Alimentação saudável e nutritiva para as crianças'
-    },
-    {
-      titulo: 'Momentos Especiais',
-      descricao: 'Celebrações e eventos que marcam a infância'
-    }
+    { titulo: 'Sala de Aula', descricao: 'Ambientes coloridos e acolhedores para aprendizado' },
+    { titulo: 'Atividades Lúdicas', descricao: 'Brincadeiras e atividades que estimulam criatividade' },
+    { titulo: 'Horta Educativa', descricao: 'Aprendizado prático sobre natureza e sustentabilidade' },
+    { titulo: 'Recreação', descricao: 'Espaços seguros para diversão e movimento' },
+    { titulo: 'Refeições', descricao: 'Alimentação saudável e nutritiva para as crianças' },
+    { titulo: 'Momentos Especiais', descricao: 'Celebrações e eventos que marcam a infância' }
   ]
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section id="home" className="relative py-16 md:py-24 bg-gradient-to-br from-cream via-white to-orange-50 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-rainbow opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-200 opacity-5 rounded-full blur-3xl"></div>
-        
-        <div className="container relative z-10">
+      {/* Hero Section - Estilo B12 */}
+      <section id="home" className="relative py-16 md:py-24 bg-white overflow-hidden">
+        <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Conteúdo à Esquerda */}
-            <div>
-              <div className="inline-block mb-6">
-                <span className="bg-red-500 text-white font-fredoka font-semibold px-4 py-2 rounded-full text-sm">
-                  ✨ Alegria Estruturada
-                </span>
-              </div>
-              
-              <h1 
-                className="font-fredoka-one text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight"
-                style={{
-                  background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}
-              >
-                Cuidado, educação e amor para a primeira infância.
+            <div className="animate-fade-in-left">
+              <h1 className="font-fredoka-one text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight text-teal-600">
+                Alegria Estruturada
               </h1>
               
-              <p className="font-poppins text-lg text-gray-700 mb-8 leading-relaxed max-w-lg">
-                Na CEI Nossa Senhora de Fátima, oferecemos educação infantil gratuita com excelência, transparência e muito amor. Localizada em Fartura-SP, nossa instituição filantrópica une a vivacidade infantil com estrutura pedagógica rigorosa.
+              <p className="font-poppins text-lg text-gray-700 mb-4 leading-relaxed">
+                Na <strong>CEI Nossa Senhora de Fátima</strong>, oferecemos educação infantil gratuita com excelência, transparência e muito amor.
+              </p>
+
+              <p className="font-poppins text-base text-gray-600 mb-8 leading-relaxed">
+                Localizada em Fartura-SP, nossa instituição filantrópica une a vivacidade infantil com estrutura pedagógica rigorosa, focando no desenvolvimento integral da primeira infância.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/historia" className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-700 text-white font-fredoka font-semibold rounded-full hover:shadow-lg transition-all gap-2 text-lg">
+                <a 
+                  href="/historia" 
+                  className="inline-flex items-center justify-center px-8 py-4 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 text-lg border-2 border-dashed border-teal-600 hover:scale-105 transform"
+                >
                   Conheça Nossa História
                   <ArrowRight size={20} />
                 </a>
-                <a href="/contato" className="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-teal-600 text-teal-600 font-fredoka font-semibold rounded-full hover:bg-teal-50 transition-all gap-2 text-lg">
+                <a 
+                  href="/contato" 
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-teal-600 font-fredoka font-semibold rounded-lg border-2 border-dashed border-teal-600 hover:bg-teal-50 transition-all gap-2 text-lg hover:scale-105 transform"
+                >
                   Entre em Contato
                 </a>
               </div>
             </div>
 
             {/* Imagem à Direita */}
-            <div className="relative hidden md:block">
-              <div className="absolute inset-0 bg-gradient-rainbow opacity-10 rounded-3xl blur-2xl"></div>
+            <div className="relative hidden md:block animate-fade-in-right">
               <img
                 src={VISUAL_ASSETS.heroBanner}
                 alt="Crianças brincando em sala de aula"
-                className="relative rounded-3xl shadow-2xl w-full h-auto object-cover"
+                className="rounded-2xl shadow-lg w-full h-auto object-cover hover:shadow-xl transition-all"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Diferenciais Pedagógicos */}
-      <section className="py-20 md:py-28 bg-white">
+      {/* Diferenciais Pedagógicos - Estilo B12 */}
+      <section ref={diferencialRef} className="py-20 md:py-28 bg-white">
         <div className="container">
           <div className="mb-16 text-center">
-            <h2 
-              className="font-fredoka-one text-4xl md:text-5xl mb-6"
-              style={{
-                background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
+            <h2 className="font-fredoka-one text-4xl md:text-5xl mb-4 text-teal-600">
               Nossos Diferenciais Pedagógicos
             </h2>
             <p className="font-poppins text-lg text-gray-700 max-w-2xl mx-auto">
@@ -143,10 +114,15 @@ export default function Home() {
             {diferenciais.map((diferencial, idx) => (
               <div
                 key={idx}
-                className="bg-gradient-to-br from-cream to-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-all border-l-4 border-red-500 group"
+                className={`bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-all border border-gray-200 hover:scale-105 transform ${
+                  diferencialVisible ? 'animate-fade-in-up' : 'opacity-0'
+                }`}
+                style={{
+                  animationDelay: diferencialVisible ? `${idx * 0.1}s` : '0s'
+                }}
               >
-                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">{diferencial.icone}</div>
-                <h3 className="font-fredoka-one text-2xl text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
+                <div className="text-6xl mb-4 hover:scale-110 transition-transform">{diferencial.icone}</div>
+                <h3 className="font-fredoka-one text-2xl text-gray-900 mb-3">
                   {diferencial.titulo}
                 </h3>
                 <p className="font-poppins text-gray-700 leading-relaxed">
@@ -158,19 +134,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Galeria de Fotos */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-cream to-white">
+      {/* Galeria de Fotos - Estilo B12 */}
+      <section ref={galeriaRef} className="py-20 md:py-28 bg-gray-50">
         <div className="container">
           <div className="mb-16 text-center">
-            <h2 
-              className="font-fredoka-one text-4xl md:text-5xl mb-6"
-              style={{
-                background: 'linear-gradient(135deg, #FF4444 0%, #FF9500 16.67%, #FFD166 33.33%, #4CAF50 50%, #2BCDCD 66.67%, #2196F3 83.33%, #9C27B0 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
+            <h2 className="font-fredoka-one text-4xl md:text-5xl mb-4 text-teal-600">
               Galeria de Fotos
             </h2>
             <p className="font-poppins text-lg text-gray-700 max-w-2xl mx-auto">
@@ -182,15 +150,16 @@ export default function Home() {
             {galeriaFotos.map((foto, idx) => (
               <div
                 key={idx}
-                className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-all group cursor-pointer h-64"
+                className={`relative overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all group cursor-pointer h-64 bg-gradient-to-br from-teal-100 to-purple-100 hover:scale-105 transform ${
+                  galeriaVisible ? 'animate-scale-in' : 'opacity-0'
+                }`}
+                style={{
+                  animationDelay: galeriaVisible ? `${idx * 0.1}s` : '0s'
+                }}
               >
-                {/* Placeholder com gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-red-400 via-orange-400 to-yellow-400 opacity-20"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-400 via-blue-400 to-purple-400 opacity-20"></div>
-                
-                {/* Conteúdo */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black/60 to-transparent p-6 group-hover:from-black/80 transition-all">
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📸</div>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex flex-col items-center justify-center p-6">
+                  <div className="text-5xl mb-4 group-hover:scale-125 transition-transform">📸</div>
                   <h3 className="font-fredoka-one text-xl text-white text-center mb-2">
                     {foto.titulo}
                   </h3>
@@ -204,19 +173,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-20 md:py-28 bg-gradient-to-r from-red-500 to-orange-500">
-        <div className="container">
+      {/* CTA Final - Estilo B12 */}
+      <section ref={ctaRef} className="py-20 md:py-28 bg-white">
+        <div className={`container ${ctaVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-fredoka-one text-4xl md:text-5xl text-white mb-6">
+            <h2 className="font-fredoka-one text-4xl md:text-5xl text-teal-600 mb-6">
               Pronto para Fazer Parte de Nossa Comunidade?
             </h2>
-            <p className="font-poppins text-lg text-white mb-8 leading-relaxed">
+            <p className="font-poppins text-lg text-gray-700 mb-8 leading-relaxed">
               Entre em contato conosco para conhecer melhor o CEI Nossa Senhora de Fátima ou agende uma visita.
             </p>
             <a
               href="/contato"
-              className="inline-flex items-center px-8 py-4 bg-white text-red-600 font-fredoka font-semibold rounded-full hover:shadow-lg transition-all gap-2 text-lg hover:scale-105 transform"
+              className="inline-flex items-center px-8 py-4 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 text-lg border-2 border-dashed border-teal-600 hover:scale-105 transform"
             >
               Entrar em Contato
               <ArrowRight size={20} />
