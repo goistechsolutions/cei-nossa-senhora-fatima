@@ -32,8 +32,14 @@ export default function Historia() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container">
+      <section className="py-20 bg-gray-50 relative" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-historia-CjUdvNhL7g8MYaAaUM5YkN.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/70"></div>
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-fredoka-one text-4xl text-center mb-16 text-teal-600">
               Marcos Importantes

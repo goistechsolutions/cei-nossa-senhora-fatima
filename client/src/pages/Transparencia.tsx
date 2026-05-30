@@ -79,8 +79,14 @@ export default function Transparencia() {
       </section>
 
       {/* Documentos Institucionais */}
-      <section className="py-20 bg-gray-50">
-        <div className="container">
+      <section className="py-20 bg-gray-50 relative" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-transparencia-m2umhrrqAWN68kmSVgngtb.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/70"></div>
+        <div className="container relative z-10">
           <h2 className="font-fredoka-one text-4xl mb-12 text-teal-600">
             Documentos Institucionais
           </h2>
