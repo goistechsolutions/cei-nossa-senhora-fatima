@@ -1,12 +1,19 @@
 import { ArrowRight } from 'lucide-react'
 import { INSTITUTION, VISUAL_ASSETS } from '@/lib/constants'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+import { trpc } from '@/lib/trpc'
+import { useAuth } from '@/_core/hooks/useAuth'
 
 export default function Home() {
+  const { user } = useAuth()
+  
   const { ref: diferencialRef, isVisible: diferencialVisible } = useScrollAnimation()
   const { ref: galeriaRef, isVisible: galeriaVisible } = useScrollAnimation()
   const { ref: noticiasRef, isVisible: noticiasVisible } = useScrollAnimation()
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
+
+  // Fetch notícias dinâmicas do banco de dados
+  const { data: noticias = [], isLoading: noticiasLoading } = trpc.news.list.useQuery()
 
   const diferenciais = [
     {
@@ -50,36 +57,11 @@ export default function Home() {
     { titulo: 'Momentos Especiais', descricao: 'Celebrações e eventos que marcam a infância' }
   ]
 
-  const noticias = [
-    {
-      data: '28 de Maio de 2026',
-      titulo: 'Festa Junina 2026 - Alegria e Tradição',
-      descricao: 'Celebramos a cultura junina com as crianças! Comidas típicas, danças e muita diversão para toda a comunidade.',
-      categoria: 'Evento',
-      icone: '🎉'
-    },
-    {
-      data: '20 de Maio de 2026',
-      titulo: 'Colheita da Horta Educativa',
-      descricao: 'As crianças colheram os primeiros legumes plantados na horta! Aprendizado prático sobre sustentabilidade.',
-      categoria: 'Projeto',
-      icone: '🌽'
-    },
-    {
-      data: '15 de Maio de 2026',
-      titulo: 'Novo Portal de Transparência Lançado',
-      descricao: 'Apresentamos o novo portal de transparência com acesso fácil a documentos e relatórios institucionais.',
-      categoria: 'Institucional',
-      icone: '📊'
-    },
-    {
-      data: '10 de Maio de 2026',
-      titulo: 'Capacitação Pedagógica da Equipe',
-      descricao: 'Equipe participou de treinamento sobre metodologias inovadoras em educação infantil.',
-      categoria: 'Desenvolvimento',
-      icone: '📚'
-    }
-  ]
+  // Formatar data para exibição
+  const formatDate = (date: Date | string) => {
+    const d = new Date(date)
+    return d.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })
+  }
 
   return (
     <main className="min-h-screen">
@@ -122,6 +104,18 @@ export default function Home() {
                   Entre em Contato
                 </a>
               </div>
+
+              {/* Admin Link */}
+              {user?.role === 'admin' && (
+                <div className="mt-6">
+                  <a 
+                    href="/admin/news" 
+                    className="text-sm text-teal-600 hover:text-teal-700 underline"
+                  >
+                    → Gerenciar Notícias
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Imagem à Direita */}
@@ -223,7 +217,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Seção de Notícias */}
+      {/* Seção de Notícias - DINÂMICA */}
       <section ref={noticiasRef} className="py-20 bg-gray-50 relative" style={{
         backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-diferenciais-2Hs8mNxQrJ5Wq9kL3pT7vM.webp)',
         backgroundSize: 'cover',
@@ -242,45 +236,59 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {noticias.map((noticia, idx) => (
-              <div
-                key={idx}
-                className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 border-l-4 border-teal-600 hover:scale-105 transform ${
-                  noticiasVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-                style={{
-                  animationDelay: noticiasVisible ? `${idx * 0.1}s` : '0s'
-                }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">{noticia.icone}</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-fredoka font-semibold text-teal-600 bg-teal-100 px-3 py-1 rounded-full">
-                        {noticia.categoria}
-                      </span>
-                      <span className="text-xs text-gray-500 font-poppins">{noticia.data}</span>
+            {noticiasLoading ? (
+              <div className="col-span-full text-center py-8">
+                <p className="text-gray-500">Carregando notícias...</p>
+              </div>
+            ) : noticias.length > 0 ? (
+              noticias.slice(0, 4).map((noticia, idx) => (
+                <div
+                  key={noticia.id}
+                  className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 border-l-4 border-teal-600 hover:scale-105 transform ${
+                    noticiasVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
+                  style={{
+                    animationDelay: noticiasVisible ? `${idx * 0.1}s` : '0s'
+                  }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="text-4xl">{noticia.icon}</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-fredoka font-semibold text-teal-600 bg-teal-100 px-3 py-1 rounded-full">
+                          {noticia.category}
+                        </span>
+                        <span className="text-xs text-gray-500 font-poppins">
+                          {formatDate(noticia.publishedAt)}
+                        </span>
+                      </div>
+                      <h3 className="font-fredoka-one text-lg text-teal-600 mb-2 hover:text-teal-700">
+                        {noticia.title}
+                      </h3>
+                      <p className="font-poppins text-gray-700 text-sm leading-relaxed">
+                        {noticia.description}
+                      </p>
                     </div>
-                    <h3 className="font-fredoka-one text-lg text-teal-600 mb-2 hover:text-teal-700">
-                      {noticia.titulo}
-                    </h3>
-                    <p className="font-poppins text-gray-700 text-sm leading-relaxed">
-                      {noticia.descricao}
-                    </p>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-8">
+                <p className="text-gray-500">Nenhuma notícia publicada ainda.</p>
               </div>
-            ))}
+            )}
           </div>
 
-          <div className="text-center mt-12">
-            <a
-              href="#"
-              className="inline-flex items-center px-8 py-3 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 border-2 border-dashed border-teal-600"
-            >
-              Ver Todas as Notícias
-            </a>
-          </div>
+          {noticias.length > 0 && (
+            <div className="text-center mt-12">
+              <a
+                href="/noticias"
+                className="inline-flex items-center px-8 py-3 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 border-2 border-dashed border-teal-600"
+              >
+                Ver Todas as Notícias
+              </a>
+            </div>
+          )}
         </div>
       </section>
 

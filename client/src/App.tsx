@@ -8,6 +8,7 @@ import Estrutura from '@/pages/Estrutura'
 import Projetos from '@/pages/Projetos'
 import Transparencia from '@/pages/Transparencia'
 import Contato from '@/pages/Contato'
+import AdminNews from '@/pages/admin/AdminNews'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/projetos" component={Projetos} />
           <Route path="/transparencia" component={Transparencia} />
           <Route path="/contato" component={Contato} />
+          <Route path="/admin/news" component={AdminNews} />
         </main>
         <Footer />
       </div>
