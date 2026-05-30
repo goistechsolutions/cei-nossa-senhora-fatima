@@ -114,3 +114,4 @@
     }
   }
 }
+    "seed": "node server/seed-real-data.mjs",
