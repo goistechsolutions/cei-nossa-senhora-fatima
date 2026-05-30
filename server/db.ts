@@ -1,6 +1,6 @@
 import { desc, eq, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission } from "../drizzle/schema";
+import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission, galleryImages, InsertGalleryImage } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -300,6 +300,92 @@ export async function revokeUserPermission(userId: number, sectionKey: string) {
     return result;
   } catch (error) {
     console.error("[Database] Failed to revoke permission:", error);
+    throw error;
+  }
+}
+
+
+// Gallery Images queries
+export async function getAllGalleryImages(sectionKey?: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get gallery images: database not available");
+    return [];
+  }
+
+  try {
+    let query = db.select().from(galleryImages);
+    if (sectionKey) {
+      query = query.where(eq(galleryImages.sectionKey, sectionKey));
+    }
+    const result = await query.orderBy(desc(galleryImages.uploadedAt));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get gallery images:", error);
+    return [];
+  }
+}
+
+export async function getGalleryImageById(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get gallery image: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.select().from(galleryImages).where(eq(galleryImages.id, id)).limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get gallery image:", error);
+    return undefined;
+  }
+}
+
+export async function createGalleryImage(data: InsertGalleryImage) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create gallery image: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(galleryImages).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create gallery image:", error);
+    throw error;
+  }
+}
+
+export async function updateGalleryImage(id: number, data: Partial<InsertGalleryImage>) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot update gallery image: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.update(galleryImages).set(data).where(eq(galleryImages.id, id));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to update gallery image:", error);
+    throw error;
+  }
+}
+
+export async function deleteGalleryImage(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot delete gallery image: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.delete(galleryImages).where(eq(galleryImages.id, id));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to delete gallery image:", error);
     throw error;
   }
 }

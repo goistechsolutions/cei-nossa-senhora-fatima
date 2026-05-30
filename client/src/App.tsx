@@ -11,6 +11,7 @@ import Contato from '@/pages/Contato'
 import AdminNews from '@/pages/admin/AdminNews'
 import AdminContent from '@/pages/admin/AdminContent'
 import AdminDashboard from '@/pages/admin/AdminDashboard'
+import AdminGallery from '@/pages/admin/AdminGallery'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/contato" component={Contato} />
           <Route path="/admin/news" component={AdminNews} />
           <Route path="/admin/content" component={AdminContent} />
+          <Route path="/admin/gallery" component={AdminGallery} />
           <Route path="/admin" component={AdminDashboard} />
         </main>
         <Footer />

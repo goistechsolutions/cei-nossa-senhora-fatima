@@ -41,3 +41,15 @@
 - [x] Integrar conteúdo dinâmico no frontend
 - [x] Testar e validar fluxo completo
 - [x] Salvar checkpoint final
+
+
+## Fase 7: Gerenciador de Imagens
+- [x] Criar schema `gallery_images` para armazenar metadados de imagens
+- [x] Rodar `pnpm db:push` para migrar
+- [x] Implementar procedures tRPC para upload e CRUD de imagens
+- [x] Criar componente de upload com drag-and-drop
+- [x] Implementar redimensionamento de imagens (crop/resize)
+- [x] Criar painel de gerenciador de imagens
+- [x] Integrar com editor de seções
+- [x] Testar e validar fluxo completo
+- [x] Salvar checkpoint final

@@ -84,3 +84,27 @@ export const userPermissions = mysqlTable("user_permissions", {
 
 export type UserPermission = typeof userPermissions.$inferSelect;
 export type InsertUserPermission = typeof userPermissions.$inferInsert;
+
+/**
+ * Gallery images table for managing uploaded images
+ * Stores image metadata and storage references
+ */
+export const galleryImages = mysqlTable("gallery_images", {
+  id: int("id").autoincrement().primaryKey(),
+  filename: varchar("filename", { length: 255 }).notNull(), // Original filename
+  storageKey: varchar("storageKey", { length: 500 }).notNull(), // S3 storage key
+  storageUrl: varchar("storageUrl", { length: 500 }).notNull(), // Public URL
+  mimeType: varchar("mimeType", { length: 50 }).notNull(), // image/jpeg, image/png, etc
+  fileSize: int("fileSize").notNull(), // File size in bytes
+  width: int("width"), // Image width in pixels
+  height: int("height"), // Image height in pixels
+  alt: text("alt"), // Alt text for accessibility
+  sectionKey: varchar("sectionKey", { length: 100 }), // Associated section (optional)
+  tags: text("tags"), // JSON array of tags for organization
+  uploadedBy: int("uploadedBy").notNull(), // user id who uploaded
+  uploadedAt: timestamp("uploadedAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type GalleryImage = typeof galleryImages.$inferSelect;
+export type InsertGalleryImage = typeof galleryImages.$inferInsert;

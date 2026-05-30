@@ -6,8 +6,10 @@ import { z } from "zod";
 import { 
   getPublishedNews, getNewsById, createNews, updateNews, deleteNews,
   getAllContentSections, getContentSectionByKey, createOrUpdateContentSection,
-  getUserPermissionForSection, getUserPermissionsForAllSections, grantUserPermission, revokeUserPermission
+  getUserPermissionForSection, getUserPermissionsForAllSections, grantUserPermission, revokeUserPermission,
+  getAllGalleryImages, getGalleryImageById, createGalleryImage, updateGalleryImage, deleteGalleryImage
 } from "./db";
+import { storagePut } from "./storage";
 import { TRPCError } from "@trpc/server";
 
 export const appRouter = router({
@@ -162,6 +164,81 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         return await revokeUserPermission(input.userId, input.sectionKey);
+      }),
+  }),
+
+  gallery: router({
+    list: publicProcedure
+      .input(z.object({ sectionKey: z.string().optional() }).optional())
+      .query(async ({ input }) => {
+        return await getAllGalleryImages(input?.sectionKey);
+      }),
+
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return await getGalleryImageById(input.id);
+      }),
+
+    upload: adminProcedure
+      .input(
+        z.object({
+          filename: z.string(),
+          fileData: z.string(),
+          mimeType: z.string(),
+          alt: z.string().optional(),
+          sectionKey: z.string().optional(),
+          tags: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        try {
+          const buffer = Buffer.from(input.fileData, 'base64');
+          const fileSize = buffer.length;
+          const timestamp = Date.now();
+          const storageKey = `gallery/${timestamp}-${input.filename}`;
+
+          const { url } = await storagePut(storageKey, buffer, input.mimeType);
+
+          await createGalleryImage({
+            filename: input.filename,
+            storageKey,
+            storageUrl: url,
+            mimeType: input.mimeType,
+            fileSize,
+            alt: input.alt,
+            sectionKey: input.sectionKey,
+            tags: input.tags,
+            uploadedBy: ctx.user.id,
+          });
+
+          return { success: true, url, storageKey };
+        } catch (error) {
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Failed to upload image',
+          });
+        }
+      }),
+
+    update: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          alt: z.string().optional(),
+          sectionKey: z.string().optional(),
+          tags: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        return await updateGalleryImage(id, data);
+      }),
+
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await deleteGalleryImage(input.id);
       }),
   }),
 });
