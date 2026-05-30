@@ -105,8 +105,14 @@ export default function Home() {
       </section>
 
       {/* Diferenciais Pedagógicos - Estilo B12 */}
-      <section ref={diferencialRef} className="py-20 md:py-28 bg-white">
-        <div className="container">
+      <section ref={diferencialRef} className="py-20 md:py-28 bg-white relative" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-diferenciais-cW7k5WfyJhr2um3vmtPLoD.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/70"></div>
+        <div className="container relative z-10">
           <div className="mb-16 text-center">
             <h2 className="font-fredoka-one text-4xl md:text-5xl mb-4 text-teal-600">
               Nossos Diferenciais Pedagógicos
@@ -141,8 +147,14 @@ export default function Home() {
       </section>
 
       {/* Galeria de Fotos - Estilo B12 */}
-      <section ref={galeriaRef} className="py-20 md:py-28 bg-gray-50">
-        <div className="container">
+      <section ref={galeriaRef} className="py-20 md:py-28 bg-gray-50 relative" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-galeria-S7FcsVcRz3iZgEzXC3aWFP.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/70"></div>
+        <div className="container relative z-10">
           <div className="mb-16 text-center">
             <h2 className="font-fredoka-one text-4xl md:text-5xl mb-4 text-teal-600">
               Galeria de Fotos
@@ -180,8 +192,14 @@ export default function Home() {
       </section>
 
       {/* CTA Final - Estilo B12 */}
-      <section ref={ctaRef} className="py-20 md:py-28 bg-white">
-        <div className={`container ${ctaVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section ref={ctaRef} className="py-20 md:py-28 bg-white relative" style={{
+        backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-cta-35R8mWoXtcKxrpPaGhsa9w.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
+        <div className="absolute inset-0 bg-white/70"></div>
+        <div className={`container relative z-10 ${ctaVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="font-fredoka-one text-4xl md:text-5xl text-teal-600 mb-6">
               Pronto para Fazer Parte de Nossa Comunidade?
