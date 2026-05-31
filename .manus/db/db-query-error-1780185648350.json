@@ -1,0 +1,8 @@
+{
+  "query": "SELECT id, section_key, title FROM content_sections ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user yUKuwiyehZkWvSw.7455d1468d05 --database BKrd93cpBc2Rp4CJz2T9xd --execute SELECT id, section_key, title FROM content_sections ORDER BY id;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'section_key' in 'field list'"
+  ]
+}

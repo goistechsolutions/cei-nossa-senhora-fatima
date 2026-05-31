@@ -1,0 +1,82 @@
+{
+  "query": "SELECT id, sectionKey, sectionName, LEFT(content, 50) as content_preview FROM content_sections ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user yUKuwiyehZkWvSw.7455d1468d05 --database BKrd93cpBc2Rp4CJz2T9xd --execute SELECT id, sectionKey, sectionName, LEFT(content, 50) as content_preview FROM content_sections ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "sectionKey": "hero",
+      "sectionName": "Alegria Estruturada",
+      "content_preview": "Na CEI Nossa Senhora de Fátima, oferecemos educaçã"
+    },
+    {
+      "id": "2",
+      "sectionKey": "diferenciais",
+      "sectionName": "Nossos Diferenciais Pedagógicos",
+      "content_preview": "Projeto \"Criança\": Na nossa creche proporcionamos "
+    },
+    {
+      "id": "3",
+      "sectionKey": "galeria",
+      "sectionName": "Galeria de Fotos",
+      "content_preview": "Explore nossa incrível galeria de fotos com moment"
+    },
+    {
+      "id": "4",
+      "sectionKey": "noticias",
+      "sectionName": "Notícias e Eventos",
+      "content_preview": "Acompanhe as novidades, eventos e projetos especia"
+    },
+    {
+      "id": "9",
+      "sectionKey": "cta_final",
+      "sectionName": "Pronto para Fazer Parte de Nossa Comunidade?",
+      "content_preview": "Agende uma visita e conheça nossa instituição pess"
+    },
+    {
+      "id": "10",
+      "sectionKey": "footer",
+      "sectionName": "Centro de Educação Infantil Nossa Senhora de Fátima",
+      "content_preview": "Educação infantil gratuita com excelência, transpa"
+    },
+    {
+      "id": "30001",
+      "sectionKey": "historia",
+      "sectionName": "Nossa História",
+      "content_preview": "O Centro de Educação Infantil \"Nossa Senhora de Fá"
+    },
+    {
+      "id": "30002",
+      "sectionKey": "missao_visao_valores",
+      "sectionName": "Missão, Visão e Valores",
+      "content_preview": "Nossa Missão é promover educação e socialização, a"
+    },
+    {
+      "id": "30003",
+      "sectionKey": "estrutura_fisica",
+      "sectionName": "Estrutura Física",
+      "content_preview": "Localizada em sede própria na Rua Santa Bernadete,"
+    },
+    {
+      "id": "30004",
+      "sectionKey": "projeto_crianca",
+      "sectionName": "Projeto \"Criança\"",
+      "content_preview": "Na nossa creche proporcionamos um ambiente acolhed"
+    },
+    {
+      "id": "30005",
+      "sectionKey": "equipe_pedagogica",
+      "sectionName": "Equipe Pedagógica",
+      "content_preview": "Nossa instituição conta com 19 educadores altament"
+    },
+    {
+      "id": "30006",
+      "sectionKey": "atendimento",
+      "sectionName": "Atendimento",
+      "content_preview": "Atendemos crianças do Berçário ao Maternal, oferec"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tsectionKey\tsectionName\tcontent_preview\n1\thero\tAlegria Estruturada\tNa CEI Nossa Senhora de Fátima, oferecemos educaçã\n2\tdiferenciais\tNossos Diferenciais Pedagógicos\tProjeto \"Criança\": Na nossa creche proporcionamos \n3\tgaleria\tGaleria de Fotos\tExplore nossa incrível galeria de fotos com moment\n4\tnoticias\tNotícias e Eventos\tAcompanhe as novidades, eventos e projetos especia\n9\tcta_final\tPronto para Fazer Parte de Nossa Comunidade?\tAgende uma visita e conheça nossa instituição pess\n10\tfooter\tCentro de Educação Infantil Nossa Senhora de Fátima\tEducação infantil gratuita com excelência, transpa\n30001\thistoria\tNossa História\tO Centro de Educação Infantil \"Nossa Senhora de Fá\n30002\tmissao_visao_valores\tMissão, Visão e Valores\tNossa Missão é promover educação e socialização, a\n30003\testrutura_fisica\tEstrutura Física\tLocalizada em sede própria na Rua Santa Bernadete,\n30004\tprojeto_crianca\tProjeto \"Criança\"\tNa nossa creche proporcionamos um ambiente acolhed\n30005\tequipe_pedagogica\tEquipe Pedagógica\tNossa instituição conta com 19 educadores altament\n30006\tatendimento\tAtendimento\tAtendemos crianças do Berçário ao Maternal, oferec\n",
+  "stderr": "",
+  "execution_time_ms": 265
+}
