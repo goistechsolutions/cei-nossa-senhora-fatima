@@ -8,7 +8,8 @@ import {
   getAllContentSections, getContentSectionByKey, createOrUpdateContentSection,
   getUserPermissionForSection, getUserPermissionsForAllSections, grantUserPermission, revokeUserPermission,
   getAllGalleryImages, getGalleryImageById, createGalleryImage, updateGalleryImage, deleteGalleryImage,
-  getPublishedDocuments, getAllDocuments, getDocumentById, createDocument, updateDocument, deleteDocument, incrementDownloadCount
+  getPublishedDocuments, getAllDocuments, getDocumentById, createDocument, updateDocument, deleteDocument, incrementDownloadCount,
+  getAllDiretoriaMembers, getDiretoriaMemberById, createDiretoriaMember, updateDiretoriaMember, deleteDiretoriaMember
 } from "./db";
 import { storagePut } from "./storage";
 import { compressImage, calculateCompressionRatio } from "./imageCompression";
@@ -366,6 +367,66 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return await deleteGalleryImage(input.id);
+      }),
+  }),
+
+  diretoria: router({
+    list: publicProcedure.query(async () => {
+      return await getAllDiretoriaMembers();
+    }),
+
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return await getDiretoriaMemberById(input.id);
+      }),
+
+    create: adminProcedure
+      .input(
+        z.object({
+          name: z.string().min(1).max(255),
+          position: z.string().min(1).max(255),
+          email: z.string().email().optional(),
+          phone: z.string().max(20).optional(),
+          bio: z.string().optional(),
+          photoUrl: z.string().optional(),
+          order: z.number().default(0),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        return await createDiretoriaMember({
+          ...input,
+          updatedBy: ctx.user!.id,
+          isActive: 1,
+        });
+      }),
+
+    update: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          name: z.string().optional(),
+          position: z.string().optional(),
+          email: z.string().email().optional(),
+          phone: z.string().optional(),
+          bio: z.string().optional(),
+          photoUrl: z.string().optional(),
+          order: z.number().optional(),
+          isActive: z.number().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { id, ...data } = input;
+        return await updateDiretoriaMember(id, {
+          ...data,
+          updatedBy: ctx.user!.id,
+        });
+      }),
+
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await deleteDiretoriaMember(input.id);
       }),
   }),
 });

@@ -1,6 +1,7 @@
 import { desc, eq, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission, galleryImages, InsertGalleryImage, documents, InsertDocument } from "../drizzle/schema";
+import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission, galleryImages, InsertGalleryImage, documents, InsertDocument, diretoriaMembers, InsertDiretoriaMembers } from "../drizzle/schema";
+import { asc } from "drizzle-orm";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -512,5 +513,91 @@ export async function incrementDownloadCount(id: number) {
     }
   } catch (error) {
     console.error("[Database] Failed to increment download count:", error);
+  }
+}
+
+
+// Diretoria Members queries
+export async function getAllDiretoriaMembers() {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get diretoria members: database not available");
+    return [];
+  }
+
+  try {
+    const result = await db
+      .select()
+      .from(diretoriaMembers)
+      .where(eq(diretoriaMembers.isActive, 1))
+      .orderBy(asc(diretoriaMembers.order));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get diretoria members:", error);
+    return [];
+  }
+}
+
+export async function getDiretoriaMemberById(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get diretoria member: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.select().from(diretoriaMembers).where(eq(diretoriaMembers.id, id)).limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get diretoria member:", error);
+    return undefined;
+  }
+}
+
+export async function createDiretoriaMember(data: InsertDiretoriaMembers) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create diretoria member: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(diretoriaMembers).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create diretoria member:", error);
+    throw error;
+  }
+}
+
+export async function updateDiretoriaMember(id: number, data: Partial<InsertDiretoriaMembers>) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot update diretoria member: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.update(diretoriaMembers).set(data).where(eq(diretoriaMembers.id, id));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to update diretoria member:", error);
+    throw error;
+  }
+}
+
+export async function deleteDiretoriaMember(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot delete diretoria member: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.delete(diretoriaMembers).where(eq(diretoriaMembers.id, id));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to delete diretoria member:", error);
+    throw error;
   }
 }

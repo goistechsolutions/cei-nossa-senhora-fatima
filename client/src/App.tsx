@@ -14,6 +14,8 @@ import AdminContent from "@/pages/admin/AdminContent";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminGallery from "@/pages/admin/AdminGallery";
 import AdminDocuments from "@/pages/admin/AdminDocuments";
+import Diretoria from "@/pages/Diretoria";
+import AdminDiretoria from "@/pages/admin/AdminDiretoria";
 
 function App() {
   return (
@@ -28,11 +30,13 @@ function App() {
           <Route path="/projetos" component={Projetos} />
           <Route path="/transparencia" component={Transparencia} />
           <Route path="/editais" component={Editais} />
+          <Route path="/diretoria" component={Diretoria} />
           <Route path="/contato" component={Contato} />
           <Route path="/admin/news" component={AdminNews} />
           <Route path="/admin/content" component={AdminContent} />
           <Route path="/admin/gallery" component={AdminGallery} />
           <Route path="/admin/documents" component={AdminDocuments} />
+          <Route path="/admin/diretoria" component={AdminDiretoria} />
           <Route path="/admin" component={AdminDashboard} />
         </main>
         <Footer />

@@ -111,3 +111,15 @@
 - [x] Testar fluxo completo (upload, listagem, filtro, download)
 - [x] Escrever testes vitest para documentos (11 testes passando)
 - [x] Salvar checkpoint final
+
+
+## Fase 14: Página Pública de Diretoria com Cards Visuais
+- [ ] Criar schema `diretoria_members` com campos para cada membro
+- [ ] Rodar `pnpm db:push` para migrar
+- [ ] Implementar procedures tRPC para CRUD de membros da diretoria
+- [ ] Criar página pública `/diretoria` com cards visuais
+- [ ] Criar painel admin `/admin/diretoria` para gerenciar membros
+- [ ] Popular banco com dados dos 11 membros da diretoria
+- [ ] Escrever testes vitest para procedures de diretoria
+- [ ] Testar fluxo completo (listagem, admin, responsividade)
+- [ ] Salvar checkpoint final

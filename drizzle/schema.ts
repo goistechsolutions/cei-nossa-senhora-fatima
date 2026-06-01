@@ -138,3 +138,26 @@ export const documents = mysqlTable("documents", {
 
 export type Document = typeof documents.$inferSelect;
 export type InsertDocument = typeof documents.$inferInsert;
+
+
+/**
+ * Diretoria Members table for managing board members
+ * Stores information about each member of the board/diretoria
+ */
+export const diretoriaMembers = mysqlTable("diretoria_members", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(), // Member name
+  position: varchar("position", { length: 255 }).notNull(), // Position/cargo (Presidente, Vice-Presidente, etc)
+  email: varchar("email", { length: 255 }), // Optional email
+  phone: varchar("phone", { length: 20 }), // Optional phone
+  bio: text("bio"), // Optional biography/description
+  photoUrl: varchar("photoUrl", { length: 500 }), // Optional photo URL
+  order: int("order").default(0).notNull(), // Display order
+  isActive: int("isActive").default(1).notNull(), // 1 = active, 0 = inactive
+  updatedBy: int("updatedBy").notNull(), // user id who last updated
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type DiretoriaMembers = typeof diretoriaMembers.$inferSelect;
+export type InsertDiretoriaMembers = typeof diretoriaMembers.$inferInsert;
