@@ -114,12 +114,12 @@
 
 
 ## Fase 14: Página Pública de Diretoria com Cards Visuais
-- [ ] Criar schema `diretoria_members` com campos para cada membro
-- [ ] Rodar `pnpm db:push` para migrar
-- [ ] Implementar procedures tRPC para CRUD de membros da diretoria
-- [ ] Criar página pública `/diretoria` com cards visuais
-- [ ] Criar painel admin `/admin/diretoria` para gerenciar membros
-- [ ] Popular banco com dados dos 11 membros da diretoria
-- [ ] Escrever testes vitest para procedures de diretoria
-- [ ] Testar fluxo completo (listagem, admin, responsividade)
-- [ ] Salvar checkpoint final
+- [x] Criar schema `diretoria_members` com campos para cada membro
+- [x] Rodar `pnpm db:push` para migrar
+- [x] Implementar procedures tRPC para CRUD de membros da diretoria
+- [x] Criar página pública `/diretoria` com cards visuais
+- [x] Criar painel admin `/admin/diretoria` para gerenciar membros
+- [x] Popular banco com dados dos 11 membros da diretoria
+- [x] Escrever testes vitest para procedures de diretoria
+- [x] Testar fluxo completo (listagem, admin, responsividade)
+- [x] Salvar checkpoint final
