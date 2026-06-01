@@ -15,7 +15,8 @@ export default function Header() {
     { label: "Estrutura", href: "/estrutura", badge: 4 },
     { label: "Projetos", href: "/projetos", badge: 5 },
     { label: "Transparência", href: "/transparencia", badge: 6 },
-    { label: "Contato", href: "/contato", badge: 7 },
+    { label: "Editais", href: "/editais", badge: 7 },
+    { label: "Contato", href: "/contato", badge: 8 },
   ];
 
   return (

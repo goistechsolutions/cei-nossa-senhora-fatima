@@ -97,3 +97,17 @@
 - [x] Criar seção de Editais com dados reais
 - [x] Criar seção de Contatos com formulário e informações
 - [x] Salvar checkpoint final
+
+
+## Fase 13: Páginas Dinâmicas de Editais e Transparência
+- [x] Criar schema `documents` para armazenar editais/documentos com metadados
+- [x] Rodar `pnpm db:push` para migrar
+- [x] Implementar procedures tRPC para CRUD de documentos (list, create, update, delete)
+- [x] Criar página pública `/transparencia` com tabela pesquisável e filtros
+- [x] Criar página pública `/editais` com tabela pesquisável e download de PDFs
+- [x] Criar painel admin `/admin/documents` para gerenciar documentos
+- [x] Implementar upload de PDFs no painel admin
+- [x] Seed com dados reais de editais existentes
+- [x] Testar fluxo completo (upload, listagem, filtro, download)
+- [x] Escrever testes vitest para documentos (11 testes passando)
+- [x] Salvar checkpoint final

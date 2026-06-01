@@ -1,6 +1,6 @@
 import { desc, eq, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission, galleryImages, InsertGalleryImage } from "../drizzle/schema";
+import { InsertUser, users, news, InsertNews, contentSections, InsertContentSection, userPermissions, InsertUserPermission, galleryImages, InsertGalleryImage, documents, InsertDocument } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -387,5 +387,130 @@ export async function deleteGalleryImage(id: number) {
   } catch (error) {
     console.error("[Database] Failed to delete gallery image:", error);
     throw error;
+  }
+}
+
+
+// Documents queries
+export async function getPublishedDocuments(filters?: { category?: string; year?: number; search?: string }) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get documents: database not available");
+    return [];
+  }
+
+  try {
+    let query = db.select().from(documents).where(eq(documents.isPublished, 1));
+    
+    if (filters?.category) {
+      query = db.select().from(documents).where(and(eq(documents.isPublished, 1), eq(documents.category, filters.category)));
+    }
+    if (filters?.year) {
+      if (filters?.category) {
+        query = db.select().from(documents).where(and(eq(documents.isPublished, 1), eq(documents.category, filters.category), eq(documents.year, filters.year)));
+      } else {
+        query = db.select().from(documents).where(and(eq(documents.isPublished, 1), eq(documents.year, filters.year)));
+      }
+    }
+    
+    const result = await query.orderBy(desc(documents.year), desc(documents.createdAt));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get documents:", error);
+    return [];
+  }
+}
+
+export async function getAllDocuments() {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get all documents: database not available");
+    return [];
+  }
+
+  try {
+    const result = await db.select().from(documents).orderBy(desc(documents.year), desc(documents.createdAt));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get all documents:", error);
+    return [];
+  }
+}
+
+export async function getDocumentById(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get document: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.select().from(documents).where(eq(documents.id, id)).limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get document:", error);
+    return undefined;
+  }
+}
+
+export async function createDocument(data: InsertDocument) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create document: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(documents).values(data);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create document:", error);
+    throw error;
+  }
+}
+
+export async function updateDocument(id: number, data: Partial<InsertDocument>) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot update document: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.update(documents).set(data).where(eq(documents.id, id));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to update document:", error);
+    throw error;
+  }
+}
+
+export async function deleteDocument(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot delete document: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.delete(documents).where(eq(documents.id, id));
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to delete document:", error);
+    throw error;
+  }
+}
+
+export async function incrementDownloadCount(id: number) {
+  const db = await getDb();
+  if (!db) return;
+
+  try {
+    const doc = await getDocumentById(id);
+    if (doc) {
+      await db.update(documents).set({ downloadCount: (doc.downloadCount || 0) + 1 }).where(eq(documents.id, id));
+    }
+  } catch (error) {
+    console.error("[Database] Failed to increment download count:", error);
   }
 }

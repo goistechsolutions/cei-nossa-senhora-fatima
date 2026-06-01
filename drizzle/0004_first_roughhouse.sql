@@ -1,0 +1,22 @@
+CREATE TABLE `documents` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`title` varchar(500) NOT NULL,
+	`description` text,
+	`category` varchar(100) NOT NULL,
+	`subcategory` varchar(100),
+	`year` int NOT NULL,
+	`month` int,
+	`referenceDate` varchar(50),
+	`fileUrl` varchar(500) NOT NULL,
+	`fileKey` varchar(500),
+	`fileSize` int,
+	`mimeType` varchar(100) DEFAULT 'application/pdf',
+	`isPublished` int NOT NULL DEFAULT 1,
+	`downloadCount` int NOT NULL DEFAULT 0,
+	`tags` text,
+	`metadata` text,
+	`uploadedBy` int NOT NULL,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `documents_id` PRIMARY KEY(`id`)
+);

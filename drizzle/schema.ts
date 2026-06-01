@@ -108,3 +108,33 @@ export const galleryImages = mysqlTable("gallery_images", {
 
 export type GalleryImage = typeof galleryImages.$inferSelect;
 export type InsertGalleryImage = typeof galleryImages.$inferInsert;
+
+
+/**
+ * Documents table for managing public documents (editais, estatutos, regulamentos, etc.)
+ * Stores document metadata, file references, and categorization
+ */
+export const documents = mysqlTable("documents", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 500 }).notNull(), // Document title
+  description: text("description"), // Optional description
+  category: varchar("category", { length: 100 }).notNull(), // 'edital', 'estatuto', 'regulamento', 'relatorio', 'ata', 'outros'
+  subcategory: varchar("subcategory", { length: 100 }), // Optional subcategory
+  year: int("year").notNull(), // Year of the document
+  month: int("month"), // Optional month
+  referenceDate: varchar("referenceDate", { length: 50 }), // Reference period (e.g., "Abril 2022")
+  fileUrl: varchar("fileUrl", { length: 500 }).notNull(), // URL to the PDF/document file
+  fileKey: varchar("fileKey", { length: 500 }), // S3 storage key (if uploaded)
+  fileSize: int("fileSize"), // File size in bytes
+  mimeType: varchar("mimeType", { length: 100 }).default("application/pdf"), // MIME type
+  isPublished: int("isPublished").default(1).notNull(), // 1 = published, 0 = draft
+  downloadCount: int("downloadCount").default(0).notNull(), // Track downloads
+  tags: text("tags"), // JSON array of tags
+  metadata: text("metadata"), // JSON metadata for additional fields
+  uploadedBy: int("uploadedBy").notNull(), // user id who uploaded
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Document = typeof documents.$inferSelect;
+export type InsertDocument = typeof documents.$inferInsert;

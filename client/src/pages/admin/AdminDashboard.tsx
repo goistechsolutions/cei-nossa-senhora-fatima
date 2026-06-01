@@ -1,7 +1,7 @@
 import { useAuth } from '@/_core/hooks/useAuth'
 import { Button } from '@/components/ui/button'
 import { useLocation } from 'wouter'
-import { FileText, Newspaper, Settings, Users, LogOut } from 'lucide-react'
+import { FileText, Newspaper, Settings, Users, LogOut, Image, FolderOpen } from 'lucide-react'
 
 export default function AdminDashboard() {
   const { user, logout } = useAuth()
@@ -32,6 +32,20 @@ export default function AdminDashboard() {
       icon: Newspaper,
       link: '/admin/news',
       color: 'bg-green-100 text-green-600',
+    },
+    {
+      title: 'Gerenciar Documentos',
+      description: 'Editais, regulamentos e documentos de transparência',
+      icon: FolderOpen,
+      link: '/admin/documents',
+      color: 'bg-teal-100 text-teal-600',
+    },
+    {
+      title: 'Galeria de Imagens',
+      description: 'Upload e gerenciamento de imagens do site',
+      icon: Image,
+      link: '/admin/gallery',
+      color: 'bg-pink-100 text-pink-600',
     },
     {
       title: 'Gerenciar Usuários',

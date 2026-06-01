@@ -7,7 +7,8 @@ import {
   getPublishedNews, getNewsById, createNews, updateNews, deleteNews,
   getAllContentSections, getContentSectionByKey, createOrUpdateContentSection,
   getUserPermissionForSection, getUserPermissionsForAllSections, grantUserPermission, revokeUserPermission,
-  getAllGalleryImages, getGalleryImageById, createGalleryImage, updateGalleryImage, deleteGalleryImage
+  getAllGalleryImages, getGalleryImageById, createGalleryImage, updateGalleryImage, deleteGalleryImage,
+  getPublishedDocuments, getAllDocuments, getDocumentById, createDocument, updateDocument, deleteDocument, incrementDownloadCount
 } from "./db";
 import { storagePut } from "./storage";
 import { compressImage, calculateCompressionRatio } from "./imageCompression";
@@ -165,6 +166,122 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         return await revokeUserPermission(input.userId, input.sectionKey);
+      }),
+  }),
+
+  documents: router({
+    // Public: list published documents with filters
+    list: publicProcedure
+      .input(z.object({
+        category: z.string().optional(),
+        year: z.number().optional(),
+        search: z.string().optional(),
+      }).optional())
+      .query(async ({ input }) => {
+        return await getPublishedDocuments(input || undefined);
+      }),
+
+    // Public: get single document
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return await getDocumentById(input.id);
+      }),
+
+    // Public: track download
+    trackDownload: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await incrementDownloadCount(input.id);
+        return { success: true };
+      }),
+
+    // Admin: list all documents (including drafts)
+    listAll: adminProcedure.query(async () => {
+      return await getAllDocuments();
+    }),
+
+    // Admin: create document
+    create: adminProcedure
+      .input(
+        z.object({
+          title: z.string().min(1).max(500),
+          description: z.string().optional(),
+          category: z.enum(['edital', 'estatuto', 'regulamento', 'relatorio', 'ata', 'termo', 'outros']),
+          subcategory: z.string().optional(),
+          year: z.number().min(2000).max(2100),
+          month: z.number().min(1).max(12).optional(),
+          referenceDate: z.string().optional(),
+          fileUrl: z.string().min(1),
+          fileKey: z.string().optional(),
+          fileSize: z.number().optional(),
+          mimeType: z.string().optional(),
+          isPublished: z.number().default(1),
+          tags: z.string().optional(),
+          metadata: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        return await createDocument({
+          ...input,
+          uploadedBy: ctx.user.id,
+        });
+      }),
+
+    // Admin: update document
+    update: adminProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          title: z.string().min(1).max(500).optional(),
+          description: z.string().optional(),
+          category: z.enum(['edital', 'estatuto', 'regulamento', 'relatorio', 'ata', 'termo', 'outros']).optional(),
+          subcategory: z.string().optional(),
+          year: z.number().min(2000).max(2100).optional(),
+          month: z.number().min(1).max(12).optional(),
+          referenceDate: z.string().optional(),
+          fileUrl: z.string().optional(),
+          fileKey: z.string().optional(),
+          fileSize: z.number().optional(),
+          isPublished: z.number().optional(),
+          tags: z.string().optional(),
+          metadata: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        return await updateDocument(id, data);
+      }),
+
+    // Admin: delete document
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await deleteDocument(input.id);
+      }),
+
+    // Admin: upload PDF file
+    upload: adminProcedure
+      .input(
+        z.object({
+          filename: z.string(),
+          fileData: z.string(), // base64
+          mimeType: z.string().default('application/pdf'),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          const buffer = Buffer.from(input.fileData, 'base64');
+          const timestamp = Date.now();
+          const storageKey = `documents/${timestamp}-${input.filename}`;
+
+          const { url } = await storagePut(storageKey, buffer, input.mimeType);
+
+          return { success: true, url, storageKey, fileSize: buffer.length };
+        } catch (error) {
+          console.error('Document upload error:', error);
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to upload document' });
+        }
       }),
   }),
 
