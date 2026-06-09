@@ -1,21 +1,21 @@
 export default function Estrutura() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gradient-to-br from-light-gray via-white to-gradient-soft-turquoise">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-blue-light" style={{
+      <section className="relative py-20 md:py-32 overflow-hidden" style={{
         backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/hero-background-estrutura-YGkJHaHh5EynB9Lsizi7rJ.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}>
-        <div className="absolute inset-0 bg-white/60"></div>
+        <div className="absolute inset-0 bg-gradient-institutional/80"></div>
         <div className="container relative z-10">
           <div className="max-w-3xl">
-            <h1 className="font-fredoka-one text-5xl md:text-6xl mb-6 leading-tight text-teal-600">
+            <h1 className="font-fredoka text-5xl md:text-6xl mb-6 leading-tight text-white font-bold">
               Estrutura e Diretoria
             </h1>
             
-            <p className="font-poppins text-lg text-gray-700 leading-relaxed max-w-lg">
+            <p className="font-inter text-lg text-white/90 leading-relaxed max-w-lg">
               Conheça a estrutura organizacional e as equipes que fazem o CEI Nossa Senhora de Fátima funcionar.
             </p>
           </div>
@@ -23,24 +23,24 @@ export default function Estrutura() {
       </section>
 
       {/* Organograma */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="container">
-          <h2 className="font-fredoka-one text-4xl text-center mb-16 text-teal-600">
+          <h2 className="font-fredoka text-4xl text-center mb-16 text-turquoise font-bold">
             Organograma Institucional
           </h2>
 
           <div className="max-w-3xl mx-auto space-y-8">
             {/* Presidente */}
             <div className="flex justify-center">
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-teal-600 w-full max-w-xs text-center">
-                <h3 className="font-fredoka-one text-2xl text-teal-600 mb-2">Presidente</h3>
-                <p className="font-poppins text-gray-700">Responsável pela gestão geral da instituição</p>
+              <div className="card-premium bg-white/50 backdrop-filter backdrop-blur-sm border border-white/20 rounded-premium p-6 shadow-soft w-full max-w-xs text-center">
+                <h3 className="font-fredoka text-2xl text-turquoise mb-2 font-semibold">Presidente</h3>
+                <p className="font-inter text-gray-700">Responsável pela gestão geral da instituição</p>
               </div>
             </div>
 
             {/* Linha */}
             <div className="flex justify-center">
-              <div className="w-1 h-8 bg-teal-200"></div>
+              <div className="w-1 h-8 bg-gradient-institutional"></div>
             </div>
 
             {/* Diretores */}
@@ -50,23 +50,23 @@ export default function Estrutura() {
                 { titulo: 'Diretor Administrativo', desc: 'Gerencia recursos e operações' },
                 { titulo: 'Diretor de Transparência', desc: 'Responsável por comunicação' }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white rounded-lg p-6 shadow-md border-l-4 border-teal-600 text-center">
-                  <h3 className="font-fredoka-one text-xl text-teal-600 mb-2">{item.titulo}</h3>
-                  <p className="font-poppins text-gray-700 text-sm">{item.desc}</p>
+                <div key={idx} className="card-premium bg-white/50 backdrop-filter backdrop-blur-sm border border-white/20 rounded-premium p-6 shadow-soft text-center hover:shadow-lg-premium transition-all duration-300">
+                  <h3 className="font-fredoka text-xl text-turquoise mb-2 font-semibold">{item.titulo}</h3>
+                  <p className="font-inter text-gray-700 text-sm">{item.desc}</p>
                 </div>
               ))}
             </div>
 
             {/* Linha */}
             <div className="flex justify-center">
-              <div className="w-1 h-8 bg-teal-200"></div>
+              <div className="w-1 h-8 bg-gradient-institutional"></div>
             </div>
 
             {/* Conselho Gestor */}
             <div className="flex justify-center">
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-teal-600 w-full max-w-xs text-center">
-                <h3 className="font-fredoka-one text-2xl text-teal-600 mb-2">Conselho Gestor</h3>
-                <p className="font-poppins text-gray-700">Participação de pais, educadores e comunidade</p>
+              <div className="card-premium bg-white/50 backdrop-filter backdrop-blur-sm border border-white/20 rounded-premium p-6 shadow-soft w-full max-w-xs text-center">
+                <h3 className="font-fredoka text-2xl text-turquoise mb-2 font-semibold">Conselho Gestor</h3>
+                <p className="font-inter text-gray-700">Participação de pais, educadores e comunidade</p>
               </div>
             </div>
           </div>
@@ -74,9 +74,9 @@ export default function Estrutura() {
       </section>
 
       {/* Nossas Equipes */}
-      <section className="py-20 bg-white">
+      <section className="py-20">
         <div className="container">
-          <h2 className="font-fredoka-one text-4xl text-center mb-16 text-teal-600">
+          <h2 className="font-fredoka text-4xl text-center mb-16 text-turquoise font-bold">
             Nossas Equipes
           </h2>
 
@@ -87,9 +87,9 @@ export default function Estrutura() {
               { titulo: 'Equipe de Apoio', descricao: 'Cozinha, limpeza, segurança e manutenção' },
               { titulo: 'Conselho Gestor', descricao: 'Representantes de pais, educadores e comunidade' }
             ].map((item, idx) => (
-              <div key={idx} className="bg-gray-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-all border border-teal-200">
-                <h3 className="font-fredoka-one text-2xl text-teal-600 mb-3">{item.titulo}</h3>
-                <p className="font-poppins text-gray-700">{item.descricao}</p>
+              <div key={idx} className="card-premium bg-white/50 backdrop-filter backdrop-blur-sm border border-white/20 rounded-premium p-8 shadow-soft hover:shadow-lg-premium transition-all duration-300">
+                <h3 className="font-fredoka text-2xl text-turquoise mb-3 font-semibold">{item.titulo}</h3>
+                <p className="font-inter text-gray-700">{item.descricao}</p>
               </div>
             ))}
           </div>
@@ -97,9 +97,9 @@ export default function Estrutura() {
       </section>
 
       {/* Princípios de Gestão */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="container">
-          <h2 className="font-fredoka-one text-4xl text-center mb-16 text-teal-600">
+          <h2 className="font-fredoka text-4xl text-center mb-16 text-turquoise font-bold">
             Princípios de Gestão
           </h2>
 
@@ -110,9 +110,9 @@ export default function Estrutura() {
               { titulo: 'Excelência', descricao: 'Busca contínua por qualidade em todas as ações' },
               { titulo: 'Sustentabilidade', descricao: 'Responsabilidade ambiental e social' }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-all border-l-4 border-teal-600">
-                <h3 className="font-fredoka-one text-2xl text-teal-600 mb-3">{item.titulo}</h3>
-                <p className="font-poppins text-gray-700">{item.descricao}</p>
+              <div key={idx} className="card-premium bg-white/50 backdrop-filter backdrop-blur-sm border border-white/20 rounded-premium p-8 shadow-soft hover:shadow-lg-premium transition-all duration-300">
+                <h3 className="font-fredoka text-2xl text-turquoise mb-3 font-semibold">{item.titulo}</h3>
+                <p className="font-inter text-gray-700">{item.descricao}</p>
               </div>
             ))}
           </div>
@@ -120,14 +120,14 @@ export default function Estrutura() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-teal-600">
+      <section className="py-20 bg-gradient-institutional">
         <div className="container text-center">
-          <h2 className="font-fredoka-one text-4xl text-white mb-6">
+          <h2 className="font-fredoka text-4xl text-white mb-6 font-bold">
             Agende uma Visita
           </h2>
           <a
             href="/contato"
-            className="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-fredoka font-semibold rounded-lg hover:bg-gray-100 transition-all border-2 border-dashed border-white"
+            className="btn-primary inline-flex items-center px-8 py-4"
           >
             Entrar em Contato
           </a>
