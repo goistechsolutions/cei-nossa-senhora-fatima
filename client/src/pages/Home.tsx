@@ -85,37 +85,37 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Conteúdo à Esquerda */}
             <div className="animate-fade-in-left">
-              <h1 className="font-fredoka-one text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight text-teal-600">
+              <h1 className="text-gradient-turquoise text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight font-bold">
                 {heroContent.isLoading ? 'Carregando...' : (heroContent.title || 'Alegria Estruturada')}
               </h1>
               
-              <p className="font-poppins text-lg text-gray-700 mb-4 leading-relaxed">
-                {heroContent.isLoading ? 'Carregando...' : (heroContent.content || 'Na CEI Nossa Senhora de Fátima, oferecemos educação infantil graáita com excelência, transparência e muito amor.')}
+              <p className="font-inter text-lg text-gray-700 mb-4 leading-relaxed">
+                {heroContent.isLoading ? 'Carregando...' : (heroContent.content || 'Na CEI Nossa Senhora de Fátima, oferecemos educação infantil gratuita com excelência, transparência e muito amor.')}
               </p>
 
               {heroContent.subtitle && (
-                <p className="font-poppins text-base text-gray-600 mb-8 leading-relaxed">
+                <p className="font-inter text-base text-gray-600 mb-8 leading-relaxed">
                   {heroContent.subtitle}
                 </p>
               )}
               
               {!heroContent.subtitle && (
-                <p className="font-poppins text-base text-gray-600 mb-8 leading-relaxed">
-                  Localizada em Fartura-SP, nossa instituição filantropíca une a vivacidade infantil com estrutura pedagógica rigorosa, focando no desenvolvimento integral da primeira infância.
+                <p className="font-inter text-base text-gray-600 mb-8 leading-relaxed">
+                  Localizada em Fartura-SP, nossa instituição filantrópica une a vivacidade infantil com estrutura pedagógica rigorosa, focando no desenvolvimento integral da primeira infância.
                 </p>
               )}
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
                   href="/historia" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 text-lg border-2 border-dashed border-teal-600 hover:scale-105 transform"
+                  className="btn-primary inline-flex items-center justify-center px-8 py-4 gap-2 text-lg"
                 >
                   Conheça Nossa História
                   <ArrowRight size={20} />
                 </a>
                 <a 
                   href="/contato" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-teal-600 font-fredoka font-semibold rounded-lg border-2 border-dashed border-teal-600 hover:bg-teal-50 transition-all gap-2 text-lg hover:scale-105 transform"
+                  className="btn-secondary inline-flex items-center justify-center px-8 py-4 gap-2 text-lg"
                 >
                   Entre em Contato
                 </a>
@@ -151,7 +151,7 @@ export default function Home() {
               <img
                 src={VISUAL_ASSETS.heroBanner}
                 alt="Crianças brincando em sala de aula"
-                className="rounded-2xl shadow-lg w-full h-auto object-cover hover:shadow-xl transition-all"
+                className="rounded-premium-lg shadow-lg-premium w-full h-auto object-cover hover:shadow-xl-premium transition-all duration-300"
               />
             </div>
           </div>
@@ -168,10 +168,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/70"></div>
         <div className="container relative z-10">
           <div className="mb-16 text-center">
-            <h2 className="font-fredoka-one text-4xl md:text-5xl mb-4 text-teal-600">
+            <h2 className="text-gradient-turquoise text-4xl md:text-5xl mb-4 font-bold">
               Nossos Diferenciais Pedagógicos
             </h2>
-            <p className="font-poppins text-lg text-gray-700 max-w-2xl mx-auto">
+            <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
               Uma educação que une qualidade, afeto estruturado e desenvolvimento integral
             </p>
           </div>
@@ -180,18 +180,18 @@ export default function Home() {
             {diferenciais.map((diferencial, idx) => (
               <div
                 key={idx}
-                className={`bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-all border border-gray-200 hover:scale-105 transform ${
+                className={`card-premium ${
                   diferencialVisible ? 'animate-fade-in-up' : 'opacity-0'
                 }`}
                 style={{
                   animationDelay: diferencialVisible ? `${idx * 0.1}s` : '0s'
                 }}
               >
-                <div className="text-6xl mb-4 hover:scale-110 transition-transform">{diferencial.icone}</div>
-                <h3 className="font-fredoka-one text-2xl text-gray-900 mb-3">
+                <div className="text-6xl mb-4 hover:scale-110 transition-transform duration-300">{diferencial.icone}</div>
+                <h3 className="font-fredoka text-2xl text-gray-900 mb-3 font-semibold">
                   {diferencial.titulo}
                 </h3>
-                <p className="font-poppins text-gray-700 leading-relaxed">
+                <p className="font-inter text-gray-700 leading-relaxed">
                   {diferencial.descricao}
                 </p>
               </div>
@@ -223,10 +223,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/70"></div>
         <div className="container relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-fredoka-one text-4xl md:text-5xl text-teal-600 mb-4">
+            <h2 className="text-gradient-turquoise text-4xl md:text-5xl mb-4 font-bold">
               Notícias e Eventos
             </h2>
-            <p className="font-poppins text-lg text-gray-700 max-w-2xl mx-auto">
+            <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
               Fique por dentro das atividades, eventos e atualizações do CEI Nossa Senhora de Fátima.
             </p>
           </div>
@@ -240,7 +240,7 @@ export default function Home() {
               noticias.slice(0, 4).map((noticia, idx) => (
                 <div
                   key={noticia.id}
-                  className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 border-l-4 border-teal-600 hover:scale-105 transform ${
+                  className={`card-premium border-l-4 border-turquoise ${
                     noticiasVisible ? 'animate-fade-in-up' : 'opacity-0'
                   }`}
                   style={{
@@ -251,17 +251,17 @@ export default function Home() {
                     <div className="text-4xl">{noticia.icon}</div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-fredoka font-semibold text-teal-600 bg-teal-100 px-3 py-1 rounded-full">
+                        <span className="text-xs font-fredoka font-semibold text-white bg-gradient-institutional px-3 py-1 rounded-full">
                           {noticia.category}
                         </span>
-                        <span className="text-xs text-gray-500 font-poppins">
+                        <span className="text-xs text-gray-500 font-inter">
                           {formatDate(noticia.publishedAt)}
                         </span>
                       </div>
-                      <h3 className="font-fredoka-one text-lg text-teal-600 mb-2 hover:text-teal-700">
+                      <h3 className="font-fredoka text-lg text-gradient-turquoise mb-2 font-semibold">
                         {noticia.title}
                       </h3>
-                      <p className="font-poppins text-gray-700 text-sm leading-relaxed">
+                      <p className="font-inter text-gray-700 text-sm leading-relaxed">
                         {noticia.description}
                       </p>
                     </div>
@@ -279,7 +279,7 @@ export default function Home() {
             <div className="text-center mt-12">
               <a
                 href="/noticias"
-                className="inline-flex items-center px-8 py-3 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 border-2 border-dashed border-teal-600"
+                className="btn-primary inline-flex items-center px-8 py-3 gap-2"
               >
                 Ver Todas as Notícias
               </a>
@@ -298,15 +298,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/70"></div>
         <div className={`container relative z-10 ${ctaVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-fredoka-one text-4xl md:text-5xl text-teal-600 mb-6">
+            <h2 className="text-gradient-turquoise text-4xl md:text-5xl mb-6 font-bold">
               Pronto para Fazer Parte de Nossa Comunidade?
             </h2>
-            <p className="font-poppins text-lg text-gray-700 mb-8 leading-relaxed">
+            <p className="font-inter text-lg text-gray-700 mb-8 leading-relaxed">
               Entre em contato conosco para conhecer melhor o CEI Nossa Senhora de Fátima ou agende uma visita.
             </p>
             <a
               href="/contato"
-              className="inline-flex items-center px-8 py-4 bg-teal-600 text-white font-fredoka font-semibold rounded-lg hover:bg-teal-700 transition-all gap-2 text-lg border-2 border-dashed border-teal-600 hover:scale-105 transform"
+              className="btn-primary inline-flex items-center px-8 py-4 gap-2 text-lg"
             >
               Entrar em Contato
               <ArrowRight size={20} />

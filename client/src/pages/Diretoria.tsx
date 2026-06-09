@@ -7,13 +7,13 @@ export default function Diretoria() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <div className="min-h-screen bg-gradient-to-br from-light-gray via-white to-gradient-soft-turquoise py-20">
         <div className="container">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-teal-600 mb-4">
+            <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="text-lg text-gray-700">
+            <p className="font-inter text-lg text-gray-700">
               Carregando informações...
             </p>
           </div>
@@ -24,13 +24,13 @@ export default function Diretoria() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <div className="min-h-screen bg-gradient-to-br from-light-gray via-white to-gradient-soft-turquoise py-20">
         <div className="container">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-teal-600 mb-4">
+            <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="text-lg text-red-600">
+            <p className="font-inter text-lg text-rose">
               Erro ao carregar informações
             </p>
           </div>
@@ -40,15 +40,15 @@ export default function Diretoria() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <main className="min-h-screen bg-gradient-to-br from-light-gray via-white to-gradient-soft-turquoise">
       {/* Header */}
-      <section className="py-16 md:py-24 bg-white border-b-4 border-teal-600">
+      <section className="py-16 md:py-24 bg-white/50 backdrop-filter backdrop-blur-md border-b border-white/20 shadow-soft">
         <div className="container">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-teal-600 mb-4">
+            <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
               Conheça os membros que dirigem com carinho nossa instituição, 
               dedicados ao desenvolvimento integral das crianças.
             </p>
@@ -64,10 +64,10 @@ export default function Diretoria() {
               {members.map((member) => (
                 <Card
                   key={member.id}
-                  className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0 rounded-2xl bg-white"
+                  className="overflow-hidden hover:shadow-lg-premium transition-all duration-300 border-0 rounded-premium-lg bg-white card-premium"
                 >
                   {/* Photo or Avatar */}
-                  <div className="w-full h-64 bg-gradient-to-br from-teal-400 to-purple-500 flex items-center justify-center overflow-hidden">
+                  <div className="w-full h-64 bg-gradient-institutional flex items-center justify-center overflow-hidden">
                     {member.photoUrl ? (
                       <img
                         src={member.photoUrl}
@@ -75,7 +75,7 @@ export default function Diretoria() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-teal-400 to-purple-500">
+                      <div className="flex items-center justify-center w-full h-full bg-gradient-institutional">
                         <User size={80} className="text-white opacity-50" />
                       </div>
                     )}
@@ -83,37 +83,37 @@ export default function Diretoria() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-fredoka font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-lg font-semibold text-teal-600 mb-4">
+                    <p className="text-lg font-fredoka font-semibold text-gradient-turquoise mb-4">
                       {member.position}
                     </p>
 
                     {member.bio && (
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      <p className="font-inter text-gray-600 text-sm mb-4 leading-relaxed">
                         {member.bio}
                       </p>
                     )}
 
                     {/* Contact Info */}
-                    <div className="space-y-2 border-t pt-4">
+                    <div className="space-y-2 border-t border-gray-200 pt-4">
                       {member.email && (
                         <a
                           href={`mailto:${member.email}`}
-                          className="flex items-center gap-2 text-gray-700 hover:text-teal-600 transition-colors"
+                          className="flex items-center gap-2 text-gray-700 hover:text-turquoise transition-all duration-300 group"
                         >
-                          <Mail size={18} className="text-teal-600" />
-                          <span className="text-sm">{member.email}</span>
+                          <Mail size={18} className="text-turquoise group-hover:scale-110 transition-transform duration-300" />
+                          <span className="font-inter text-sm">{member.email}</span>
                         </a>
                       )}
                       {member.phone && (
                         <a
                           href={`tel:${member.phone}`}
-                          className="flex items-center gap-2 text-gray-700 hover:text-teal-600 transition-colors"
+                          className="flex items-center gap-2 text-gray-700 hover:text-turquoise transition-all duration-300 group"
                         >
-                          <Phone size={18} className="text-teal-600" />
-                          <span className="text-sm">{member.phone}</span>
+                          <Phone size={18} className="text-turquoise group-hover:scale-110 transition-transform duration-300" />
+                          <span className="font-inter text-sm">{member.phone}</span>
                         </a>
                       )}
                     </div>
@@ -132,14 +132,14 @@ export default function Diretoria() {
       </section>
 
       {/* Footer CTA */}
-      <section className="py-12 bg-white border-t-4 border-teal-600">
+      <section className="py-12 bg-white/50 backdrop-filter backdrop-blur-md border-t border-white/20 shadow-soft">
         <div className="container text-center">
-          <p className="text-gray-700 mb-4">
+          <p className="font-inter text-gray-700 mb-4">
             Tem dúvidas ou sugestões? Entre em contato conosco!
           </p>
           <a
             href="/contato"
-            className="inline-block px-8 py-3 bg-teal-600 text-white font-semibold rounded-full hover:bg-teal-700 transition-colors"
+            className="btn-primary inline-block px-8 py-3"
           >
             Enviar Mensagem
           </a>

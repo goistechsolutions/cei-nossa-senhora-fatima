@@ -22,17 +22,17 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
+      <header className="bg-white/80 backdrop-filter backdrop-blur-md sticky top-0 z-50 shadow-soft border-b border-white/20">
         <nav className="container flex items-center justify-between py-4">
-          {/* Logo com Border Pontilhado - Estilo B12 */}
+          {/* Logo com Border Pontilhado - Premium */}
           <a
             href="/"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 hover:opacity-90 transition-all duration-300 group"
           >
-            <div className="w-16 h-16 rounded-lg border-2 border-dashed border-green-500 flex items-center justify-center bg-white">
+            <div className="w-16 h-16 rounded-premium p-2 border-2 border-dashed border-green-growth flex items-center justify-center bg-gradient-soft-turquoise group-hover:shadow-medium transition-all duration-300">
               <div className="text-center">
                 <div className="text-2xl">👑</div>
-                <div className="text-xs font-fredoka font-bold text-purple-600 leading-tight">
+                <div className="text-xs font-fredoka font-bold text-gradient-turquoise leading-tight">
                   Nossa
                   <br />
                   Senhora
@@ -49,9 +49,9 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="relative font-fredoka font-semibold text-gray-700 hover:text-teal-600 transition-colors text-sm px-3 py-2 group"
+                className="relative font-fredoka font-semibold text-gray-700 hover:text-turquoise transition-all duration-300 text-sm px-3 py-2 group rounded-lg hover:bg-gradient-soft-turquoise"
               >
-                <span className="absolute -top-2 -left-2 bg-green-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -left-2 bg-gradient-premium text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-medium">
                   {item.badge}
                 </span>
                 {item.label}
@@ -61,17 +61,17 @@ export default function Header() {
 
           {/* Menu Mobile */}
           <div className="md:hidden flex items-center gap-2">
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <Search size={20} className="text-gray-700" />
+            <button className="p-2 hover:bg-gradient-soft-turquoise rounded-lg transition-all duration-300">
+              <Search size={20} className="text-turquoise" />
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gradient-soft-turquoise rounded-lg transition-all duration-300"
             >
               {isMenuOpen ? (
-                <X size={24} className="text-gray-700" />
+                <X size={24} className="text-turquoise" />
               ) : (
-                <Menu size={24} className="text-gray-700" />
+                <Menu size={24} className="text-turquoise" />
               )}
             </button>
           </div>
@@ -82,13 +82,13 @@ export default function Header() {
 
         {/* Menu Mobile Expandido */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
+          <div className="md:hidden bg-white/80 backdrop-filter backdrop-blur-md border-t border-white/20">
             <div className="container py-4 space-y-1">
               {navItems.map(item => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="block px-4 py-2 font-fredoka font-semibold text-gray-700 hover:bg-teal-50 rounded-lg transition-colors"
+                  className="block px-4 py-2 font-fredoka font-semibold text-gray-700 hover:bg-gradient-soft-turquoise rounded-lg transition-all duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
