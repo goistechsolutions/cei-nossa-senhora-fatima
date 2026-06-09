@@ -135,6 +135,15 @@ export default function Footer() {
                   Estrutura
                 </a>
               </li>
+              <li>
+                <a
+                  href={getLoginUrl('/admin')}
+                  className="font-inter text-sm text-gray-300 hover:text-green-growth transition-all duration-300 flex items-center gap-2 group"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-growth group-hover:scale-150 transition-transform duration-300"></span>
+                  Painel Administrativo
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -174,43 +183,24 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Área Restrita */}
-          <div>
-            <h3 className="font-fredoka text-lg mb-4 text-purple-fatima font-semibold">
-              Acesso
-            </h3>
-            <div className="space-y-2">
-              {isAuthenticated && user?.role === 'admin' ? (
-                <>
-                  <a
-                    href="/admin"
-                    className="font-inter text-sm text-gray-300 hover:text-purple-fatima transition-all duration-300 flex items-center gap-2 group"
-                  >
-                    <Lock size={18} className="group-hover:scale-110 transition-transform" />
-                    Painel Admin
-                  </a>
-                  <button
-                    onClick={async () => {
-                      await logout();
-                      setLocation('/');
-                    }}
-                    className="font-inter text-sm text-gray-300 hover:text-rose transition-all duration-300 flex items-center gap-2 group w-full text-left"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose group-hover:scale-150 transition-transform duration-300"></span>
-                    Sair
-                  </button>
-                </>
-              ) : (
-                <a
-                  href={getLoginUrl('/admin')}
-                  className="font-inter text-sm text-gray-300 hover:text-purple-fatima transition-all duration-300 flex items-center gap-2 group"
-                >
-                  <Lock size={18} className="group-hover:scale-110 transition-transform" />
-                  Área Restrita
-                </a>
-              )}
+          {/* Acesso Rápido - Logout */}
+          {isAuthenticated && user?.role === 'admin' && (
+            <div>
+              <h3 className="font-fredoka text-lg mb-4 text-purple-fatima font-semibold">
+                Conta
+              </h3>
+              <button
+                onClick={async () => {
+                  await logout();
+                  setLocation('/');
+                }}
+                className="font-inter text-sm text-gray-300 hover:text-rose transition-all duration-300 flex items-center gap-2 group w-full text-left"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-rose group-hover:scale-150 transition-transform duration-300"></span>
+                Sair
+              </button>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Linha Divisória */}
