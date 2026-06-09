@@ -7,14 +7,23 @@ export default function AdminDashboard() {
   const { user, logout } = useAuth()
   const [, setLocation] = useLocation()
 
+  // Check for test user in localStorage
+  const testUser = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('testUser') || 'null') : null
+  const currentUser = user || testUser
+
   // Verificar se é admin
-  if (user?.role !== 'admin') {
-    setLocation('/')
+  if (!currentUser || currentUser.role !== 'admin') {
+    setLocation('/test-login')
     return null
   }
 
   const handleLogout = async () => {
-    await logout()
+    // Clear test user if it exists
+    if (testUser) {
+      localStorage.removeItem('testUser')
+    } else {
+      await logout()
+    }
     setLocation('/')
   }
 

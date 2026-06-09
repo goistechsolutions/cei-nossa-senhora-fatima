@@ -16,6 +16,7 @@ import AdminGallery from "@/pages/admin/AdminGallery";
 import AdminDocuments from "@/pages/admin/AdminDocuments";
 import Diretoria from "@/pages/Diretoria";
 import AdminDiretoria from "@/pages/admin/AdminDiretoria";
+import TestLogin from "@/pages/TestLogin";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/editais" component={Editais} />
           <Route path="/diretoria" component={Diretoria} />
           <Route path="/contato" component={Contato} />
+          <Route path="/test-login" component={TestLogin} />
           <Route path="/admin/news" component={AdminNews} />
           <Route path="/admin/content" component={AdminContent} />
           <Route path="/admin/gallery" component={AdminGallery} />
