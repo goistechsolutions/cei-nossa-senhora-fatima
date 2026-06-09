@@ -7,9 +7,15 @@ import {
   Instagram,
   Youtube,
   Heart,
+  Lock,
 } from "lucide-react";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { getLoginUrl } from "@/const";
+import { useLocation } from "wouter";
 
 export default function Footer() {
+  const { user, isAuthenticated, logout } = useAuth();
+  const [, setLocation] = useLocation();
   return (
     <footer className="bg-gradient-to-b from-dark-navy via-gray-900 to-black text-white">
       {/* Ilustração de Rodapé */}
@@ -165,6 +171,44 @@ export default function Footer() {
               >
                 <Youtube size={20} />
               </a>
+            </div>
+          </div>
+
+          {/* Área Restrita */}
+          <div>
+            <h3 className="font-fredoka text-lg mb-4 text-purple-fatima font-semibold">
+              Acesso
+            </h3>
+            <div className="space-y-2">
+              {isAuthenticated && user?.role === 'admin' ? (
+                <>
+                  <a
+                    href="/admin"
+                    className="font-inter text-sm text-gray-300 hover:text-purple-fatima transition-all duration-300 flex items-center gap-2 group"
+                  >
+                    <Lock size={18} className="group-hover:scale-110 transition-transform" />
+                    Painel Admin
+                  </a>
+                  <button
+                    onClick={async () => {
+                      await logout();
+                      setLocation('/');
+                    }}
+                    className="font-inter text-sm text-gray-300 hover:text-rose transition-all duration-300 flex items-center gap-2 group w-full text-left"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose group-hover:scale-150 transition-transform duration-300"></span>
+                    Sair
+                  </button>
+                </>
+              ) : (
+                <a
+                  href={getLoginUrl('/admin')}
+                  className="font-inter text-sm text-gray-300 hover:text-purple-fatima transition-all duration-300 flex items-center gap-2 group"
+                >
+                  <Lock size={18} className="group-hover:scale-110 transition-transform" />
+                  Área Restrita
+                </a>
+              )}
             </div>
           </div>
         </div>
