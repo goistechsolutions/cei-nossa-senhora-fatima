@@ -1,7 +1,10 @@
 # Cloudflare Pages Configuration
+# CEI Nossa Senhora de Fátima - Migração Completa para Cloudflare
+
 name = "cei-nossa-senhora-fatima"
 type = "javascript"
 compatibility_date = "2024-11-21"
+main = "dist/server/index.js"
 
 # Build configuration
 [build]
@@ -12,7 +15,7 @@ cwd = "./"
 [pages]
 build_output_dir = "dist/public"
 
-# Production environment
+# Environment variables
 [env.production]
 name = "cei-nossa-senhora-fatima"
 routes = [
@@ -20,9 +23,65 @@ routes = [
   { pattern = "www.ceinsf.org", zone_name = "ceinsf.org" }
 ]
 
+# Variables de ambiente para produção
+vars = { ENVIRONMENT = "production" }
+
+# Secrets (configurados no Cloudflare Dashboard)
+# - DATABASE_URL
+# - JWT_SECRET
+# - VITE_APP_ID
+# - OAUTH_SERVER_URL
+# - VITE_OAUTH_PORTAL_URL
+# - OWNER_OPEN_ID
+# - OWNER_NAME
+# - BUILT_IN_FORGE_API_URL
+# - BUILT_IN_FORGE_API_KEY
+# - VITE_FRONTEND_FORGE_API_KEY
+# - VITE_FRONTEND_FORGE_API_URL
+
 # Development environment
 [env.development]
 name = "cei-nossa-senhora-fatima-dev"
 routes = [
   { pattern = "dev.ceinsf.org", zone_name = "ceinsf.org" }
 ]
+
+vars = { ENVIRONMENT = "development" }
+
+# Observability
+[observability]
+enabled = true
+
+# Limits
+[limits]
+cpu_ms = 50000
+
+# Analytics Engine
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+
+# KV Namespace (para cache de sessões)
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "cei-sessions-prod"
+preview_id = "cei-sessions-dev"
+
+# R2 Bucket (para armazenamento de arquivos)
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "cei-storage"
+preview_bucket_name = "cei-storage-dev"
+
+# D1 Database (opcional - para banco de dados nativo)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "cei-database"
+# database_id = "seu-database-id"
+
+# Triggers (para jobs agendados)
+[triggers]
+crons = ["0 0 * * *"]  # Executar diariamente à meia-noite UTC
+
+# Observability - Tail Consumers
+[[tail_consumers]]
+service = "cei-logger"
