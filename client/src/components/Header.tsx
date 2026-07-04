@@ -36,7 +36,7 @@ export default function Header() {
           >
             <div className="w-16 h-16 rounded-premium p-2 border-2 border-dashed border-green-growth flex items-center justify-center bg-gradient-soft-turquoise group-hover:shadow-medium transition-all duration-300">
               <div className="text-center">
-                <div className="text-2xl">👑</div>
+                <div className="text-2xl"></div>
                 <div className="text-xs font-fredoka font-bold text-gradient-turquoise leading-tight">
                   Nossa
                   <br />
