@@ -1,48 +1,28 @@
+# Cloudflare Pages Configuration
 name = "cei-nossa-senhora-fatima"
-type = "service"
-main = "dist/server.js"
+type = "javascript"
 compatibility_date = "2024-11-21"
-
-# Cloudflare Pages configuration
-pages_build_output_dir = "client/dist"
-
-# Environment variables
-vars = { ENVIRONMENT = "production" }
-
-# D1 Database binding
-[[d1_databases]]
-binding = "DB"
-database_name = "cei-nossa-senhora-fatima"
-database_id = "d7c72b55-47a2-4d5d-8f3d-eba6314791e4"
-
-# KV Namespace for caching (optional)
-[[kv_namespaces]]
-binding = "CACHE"
-id = "kv_cache_cei"
-preview_id = "kv_cache_cei_preview"
-
-# Routes configuration
-routes = [
-  { pattern = "ceinsf.org", zone_name = "ceinsf.org" },
-  { pattern = "www.ceinsf.org", zone_name = "ceinsf.org" }
-]
 
 # Build configuration
 [build]
-command = "pnpm build"
+command = "pnpm run build"
 cwd = "./"
 
-# Development configuration
-[env.development]
-name = "cei-nossa-senhora-fatima-dev"
-routes = [
-  { pattern = "dev.ceinsf.org", zone_name = "ceinsf.org" }
-]
+# Pages build output directory
+[pages]
+build_output_dir = "dist/public"
 
-# Production configuration
+# Production environment
 [env.production]
 name = "cei-nossa-senhora-fatima"
 routes = [
   { pattern = "ceinsf.org", zone_name = "ceinsf.org" },
   { pattern = "www.ceinsf.org", zone_name = "ceinsf.org" }
+]
+
+# Development environment
+[env.development]
+name = "cei-nossa-senhora-fatima-dev"
+routes = [
+  { pattern = "dev.ceinsf.org", zone_name = "ceinsf.org" }
 ]
