@@ -1,13 +1,13 @@
 import { ArrowRight } from 'lucide-react'
 import { INSTITUTION, VISUAL_ASSETS } from '@/lib/constants'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
-import { useAuth } from '@/_core/hooks/useAuth'
+// import { useAuth } from '@/_core/hooks/useAuth' // Desabilitado temporariamente
 import { useContentSection } from '@/hooks/useContentSection'
 import { PublicGallery } from '@/components/PublicGallery'
 import { trpc } from '@/lib/trpc'
 
 export default function Home() {
-  const { user } = useAuth()
+  // const { user } = useAuth() // Desabilitado temporariamente
   
   const { ref: diferencialRef, isVisible: diferencialVisible } = useScrollAnimation()
   const { ref: galeriaRef, isVisible: galeriaVisible } = useScrollAnimation()
