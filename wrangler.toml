@@ -1,11 +1,28 @@
 # Cloudflare Pages Configuration
-# Este arquivo é usado apenas para referência. 
-# A configuração real do Pages está no Cloudflare Dashboard.
+name = "cei-nossa-senhora-fatima"
+type = "javascript"
+compatibility_date = "2024-11-21"
 
-# Para Cloudflare Pages, use:
-# - Build command: pnpm run build
-# - Build output directory: dist/public
-# - Deploy command: echo "Deployed via Cloudflare Pages"
+# Build configuration
+[build]
+command = "pnpm run build"
+cwd = "./"
 
-# Nota: wrangler.toml não é necessário para Pages.
-# Se você quiser usar Workers + Pages, configure-o separadamente.
+# Pages build output directory
+[pages]
+build_output_dir = "dist/public"
+
+# Production environment
+[env.production]
+name = "cei-nossa-senhora-fatima"
+routes = [
+  { pattern = "ceinsf.org", zone_name = "ceinsf.org" },
+  { pattern = "www.ceinsf.org", zone_name = "ceinsf.org" }
+]
+
+# Development environment
+[env.development]
+name = "cei-nossa-senhora-fatima-dev"
+routes = [
+  { pattern = "dev.ceinsf.org", zone_name = "ceinsf.org" }
+]
