@@ -9,13 +9,13 @@ import {
   Heart,
   Lock,
 } from "lucide-react";
-import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
-import { useLocation } from "wouter";
+// import { useAuth } from "@/_core/hooks/useAuth";
+// import { getLoginUrl } from "@/const"; // Desabilitado temporariamente
+// import { useLocation } from "wouter";
 
 export default function Footer() {
-  const { user, isAuthenticated, logout } = useAuth();
-  const [, setLocation] = useLocation();
+  // const { user, isAuthenticated, logout } = useAuth(); // Desabilitado temporariamente
+  // const [, setLocation] = useLocation();
   return (
     <footer className="bg-gradient-to-b from-dark-navy via-gray-900 to-black text-white">
       {/* Ilustração de Rodapé */}
@@ -135,15 +135,7 @@ export default function Footer() {
                   Estrutura
                 </a>
               </li>
-              <li>
-                <a
-                  href={getLoginUrl('/admin')}
-                  className="font-inter text-sm text-gray-300 hover:text-green-growth transition-all duration-300 flex items-center gap-2 group"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-growth group-hover:scale-150 transition-transform duration-300"></span>
-                  Painel Administrativo
-                </a>
-              </li>
+              {/* Painel Administrativo desabilitado temporariamente */}
             </ul>
           </div>
 
@@ -183,24 +175,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Acesso Rápido - Logout */}
-          {isAuthenticated && user?.role === 'admin' && (
-            <div>
-              <h3 className="font-fredoka text-lg mb-4 text-purple-fatima font-semibold">
-                Conta
-              </h3>
-              <button
-                onClick={async () => {
-                  await logout();
-                  setLocation('/');
-                }}
-                className="font-inter text-sm text-gray-300 hover:text-rose transition-all duration-300 flex items-center gap-2 group w-full text-left"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-rose group-hover:scale-150 transition-transform duration-300"></span>
-                Sair
-              </button>
-            </div>
-          )}
+          {/* Acesso Rápido - Logout desabilitado temporariamente */}
         </div>
 
         {/* Linha Divisória */}
