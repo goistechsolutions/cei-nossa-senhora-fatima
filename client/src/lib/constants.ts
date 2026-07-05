@@ -127,4 +127,8 @@ export const VISUAL_ASSETS = {
   pillarIcons: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-pilares-icons-cei-md7PLbWQCVuH3SUqkVHchp.webp',
   backgroundPattern: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-background-pattern-cei-Wmts7453t97XgnY5NmLGKZ.webp',
   footerIllustration: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-footer-illustration-cei-byjUL82PTFcZjGK4iHZcTD.webp',
+  // Imagens Reais da Instituição
+  galeriaAtividade: '/manus-storage/Atividade_085eb567.jpg',
+  galeriaEquipe: '/manus-storage/Equipe_5f88a22b.jpg',
+  galeriaFrente: '/manus-storage/frente_c9cf08e6.jpg',
 } as const
