@@ -1,12 +1,9 @@
 import { useState } from "react";
-import { Menu, X, Search, Lock } from "lucide-react";
-import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+import { Menu, X, Search } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, isAuthenticated, logout } = useAuth();
   const [, setLocation] = useLocation();
 
   const navItems = [
@@ -62,39 +59,6 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            
-            {/* Divisor */}
-            <div className="w-px h-6 bg-gray-300 mx-2"></div>
-            
-            {/* Área Restrita / Login Desktop */}
-            {isAuthenticated && user?.role === 'admin' ? (
-              <div className="flex items-center gap-2">
-                <a
-                  href="/admin"
-                  className="flex items-center gap-2 font-fredoka font-semibold text-purple-fatima hover:text-purple-fatima/80 transition-all duration-300 text-sm px-4 py-2 rounded-lg hover:bg-purple-100"
-                >
-                  <Lock size={16} />
-                  Painel Admin
-                </a>
-                <button
-                  onClick={async () => {
-                    await logout();
-                    setLocation('/');
-                  }}
-                  className="font-fredoka font-semibold text-gray-700 hover:text-rose transition-all duration-300 text-sm px-4 py-2 rounded-lg hover:bg-rose/10"
-                >
-                  Sair
-                </button>
-              </div>
-            ) : (
-              <a
-                href={getLoginUrl('/admin')}
-                className="flex items-center gap-2 font-fredoka font-semibold text-purple-fatima hover:text-purple-fatima/80 transition-all duration-300 text-sm px-4 py-2 rounded-lg hover:bg-purple-100"
-              >
-                <Lock size={16} />
-                Área Restrita
-              </a>
-            )}
           </div>
 
           {/* Menu Mobile */}
@@ -118,7 +82,7 @@ export default function Header() {
         {/* Linha Divisória com Gradient Rainbow */}
         <div className="h-1 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500"></div>
 
-          {/* Menu Mobile Expandido */}
+        {/* Menu Mobile Expandido */}
         {isMenuOpen && (
           <div className="md:hidden bg-white/80 backdrop-filter backdrop-blur-md border-t border-white/20">
             <div className="container py-4 space-y-1">
@@ -132,42 +96,6 @@ export default function Header() {
                   {item.label}
                 </a>
               ))}
-              
-              {/* Divisor Mobile */}
-              <div className="h-px bg-gray-300 my-2"></div>
-              
-              {/* Área Restrita Mobile */}
-              {isAuthenticated && user?.role === 'admin' ? (
-                <>
-                  <a
-                    href="/admin"
-                    className="flex items-center gap-2 px-4 py-2 font-fredoka font-semibold text-purple-fatima hover:bg-purple-100 rounded-lg transition-all duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <Lock size={16} />
-                    Painel Admin
-                  </a>
-                  <button
-                    onClick={async () => {
-                      await logout();
-                      setLocation('/');
-                      setIsMenuOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 font-fredoka font-semibold text-rose hover:bg-rose/10 rounded-lg transition-all duration-300"
-                  >
-                    Sair
-                  </button>
-                </>
-              ) : (
-                <a
-                  href={getLoginUrl('/admin')}
-                  className="flex items-center gap-2 px-4 py-2 font-fredoka font-semibold text-purple-fatima hover:bg-purple-100 rounded-lg transition-all duration-300"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Lock size={16} />
-                  Área Restrita
-                </a>
-              )}
             </div>
           </div>
         )}
