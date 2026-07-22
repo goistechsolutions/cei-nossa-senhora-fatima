@@ -14,9 +14,8 @@ export default function MissaoVisaoValores() {
             <h1 className="font-fredoka-one text-5xl md:text-6xl mb-6 leading-tight text-teal-600">
               Missão, Visão e Valores
             </h1>
-            
             <p className="font-poppins text-lg text-gray-700 leading-relaxed max-w-lg">
-              Os pilares que guiam todas as nossas ações e decisões na educação infantil.
+              Os princípios que orientam cada decisão, cada abraço e cada momento de aprendizagem no CEI Nossa Senhora de Fátima.
             </p>
           </div>
         </div>
@@ -32,6 +31,7 @@ export default function MissaoVisaoValores() {
         <div className="absolute inset-0 bg-white/70"></div>
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto space-y-16">
+
             {/* Missão */}
             <div>
               <h2 className="font-fredoka-one text-4xl mb-8 text-teal-600">
@@ -39,7 +39,7 @@ export default function MissaoVisaoValores() {
               </h2>
               <div className="bg-white rounded-lg p-8 shadow-md border-l-4 border-teal-600">
                 <p className="font-poppins text-lg text-gray-700 leading-relaxed">
-                  Oferecer educação infantil de qualidade, gratuita e acessível, promovendo o desenvolvimento integral das crianças em um ambiente acolhedor, seguro e estruturado, com foco na pedagogia do afeto, respeito às diferenças e preparação para a vida em sociedade.
+                  Cuidar e educar cada criança de forma integral — em corpo, mente e emoções — em parceria com as famílias e a comunidade de Fartura. Oferecemos educação infantil gratuita e acessível, num ambiente acolhedor, seguro e pedagogicamente estruturado, onde o afeto é o alicerce de todo aprendizado.
                 </p>
               </div>
             </div>
@@ -51,7 +51,7 @@ export default function MissaoVisaoValores() {
               </h2>
               <div className="bg-white rounded-lg p-8 shadow-md border-l-4 border-teal-600">
                 <p className="font-poppins text-lg text-gray-700 leading-relaxed">
-                  Ser reconhecida como instituição de excelência em educação infantil, referência em metodologia pedagógica inovadora, transparência e compromisso com o desenvolvimento integral das crianças, contribuindo para a formação de cidadãos conscientes, críticos e humanizados.
+                  Ser a instituição de educação infantil mais querida e respeitada de Fartura-SP — reconhecida não apenas pela excelência pedagógica, mas pela forma como cada criança se sente ao entrar e sair todos os dias: segura, amada e pronta para o mundo.
                 </p>
               </div>
             </div>
@@ -63,12 +63,30 @@ export default function MissaoVisaoValores() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { titulo: 'Respeito', descricao: 'Valorização da dignidade, autonomia e singularidade de cada criança e família.' },
-                  { titulo: 'Afeto', descricao: 'Relacionamentos baseados em amor, segurança emocional e escuta atenta.' },
-                  { titulo: 'Excelência', descricao: 'Qualidade em tudo que fazemos, desde o ensino até a gestão institucional.' },
-                  { titulo: 'Transparência', descricao: 'Comunicação clara e honesta com a comunidade sobre nossas ações e resultados.' },
-                  { titulo: 'Inclusão', descricao: 'Acolhimento de todas as crianças, independentemente de suas diferenças.' },
-                  { titulo: 'Sustentabilidade', descricao: 'Responsabilidade ambiental e social em nossas práticas educacionais.' }
+                  {
+                    titulo: 'Respeito',
+                    descricao: 'Cada criança é única. Respeitamos o ritmo, a história e a singularidade de cada uma — e esperamos o mesmo respeito em todas as relações da instituição.'
+                  },
+                  {
+                    titulo: 'Afeto',
+                    descricao: 'Acreditamos que crianças aprendem melhor quando se sentem seguras e amadas. O afeto não é apenas presença — é método, é intenção, é prática diária.'
+                  },
+                  {
+                    titulo: 'Excelência',
+                    descricao: 'Buscamos qualidade em tudo: no ensino, na gestão, na alimentação, nos espaços e na forma como nos comunicamos com as famílias.'
+                  },
+                  {
+                    titulo: 'Transparência',
+                    descricao: 'As famílias confiam seus filhos a nós. Retribuímos essa confiança com comunicação clara, prestação de contas acessível e portas sempre abertas.'
+                  },
+                  {
+                    titulo: 'Inclusão',
+                    descricao: 'Toda criança tem lugar aqui. Acolhemos as diferenças, celebramos a diversidade e garantimos que nenhuma criança se sinta de fora.'
+                  },
+                  {
+                    titulo: 'Sustentabilidade',
+                    descricao: 'Ensinamos às crianças o cuidado com o mundo desde cedo — pela horta, pelo exemplo e por práticas que respeitam o meio ambiente e a comunidade.'
+                  }
                 ].map((valor, idx) => (
                   <div key={idx} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all border border-teal-200">
                     <h3 className="font-fredoka-one text-xl text-teal-600 mb-3">{valor.titulo}</h3>
@@ -77,6 +95,7 @@ export default function MissaoVisaoValores() {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -84,14 +103,17 @@ export default function MissaoVisaoValores() {
       {/* CTA */}
       <section className="py-20 bg-teal-600">
         <div className="container text-center">
-          <h2 className="font-fredoka-one text-4xl text-white mb-6">
-            Conheça Nossos Projetos
+          <h2 className="font-fredoka-one text-4xl text-white mb-4">
+            Conheça os Projetos que Vivem Esses Valores
           </h2>
+          <p className="font-poppins text-teal-100 mb-8 max-w-xl mx-auto">
+            Nossos projetos são a missão em ação — descubra como transformamos princípios em experiências reais para as crianças.
+          </p>
           <a
             href="/projetos"
-            className="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-fredoka font-semibold rounded-lg hover:bg-gray-100 transition-all border-2 border-dashed border-white"
+            className="inline-flex items-center px-8 py-4 bg-white text-teal-600 font-fredoka font-semibold rounded-lg hover:bg-gray-100 transition-all"
           >
-            Saiba Mais
+            Ver Projetos Pedagógicos
           </a>
         </div>
       </section>
