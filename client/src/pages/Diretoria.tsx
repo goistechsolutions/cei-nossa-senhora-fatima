@@ -31,7 +31,7 @@ export default function Diretoria() {
               Nossa Diretoria
             </h1>
             <p className="font-inter text-lg text-rose">
-              Erro ao carregar informações. Tente novamente mais tarde.
+              Erro ao carregar informações
             </p>
           </div>
         </div>
@@ -44,12 +44,13 @@ export default function Diretoria() {
       {/* Header */}
       <section className="py-16 md:py-24 bg-white/50 backdrop-filter backdrop-blur-md border-b border-white/20 shadow-soft">
         <div className="container">
-          <div className="text-center max-w-2xl mx-auto">
+          <div className="text-center">
             <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="font-inter text-lg text-gray-700">
-              Conheça as pessoas que dedicam seu tempo e energia para garantir que cada criança do CEI Nossa Senhora de Fátima receba o melhor cuidado e educação possíveis.
+            <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
+              Conheça os membros que dirigem com carinho nossa instituição, 
+              dedicados ao desenvolvimento integral das crianças.
             </p>
           </div>
         </div>
@@ -70,7 +71,7 @@ export default function Diretoria() {
                     {member.photoUrl ? (
                       <img
                         src={member.photoUrl}
-                        alt={`Foto de ${member.name}, ${member.position}`}
+                        alt={member.name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -121,15 +122,10 @@ export default function Diretoria() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-6">👥</div>
-              <h3 className="font-fredoka text-2xl text-gray-700 mb-3">Cadastro em andamento</h3>
-              <p className="font-inter text-gray-500 max-w-md mx-auto mb-8">
-                Em breve você poderá conhecer todos os membros da nossa diretoria. Ficou curioso? Entre em contato!
+            <div className="text-center py-12">
+              <p className="text-lg text-gray-600">
+                Nenhum membro da diretoria cadastrado no momento.
               </p>
-              <a href="/contato" className="btn-primary inline-block px-8 py-3">
-                Entrar em Contato
-              </a>
             </div>
           )}
         </div>
@@ -138,11 +134,8 @@ export default function Diretoria() {
       {/* Footer CTA */}
       <section className="py-12 bg-white/50 backdrop-filter backdrop-blur-md border-t border-white/20 shadow-soft">
         <div className="container text-center">
-          <p className="font-inter text-gray-700 mb-2 text-lg font-semibold">
-            Quer fazer parte da nossa comunidade?
-          </p>
-          <p className="font-inter text-gray-500 mb-6">
-            Estamos sempre abertos para parcerias, voluntariado e colaborações.
+          <p className="font-inter text-gray-700 mb-4">
+            Tem dúvidas ou sugestões? Entre em contato conosco!
           </p>
           <a
             href="/contato"
