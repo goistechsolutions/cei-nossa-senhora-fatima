@@ -1,29 +1,31 @@
 import { useAuth } from '@/_core/hooks/useAuth'
-import { Button } from '@/components/ui/button'
 import { useLocation } from 'wouter'
 import { FileText, Newspaper, Settings, Users, LogOut, Image, FolderOpen, Shield, ArrowRight } from 'lucide-react'
 
 export default function AdminDashboard() {
-  const { user, logout } = useAuth()
+  const { user, loading, logout } = useAuth()
   const [, setLocation] = useLocation()
 
-  // Check for test user in localStorage
-  const testUser = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('testUser') || 'null') : null
-  const currentUser = user || testUser
+  // Aguarda carregamento da sessão antes de redirecionar
+  if (loading) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-light-gray via-white to-gradient-soft-turquoise">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-turquoise border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="font-inter text-gray-600">Verificando acesso...</p>
+        </div>
+      </main>
+    )
+  }
 
-  // Verificar se é admin
-  if (!currentUser || currentUser.role !== 'admin') {
-    setLocation('/test-login')
+  // Somente usuários com role 'admin' podem acessar
+  if (!user || user.role !== 'admin') {
+    setLocation('/')
     return null
   }
 
   const handleLogout = async () => {
-    // Clear test user if it exists
-    if (testUser) {
-      localStorage.removeItem('testUser')
-    } else {
-      await logout()
-    }
+    await logout()
     setLocation('/')
   }
 
