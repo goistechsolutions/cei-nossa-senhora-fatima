@@ -30,28 +30,28 @@ export default function Home() {
   const diferenciais = [
     {
       titulo: 'Educação Gratuita',
-      descricao: 'Acesso igualitário a uma educação de qualidade para todas as crianças, sem barreiras financeiras.',
-      icone: '🎓'
+      descricao: 'Acesso igualitário a uma educação de qualidade para todas as crianças, sem nenhuma barreira financeira.',
+      Icone: GraduationCap,
     },
     {
       titulo: 'Pedagogia do Afeto',
-      descricao: 'Relacionamentos baseados em afeto, segurança emocional e escuta atenta das necessidades infantis.',
-      icone: '❤️'
+      descricao: 'Relacionamentos baseados em afeto, segurança emocional e escuta atenta das necessidades de cada criança.',
+      Icone: Heart,
     },
     {
       titulo: 'Horta Educativa',
-      descricao: 'Aprendizado conectado com a natureza, sustentabilidade e hábitos saudáveis desde a primeira infância.',
-      icone: '🌱'
+      descricao: 'Aprendizado conectado com a natureza, sustentabilidade e hábitos alimentares saudáveis desde a primeira infância.',
+      Icone: Sprout,
     },
     {
       titulo: 'Rotina Estruturada',
-      descricao: 'Ambiente previsível que oferece segurança, facilitando o aprendizado e o desenvolvimento emocional.',
-      icone: '⏰'
+      descricao: 'Um ambiente previsível e acolhedor que oferece segurança, facilitando o aprendizado e o desenvolvimento emocional.',
+      Icone: Clock,
     },
     {
       titulo: 'Berçário ao Maternal',
-      descricao: 'Cuidado integral desde os primeiros meses de vida, respeitando cada estágio do desenvolvimento infantil.',
-      icone: '👶'
+      descricao: 'Cuidado integral dos 4 meses aos 3 anos, respeitando cada estágio único do desenvolvimento infantil.',
+      Icone: Baby,
     },
     {
       titulo: 'Transparência Total',
@@ -64,6 +64,8 @@ export default function Home() {
     const d = new Date(date)
     return d.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })
   }
+
+  const whatsappUrl = `https://wa.me/5514998443897?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre o CEI Nossa Senhora de Fátima.')}`
 
   return (
     <main className="min-h-screen">
@@ -119,7 +121,7 @@ export default function Home() {
                   className="btn-primary inline-flex items-center justify-center px-8 py-4 gap-2 text-lg"
                 >
                   Conheça Nossa História
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} />
                 </a>
                 <a
                   href="https://wa.me/5514998443897?text=Ol%C3%A1%21+Gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+o+CEI+Nossa+Senhora+de+F%C3%A1tima."
@@ -133,8 +135,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Imagem à Direita */}
-            <div className="relative hidden md:block animate-fade-in-right">
+            {/* Imagem à direita */}
+            <div className="relative hidden lg:flex justify-center items-center animate-fade-in-right">
               <img
                 src={VISUAL_ASSETS.heroBanner}
                 alt="Crianças em atividade pedagógica no CEI Nossa Senhora de Fátima"
@@ -202,10 +204,10 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {diferenciais.map((diferencial, idx) => (
+            {diferenciais.map(({ titulo, descricao, Icone }, idx) => (
               <div
                 key={idx}
-                className={`card-premium ${
+                className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 group ${
                   diferencialVisible ? 'animate-fade-in-up' : 'opacity-0'
                 }`}
                 style={{ animationDelay: diferencialVisible ? `${idx * 0.1}s` : '0s' }}
