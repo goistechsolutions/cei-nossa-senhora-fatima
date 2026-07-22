@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Send, Clock, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
+import { INSTITUTION } from '@/lib/constants'
 
 export default function Contato() {
   const [formData, setFormData] = useState({
@@ -27,20 +28,24 @@ export default function Contato() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-white" style={{
+      <section className="relative py-20 md:py-32 overflow-hidden" style={{
         backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/hero-background-contato-jKBMCQwZF6TThCEB2pAS6s.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}>
-        <div className="absolute inset-0 bg-white/60"></div>
+        <div className="absolute inset-0 bg-white/60" />
         <div className="container relative z-10">
           <div className="max-w-3xl">
-            <h1 className="font-fredoka-one text-5xl md:text-6xl mb-6 leading-tight text-teal-600">
+            <p className="font-poppins text-sm font-semibold text-teal-600 uppercase tracking-widest mb-3">
+              Fale conosco
+            </p>
+            <h1 className="font-fredoka-one text-5xl md:text-6xl mb-5 leading-tight text-teal-700">
               Entre em Contato
             </h1>
             <p className="font-poppins text-lg text-gray-700 leading-relaxed max-w-lg">
-              Tem dúvidas? Quer agendar uma visita? Estamos aqui para ajudar!
+              Tem dúvidas? Quer agendar uma visita ou saber sobre vagas?
+              Estamos prontos para ajudar sua família.
             </p>
           </div>
         </div>
@@ -53,7 +58,7 @@ export default function Contato() {
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}>
-        <div className="absolute inset-0 bg-white/75"></div>
+        <div className="absolute inset-0 bg-white/80" />
         <div className="container relative z-10">
 
           {/* Botão WhatsApp em destaque */}
@@ -62,25 +67,25 @@ export default function Contato() {
               href="https://wa.me/5514998443897?text=Ol%C3%A1%21+Gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+o+CEI+Nossa+Senhora+de+F%C3%A1tima."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-green-500 text-white font-fredoka font-semibold rounded-xl hover:bg-green-600 transition-all text-lg shadow-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-green-500 text-white font-poppins font-semibold rounded-xl hover:bg-green-600 transition-all text-base shadow-lg"
             >
-              <MessageCircle size={24} />
+              <MessageCircle size={22} />
               Fale conosco pelo WhatsApp: (14) 99844-3897
             </a>
           </div>
 
-          {/* Cards de informações */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-teal-100 text-center">
-              <Phone className="w-10 h-10 text-teal-600 mx-auto mb-3" />
-              <h3 className="font-fredoka-one text-lg text-teal-600 mb-1">Telefone</h3>
-              <p className="font-poppins text-gray-700 text-sm">(14) 3272-1XXX</p>
-              <p className="font-poppins text-gray-500 text-xs mt-1">Seg a Sex, 7h às 17h</p>
+          {/* Cards de informações — dados reais de constants.ts */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-10">
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-100 text-center">
+              <Phone className="w-9 h-9 text-teal-600 mx-auto mb-3" />
+              <h3 className="font-fredoka-one text-base text-teal-700 mb-1">Telefone</h3>
+              <p className="font-poppins text-gray-700 text-sm font-medium">{INSTITUTION.phone}</p>
+              <p className="font-poppins text-gray-400 text-xs mt-1">Seg a Sex, 07h às 17h</p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-teal-100 text-center">
-              <MessageCircle className="w-10 h-10 text-green-500 mx-auto mb-3" />
-              <h3 className="font-fredoka-one text-lg text-teal-600 mb-1">WhatsApp</h3>
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-100 text-center">
+              <MessageCircle className="w-9 h-9 text-green-500 mx-auto mb-3" />
+              <h3 className="font-fredoka-one text-base text-teal-700 mb-1">WhatsApp</h3>
               <a
                 href="https://wa.me/5514998443897"
                 target="_blank"
@@ -89,21 +94,43 @@ export default function Contato() {
               >
                 (14) 99844-3897
               </a>
-              <p className="font-poppins text-gray-500 text-xs mt-1">Atendimento ágil</p>
+              <p className="font-poppins text-gray-400 text-xs mt-1">Atendimento ágil</p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-teal-100 text-center">
-              <MapPin className="w-10 h-10 text-teal-600 mx-auto mb-3" />
-              <h3 className="font-fredoka-one text-lg text-teal-600 mb-1">Endereço</h3>
-              <p className="font-poppins text-gray-700 text-sm">Vila Nossa Senhora de Fátima</p>
-              <p className="font-poppins text-gray-500 text-xs mt-1">Fartura – SP</p>
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-100 text-center">
+              <Mail className="w-9 h-9 text-teal-600 mx-auto mb-3" />
+              <h3 className="font-fredoka-one text-base text-teal-700 mb-1">E-mail</h3>
+              <a
+                href={`mailto:${INSTITUTION.email}`}
+                className="font-poppins text-teal-600 hover:text-teal-700 text-xs font-medium break-all"
+              >
+                {INSTITUTION.email}
+              </a>
+              <p className="font-poppins text-gray-400 text-xs mt-1">Resposta em até 48h</p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-teal-100 text-center">
-              <Clock className="w-10 h-10 text-teal-600 mx-auto mb-3" />
-              <h3 className="font-fredoka-one text-lg text-teal-600 mb-1">Funcionamento</h3>
-              <p className="font-poppins text-gray-700 text-sm">Seg a Sex</p>
-              <p className="font-poppins text-gray-700 text-sm font-semibold">06h30 às 17h30</p>
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-100 text-center">
+              <Clock className="w-9 h-9 text-teal-600 mx-auto mb-3" />
+              <h3 className="font-fredoka-one text-base text-teal-700 mb-1">Funcionamento</h3>
+              <p className="font-poppins text-gray-700 text-sm font-medium">Seg a Sex</p>
+              <p className="font-poppins text-teal-600 text-sm font-bold">06h30 às 17h30</p>
+            </div>
+          </div>
+
+          {/* Endereço completo */}
+          <div className="max-w-md mx-auto bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
+            <MapPin className="w-6 h-6 text-teal-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-poppins text-sm font-semibold text-gray-700">{INSTITUTION.address}</p>
+              <p className="font-poppins text-sm text-gray-500">{INSTITUTION.city}</p>
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(INSTITUTION.fullAddress)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-poppins text-xs text-teal-600 hover:text-teal-700 underline underline-offset-2 mt-1 inline-block"
+              >
+                Abrir no Google Maps →
+              </a>
             </div>
           </div>
 
@@ -114,11 +141,11 @@ export default function Contato() {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="max-w-2xl mx-auto">
-            <h2 className="font-fredoka-one text-4xl text-center mb-4 text-teal-600">
+            <h2 className="font-fredoka-one text-4xl text-center mb-3 text-teal-700">
               Envie uma Mensagem
             </h2>
-            <p className="font-poppins text-center text-gray-600 mb-10">
-              Responderemos o mais breve possível. Para retorno imediato, use o WhatsApp.
+            <p className="font-poppins text-center text-gray-500 text-sm mb-10">
+              Para retorno imediato, prefira o WhatsApp. Formulários são respondidos em até 48h.
             </p>
 
             {enviado && (
@@ -130,26 +157,26 @@ export default function Contato() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-fredoka font-semibold text-gray-700 mb-2">Nome *</label>
+                  <label className="block font-poppins font-semibold text-gray-700 text-sm mb-2">Nome *</label>
                   <input
                     type="text"
                     name="nome"
                     value={formData.nome}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins text-sm"
                     placeholder="Seu nome completo"
                   />
                 </div>
                 <div>
-                  <label className="block font-fredoka font-semibold text-gray-700 mb-2">Email *</label>
+                  <label className="block font-poppins font-semibold text-gray-700 text-sm mb-2">Email *</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins text-sm"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -157,24 +184,24 @@ export default function Contato() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-fredoka font-semibold text-gray-700 mb-2">Telefone / WhatsApp</label>
+                  <label className="block font-poppins font-semibold text-gray-700 text-sm mb-2">Telefone / WhatsApp</label>
                   <input
                     type="tel"
                     name="telefone"
                     value={formData.telefone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins text-sm"
                     placeholder="(14) 9 9999-9999"
                   />
                 </div>
                 <div>
-                  <label className="block font-fredoka font-semibold text-gray-700 mb-2">Assunto *</label>
+                  <label className="block font-poppins font-semibold text-gray-700 text-sm mb-2">Assunto *</label>
                   <select
                     name="assunto"
                     value={formData.assunto}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins text-sm"
                   >
                     <option value="">Selecione um assunto</option>
                     <option value="matricula">Matrícula / Vaga</option>
@@ -188,23 +215,23 @@ export default function Contato() {
               </div>
 
               <div>
-                <label className="block font-fredoka font-semibold text-gray-700 mb-2">Mensagem *</label>
+                <label className="block font-poppins font-semibold text-gray-700 text-sm mb-2">Mensagem *</label>
                 <textarea
                   name="mensagem"
                   value={formData.mensagem}
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent font-poppins text-sm resize-none"
                   placeholder="Como podemos ajudar?"
-                ></textarea>
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-teal-600 text-white font-fredoka font-semibold px-8 py-4 rounded-xl hover:bg-teal-700 transition-all flex items-center justify-center gap-2 text-lg shadow-md hover:shadow-lg"
+                className="w-full bg-teal-600 text-white font-poppins font-semibold px-8 py-4 rounded-xl hover:bg-teal-700 transition-all flex items-center justify-center gap-2 text-base shadow-md hover:shadow-lg"
               >
-                <Send size={20} />
+                <Send size={18} />
                 Enviar Mensagem
               </button>
             </form>
@@ -215,16 +242,16 @@ export default function Contato() {
       {/* Mapa Google Maps embutido */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <h2 className="font-fredoka-one text-4xl text-center mb-4 text-teal-600">
+          <h2 className="font-fredoka-one text-4xl text-center mb-3 text-teal-700">
             Nossa Localização
           </h2>
-          <p className="font-poppins text-center text-gray-600 mb-10">
-            Vila Nossa Senhora de Fátima, Fartura – SP
+          <p className="font-poppins text-center text-gray-500 text-sm mb-10">
+            {INSTITUTION.fullAddress}
           </p>
           <div className="w-full rounded-2xl overflow-hidden shadow-lg border border-gray-200" style={{ height: '420px' }}>
             <iframe
               title="Localização CEI Nossa Senhora de Fátima – Fartura SP"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.4!2d-49.502!3d-23.386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDIzJzA5LjYiUyA0OcKwMzAnMDcuMiJX!5e0!3m2!1spt-BR!2sbr!4v1000000000000!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.4!2d-49.5018!3d-23.3867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDIzJzEyLjEiUyA0OcKwMzAnMDYuNSJX!5e0!3m2!1spt-BR!2sbr!4v1000000000000!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -233,15 +260,15 @@ export default function Contato() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <div className="text-center mt-6">
+          <div className="text-center mt-5">
             <a
-              href="https://maps.google.com/?q=CEI+Nossa+Senhora+de+Fatima+Fartura+SP"
+              href={`https://maps.google.com/?q=${encodeURIComponent(INSTITUTION.fullAddress)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-poppins font-medium underline underline-offset-4"
+              className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-poppins text-sm font-medium underline underline-offset-4"
             >
-              <MapPin size={16} />
-              Abrir no Google Maps
+              <MapPin size={14} />
+              {INSTITUTION.fullAddress} — Abrir no Google Maps
             </a>
           </div>
         </div>
