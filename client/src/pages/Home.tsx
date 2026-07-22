@@ -1,56 +1,62 @@
-import { ArrowRight, Clock } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { INSTITUTION, VISUAL_ASSETS } from '@/lib/constants'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+// import { useAuth } from '@/_core/hooks/useAuth' // Desabilitado temporariamente
 import { useContentSection } from '@/hooks/useContentSection'
 import { PublicGallery } from '@/components/PublicGallery'
 import { trpc } from '@/lib/trpc'
 
 export default function Home() {
+  // const { user } = useAuth() // Desabilitado temporariamente
+
   const { ref: diferencialRef, isVisible: diferencialVisible } = useScrollAnimation()
   const { ref: galeriaRef, isVisible: galeriaVisible } = useScrollAnimation()
   const { ref: noticiasRef, isVisible: noticiasVisible } = useScrollAnimation()
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
 
+  // Fetch conteúdo dinâmico das seções
   const heroContent = useContentSection('hero')
   const diferencialContent = useContentSection('diferenciais')
   const galeriaContent = useContentSection('galeria')
   const ctaContent = useContentSection('cta_final')
 
+  // Fetch notícias dinâmicas do banco de dados
   const { data: noticias = [], isLoading: noticiasLoading } = trpc.news.list.useQuery()
 
   const diferenciais = [
     {
       titulo: 'Educação Gratuita',
-      descricao: 'Toda criança merece uma educação de qualidade. Oferecemos ensino infantil gratuito, sem barreiras financeiras, com o mesmo cuidado e dedicação para todas as famílias.',
+      descricao: 'Toda criança merece uma educação de qualidade — sem nenhuma barreira financeira. Aqui, o acesso é universal e o compromisso é real.',
       icone: '🎓'
     },
     {
       titulo: 'Pedagogia do Afeto',
-      descricao: 'Acreditamos que crianças aprendem melhor quando se sentem seguras e amadas. Cada educador é formado para ouvir, acolher e respeitar a singularidade de cada criança.',
+      descricao: 'Acreditamos que crianças aprendem melhor quando se sentem seguras e amadas. Nossos educadores constroem vínculos genuínos com cada aluno.',
       icone: '❤️'
     },
     {
       titulo: 'Horta Educativa',
-      descricao: 'As crianças plantam, cuidam e colhem. Esse contato com a natureza desenvolve responsabilidade, curiosidade e hábitos saudáveis desde os primeiros anos de vida.',
+      descricao: 'As crianças plantam, cuidam e colhem — aprendendo sobre natureza, alimentação saudável e responsabilidade de um jeito vivo e prático.',
       icone: '🌱'
     },
     {
       titulo: 'Rotina Estruturada',
-      descricao: 'A previsibilidade da rotina oferece segurança emocional. Nossas crianças sabem o que esperar de cada dia, o que facilita o aprendizado e reduz a ansiedade.',
+      descricao: 'A previsibilidade traz segurança. Nossa rotina bem planejada ajuda as crianças a se desenvolverem com confiança e autonomia.',
       icone: '⏰'
     },
     {
-      titulo: 'Berçário ao Maternal',
-      descricao: 'Do berço à pré-escola, acompanhamos cada etapa do desenvolvimento infantil com cuidado especializado, respeitando o tempo e o ritmo único de cada criança.',
+      titulo: 'Do Berçário ao Maternal',
+      descricao: 'Cuidamos desde os primeiros meses de vida até o maternal, respeitando cada fase do desenvolvimento com atenção e especialidade.',
       icone: '👶'
     },
     {
       titulo: 'Transparência Total',
-      descricao: 'As famílias merecem saber tudo o que acontece na instituição. Nosso portal de transparência mantém documentos, contas e comunicados sempre acessíveis.',
+      descricao: 'Nosso Portal de Transparência reúne documentos, prestações de contas e relatórios — porque as famílias merecem saber tudo sobre onde seus filhos estão.',
       icone: '👁️'
     }
   ]
 
+  // Formatar data para exibição
   const formatDate = (date: Date | string) => {
     const d = new Date(date)
     return d.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })
@@ -68,35 +74,38 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/60"></div>
         <div className="container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Conteúdo à Esquerda */}
             <div className="animate-fade-in-left">
               <h1 className="text-gradient-turquoise text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight font-bold">
                 {heroContent.isLoading ? 'Carregando...' : (heroContent.title || 'Onde cada criança descobre o mundo com segurança, carinho e alegria')}
               </h1>
-              
+
               <p className="font-inter text-lg text-gray-700 mb-4 leading-relaxed">
-                {heroContent.isLoading ? 'Carregando...' : (heroContent.content || 'O CEI Nossa Senhora de Fátima oferece educação infantil gratuita em Fartura-SP, unindo excelência pedagógica, afeto genuíno e total transparência com as famílias.')}
+                {heroContent.isLoading ? 'Carregando...' : (heroContent.content || 'O CEI Nossa Senhora de Fátima cuida do desenvolvimento integral de crianças de Fartura-SP, oferecendo educação infantil gratuita e de qualidade em um ambiente acolhedor e familiar.')}
               </p>
 
-              {heroContent.subtitle ? (
+              {heroContent.subtitle && (
                 <p className="font-inter text-base text-gray-600 mb-8 leading-relaxed">
                   {heroContent.subtitle}
                 </p>
-              ) : (
+              )}
+
+              {!heroContent.subtitle && (
                 <p className="font-inter text-base text-gray-600 mb-8 leading-relaxed">
-                  Localizada na Vila Nossa Senhora de Fátima, nossa instituição filantrópica acompanha o desenvolvimento integral de crianças desde o berçário até o maternal — com uma equipe dedicada e um ambiente que parece lar.
+                  Localizada na Vila Nossa Senhora de Fátima, em Fartura-SP, nossa instituição filantrópica une o afeto genuíno com estrutura pedagógica rigorosa — porque infância feliz é o melhor começo.
                 </p>
               )}
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="/historia" 
+                <a
+                  href="/historia"
                   className="btn-primary inline-flex items-center justify-center px-8 py-4 gap-2 text-lg"
                 >
                   Conheça Nossa História
                   <ArrowRight size={20} />
                 </a>
-                <a 
-                  href="/contato" 
+                <a
+                  href="/contato"
                   className="btn-secondary inline-flex items-center justify-center px-8 py-4 gap-2 text-lg"
                 >
                   Entre em Contato
@@ -104,6 +113,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Imagem à Direita */}
             <div className="relative hidden md:block animate-fade-in-right">
               <img
                 src={VISUAL_ASSETS.heroBanner}
@@ -126,10 +136,10 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="mb-16 text-center">
             <h2 className="text-gradient-turquoise text-4xl md:text-5xl mb-4 font-bold">
-              {diferencialContent.title || 'Por que escolher o CEI Fátima?'}
+              Por que escolher o CEI Nossa Senhora de Fátima?
             </h2>
             <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
-              {diferencialContent.content || 'Cada detalhe da nossa proposta pedagógica foi pensado para que sua família se sinta segura — e sua criança, feliz.'}
+              Décadas de experiência, educadores dedicados e um ambiente pensado para cada fase da infância.
             </p>
           </div>
 
@@ -140,7 +150,9 @@ export default function Home() {
                 className={`card-premium ${
                   diferencialVisible ? 'animate-fade-in-up' : 'opacity-0'
                 }`}
-                style={{ animationDelay: diferencialVisible ? `${idx * 0.1}s` : '0s' }}
+                style={{
+                  animationDelay: diferencialVisible ? `${idx * 0.1}s` : '0s'
+                }}
               >
                 <div className="text-6xl mb-4 hover:scale-110 transition-transform duration-300">{diferencial.icone}</div>
                 <h3 className="font-fredoka text-2xl text-gray-900 mb-3 font-semibold">
@@ -168,7 +180,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Notícias e Eventos */}
+      {/* Seção de Notícias */}
       <section ref={noticiasRef} className="py-20 bg-gray-50 relative" style={{
         backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-diferenciais-2Hs8mNxQrJ5Wq9kL3pT7vM.webp)',
         backgroundSize: 'cover',
@@ -182,7 +194,7 @@ export default function Home() {
               Notícias e Eventos
             </h2>
             <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
-              Acompanhe as atividades, celebrações e novidades do CEI Nossa Senhora de Fátima.
+              Acompanhe as atividades, celebrações e novidades do dia a dia do CEI.
             </p>
           </div>
 
@@ -198,7 +210,9 @@ export default function Home() {
                   className={`card-premium border-l-4 border-turquoise ${
                     noticiasVisible ? 'animate-fade-in-up' : 'opacity-0'
                   }`}
-                  style={{ animationDelay: noticiasVisible ? `${idx * 0.1}s` : '0s' }}
+                  style={{
+                    animationDelay: noticiasVisible ? `${idx * 0.1}s` : '0s'
+                  }}
                 >
                   <div className="flex items-start gap-4">
                     <div className="text-4xl">{noticia.icon}</div>
@@ -223,10 +237,10 @@ export default function Home() {
               ))
             ) : (
               <div className="col-span-full text-center py-12">
-                <div className="text-6xl mb-4">📰</div>
-                <h3 className="font-fredoka text-xl text-gray-700 mb-2 font-semibold">Novidades em breve!</h3>
+                <div className="text-5xl mb-4">📰</div>
+                <h3 className="font-fredoka text-xl text-gray-700 mb-2">Novidades em breve!</h3>
                 <p className="font-inter text-gray-500 max-w-sm mx-auto">
-                  Em breve publicaremos notícias, eventos e atividades do CEI. Fique atento!
+                  Em breve publicaremos notícias, eventos e atividades especiais. Fique de olho!
                 </p>
               </div>
             )}
@@ -234,7 +248,10 @@ export default function Home() {
 
           {noticias.length > 0 && (
             <div className="text-center mt-12">
-              <a href="/noticias" className="btn-primary inline-flex items-center px-8 py-3 gap-2">
+              <a
+                href="/noticias"
+                className="btn-primary inline-flex items-center px-8 py-3 gap-2"
+              >
                 Ver Todas as Notícias
               </a>
             </div>
@@ -253,25 +270,18 @@ export default function Home() {
         <div className={`container relative z-10 ${ctaVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-gradient-turquoise text-4xl md:text-5xl mb-6 font-bold">
-              {ctaContent.title || 'Sua família é bem-vinda aqui'}
+              Quer conhecer o CEI de perto?
             </h2>
             <p className="font-inter text-lg text-gray-700 mb-8 leading-relaxed">
-              {ctaContent.content || 'Venha conhecer nossa estrutura, conversar com nossa equipe e sentir o ambiente acolhedor do CEI Nossa Senhora de Fátima. Estamos em Fartura-SP, de segunda a sexta, das 06h30 às 17h30.'}
+              Agende uma visita, tire suas dúvidas ou entre em contato conosco. Será um prazer receber você e sua família.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contato" className="btn-primary inline-flex items-center justify-center px-8 py-4 gap-2 text-lg">
-                Agendar uma Visita
-                <ArrowRight size={20} />
-              </a>
-              <a
-                href="https://wa.me/5514998443897"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 gap-2 text-lg bg-green-500 text-white font-fredoka font-semibold rounded-lg hover:bg-green-600 transition-all"
-              >
-                💬 Falar no WhatsApp
-              </a>
-            </div>
+            <a
+              href="/contato"
+              className="btn-primary inline-flex items-center px-8 py-4 gap-2 text-lg"
+            >
+              Entrar em Contato
+              <ArrowRight size={20} />
+            </a>
           </div>
         </div>
       </section>
