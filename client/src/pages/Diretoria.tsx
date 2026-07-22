@@ -1,6 +1,6 @@
 import { trpc } from "@/lib/trpc";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, User, HeartHandshake } from "lucide-react";
+import { Mail, Phone, User } from "lucide-react";
 
 export default function Diretoria() {
   const { data: members, isLoading, error } = trpc.diretoria.list.useQuery();
@@ -13,8 +13,8 @@ export default function Diretoria() {
             <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="font-inter text-lg text-gray-500">
-              Carregando informações da diretoria...
+            <p className="font-inter text-lg text-gray-700">
+              Carregando informações...
             </p>
           </div>
         </div>
@@ -30,8 +30,8 @@ export default function Diretoria() {
             <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="font-inter text-lg text-rose-500">
-              Não foi possível carregar as informações. Tente novamente mais tarde.
+            <p className="font-inter text-lg text-rose">
+              Erro ao carregar informações. Tente novamente mais tarde.
             </p>
           </div>
         </div>
@@ -44,12 +44,12 @@ export default function Diretoria() {
       {/* Header */}
       <section className="py-16 md:py-24 bg-white/50 backdrop-filter backdrop-blur-md border-b border-white/20 shadow-soft">
         <div className="container">
-          <div className="text-center">
+          <div className="text-center max-w-2xl mx-auto">
             <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
-              Pessoas comprometidas com a infância, a comunidade e a gestão transparente de uma instituição que transforma vidas em Fartura-SP.
+            <p className="font-inter text-lg text-gray-700">
+              Conheça as pessoas que dedicam seu tempo e energia para garantir que cada criança do CEI Nossa Senhora de Fátima receba o melhor cuidado e educação possíveis.
             </p>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function Diretoria() {
                   key={member.id}
                   className="overflow-hidden hover:shadow-lg-premium transition-all duration-300 border-0 rounded-premium-lg bg-white card-premium"
                 >
-                  {/* Foto ou Avatar */}
+                  {/* Photo or Avatar */}
                   <div className="w-full h-64 bg-gradient-institutional flex items-center justify-center overflow-hidden">
                     {member.photoUrl ? (
                       <img
@@ -80,9 +80,9 @@ export default function Diretoria() {
                     )}
                   </div>
 
-                  {/* Conteúdo */}
+                  {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-2xl font-fredoka font-bold text-gray-900 mb-1">
+                    <h3 className="text-2xl font-fredoka font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
                     <p className="text-lg font-fredoka font-semibold text-gradient-turquoise mb-4">
@@ -95,7 +95,7 @@ export default function Diretoria() {
                       </p>
                     )}
 
-                    {/* Contatos */}
+                    {/* Contact Info */}
                     <div className="space-y-2 border-t border-gray-200 pt-4">
                       {member.email && (
                         <a
@@ -122,11 +122,14 @@ export default function Diretoria() {
             </div>
           ) : (
             <div className="text-center py-16">
-              <HeartHandshake size={56} className="text-teal-300 mx-auto mb-4" />
-              <h3 className="font-fredoka text-xl text-gray-700 font-semibold mb-2">Informações em atualização</h3>
-              <p className="font-inter text-gray-500 max-w-sm mx-auto">
-                Os membros da diretoria serão apresentados em breve. Entre em contato para mais informações.
+              <div className="text-6xl mb-6">👥</div>
+              <h3 className="font-fredoka text-2xl text-gray-700 mb-3">Cadastro em andamento</h3>
+              <p className="font-inter text-gray-500 max-w-md mx-auto mb-8">
+                Em breve você poderá conhecer todos os membros da nossa diretoria. Ficou curioso? Entre em contato!
               </p>
+              <a href="/contato" className="btn-primary inline-block px-8 py-3">
+                Entrar em Contato
+              </a>
             </div>
           )}
         </div>
@@ -135,14 +138,17 @@ export default function Diretoria() {
       {/* Footer CTA */}
       <section className="py-12 bg-white/50 backdrop-filter backdrop-blur-md border-t border-white/20 shadow-soft">
         <div className="container text-center">
-          <p className="font-inter text-gray-700 mb-4">
-            Quer conhecer mais sobre a instituição ou fazer parte da nossa comunidade?
+          <p className="font-inter text-gray-700 mb-2 text-lg font-semibold">
+            Quer fazer parte da nossa comunidade?
+          </p>
+          <p className="font-inter text-gray-500 mb-6">
+            Estamos sempre abertos para parcerias, voluntariado e colaborações.
           </p>
           <a
             href="/contato"
             className="btn-primary inline-block px-8 py-3"
           >
-            Entre em Contato
+            Enviar Mensagem
           </a>
         </div>
       </section>
