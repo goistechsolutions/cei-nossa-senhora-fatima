@@ -1,6 +1,6 @@
 import { trpc } from "@/lib/trpc";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, User } from "lucide-react";
+import { Mail, Phone, User, HeartHandshake } from "lucide-react";
 
 export default function Diretoria() {
   const { data: members, isLoading, error } = trpc.diretoria.list.useQuery();
@@ -13,8 +13,8 @@ export default function Diretoria() {
             <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="font-inter text-lg text-gray-700">
-              Carregando informações...
+            <p className="font-inter text-lg text-gray-500">
+              Carregando informações da diretoria...
             </p>
           </div>
         </div>
@@ -30,8 +30,8 @@ export default function Diretoria() {
             <h1 className="text-gradient-turquoise text-4xl md:text-5xl font-bold mb-4">
               Nossa Diretoria
             </h1>
-            <p className="font-inter text-lg text-rose">
-              Erro ao carregar informações
+            <p className="font-inter text-lg text-rose-500">
+              Não foi possível carregar as informações. Tente novamente mais tarde.
             </p>
           </div>
         </div>
@@ -49,8 +49,7 @@ export default function Diretoria() {
               Nossa Diretoria
             </h1>
             <p className="font-inter text-lg text-gray-700 max-w-2xl mx-auto">
-              Conheça os membros que dirigem com carinho nossa instituição, 
-              dedicados ao desenvolvimento integral das crianças.
+              Pessoas comprometidas com a infância, a comunidade e a gestão transparente de uma instituição que transforma vidas em Fartura-SP.
             </p>
           </div>
         </div>
@@ -66,12 +65,12 @@ export default function Diretoria() {
                   key={member.id}
                   className="overflow-hidden hover:shadow-lg-premium transition-all duration-300 border-0 rounded-premium-lg bg-white card-premium"
                 >
-                  {/* Photo or Avatar */}
+                  {/* Foto ou Avatar */}
                   <div className="w-full h-64 bg-gradient-institutional flex items-center justify-center overflow-hidden">
                     {member.photoUrl ? (
                       <img
                         src={member.photoUrl}
-                        alt={member.name}
+                        alt={`Foto de ${member.name}, ${member.position}`}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -81,9 +80,9 @@ export default function Diretoria() {
                     )}
                   </div>
 
-                  {/* Content */}
+                  {/* Conteúdo */}
                   <div className="p-6">
-                    <h3 className="text-2xl font-fredoka font-bold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-fredoka font-bold text-gray-900 mb-1">
                       {member.name}
                     </h3>
                     <p className="text-lg font-fredoka font-semibold text-gradient-turquoise mb-4">
@@ -96,7 +95,7 @@ export default function Diretoria() {
                       </p>
                     )}
 
-                    {/* Contact Info */}
+                    {/* Contatos */}
                     <div className="space-y-2 border-t border-gray-200 pt-4">
                       {member.email && (
                         <a
@@ -122,9 +121,11 @@ export default function Diretoria() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-lg text-gray-600">
-                Nenhum membro da diretoria cadastrado no momento.
+            <div className="text-center py-16">
+              <HeartHandshake size={56} className="text-teal-300 mx-auto mb-4" />
+              <h3 className="font-fredoka text-xl text-gray-700 font-semibold mb-2">Informações em atualização</h3>
+              <p className="font-inter text-gray-500 max-w-sm mx-auto">
+                Os membros da diretoria serão apresentados em breve. Entre em contato para mais informações.
               </p>
             </div>
           )}
@@ -135,13 +136,13 @@ export default function Diretoria() {
       <section className="py-12 bg-white/50 backdrop-filter backdrop-blur-md border-t border-white/20 shadow-soft">
         <div className="container text-center">
           <p className="font-inter text-gray-700 mb-4">
-            Tem dúvidas ou sugestões? Entre em contato conosco!
+            Quer conhecer mais sobre a instituição ou fazer parte da nossa comunidade?
           </p>
           <a
             href="/contato"
             className="btn-primary inline-block px-8 py-3"
           >
-            Enviar Mensagem
+            Entre em Contato
           </a>
         </div>
       </section>
