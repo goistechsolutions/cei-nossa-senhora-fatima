@@ -42,10 +42,9 @@ export function useAuth(options?: UseAuthOptions) {
   }, [logoutMutation, utils]);
 
   const state = useMemo(() => {
-    localStorage.setItem(
-      "manus-runtime-user-info",
-      JSON.stringify(meQuery.data)
-    );
+    // Nota: localStorage não é usado aqui pois pode estar bloqueado em
+    // ambientes sandboxados (Cloudflare Pages, iframes). O estado de auth
+    // é mantido exclusivamente via tRPC / cookie de sessão.
     return {
       user: meQuery.data ?? null,
       loading: meQuery.isLoading || logoutMutation.isPending,

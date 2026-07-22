@@ -7,15 +7,12 @@ import {
   Instagram,
   Youtube,
   Heart,
-  Lock,
+  ExternalLink,
 } from "lucide-react";
-// import { useAuth } from "@/_core/hooks/useAuth";
-// import { getLoginUrl } from "@/const"; // Desabilitado temporariamente
-// import { useLocation } from "wouter";
 
 export default function Footer() {
-  // const { user, isAuthenticated, logout } = useAuth(); // Desabilitado temporariamente
-  // const [, setLocation] = useLocation();
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(INSTITUTION.fullAddress)}`;
+
   return (
     <footer className="bg-gradient-to-b from-dark-navy via-gray-900 to-black text-white">
       {/* Ilustração de Rodapé */}
@@ -45,6 +42,9 @@ export default function Footer() {
               {INSTITUTION.yearsOfExperience}+ anos de dedicação à educação
               infantil com excelência, amor e cuidado.
             </p>
+            <p className="font-inter text-xs text-gray-500 mt-3 leading-relaxed">
+              CNPJ: {INSTITUTION.cnpj}
+            </p>
           </div>
 
           {/* Localização */}
@@ -53,14 +53,28 @@ export default function Footer() {
               Localização
             </h3>
             <a
-              href="#"
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-inter text-sm text-gray-300 hover:text-rose transition-all duration-300 flex items-start gap-2 group"
             >
               <MapPin
                 size={18}
                 className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform"
               />
-              <span>{INSTITUTION.address}</span>
+              <span>
+                {INSTITUTION.address}<br />
+                {INSTITUTION.city}
+              </span>
+            </a>
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-inter text-xs text-gray-500 hover:text-rose transition-all duration-300 flex items-center gap-1 mt-2 group"
+            >
+              <ExternalLink size={12} />
+              <span>Ver no Google Maps</span>
             </a>
           </div>
 
@@ -71,7 +85,7 @@ export default function Footer() {
             </h3>
             <div className="space-y-3">
               <a
-                href={`tel:${INSTITUTION.phone}`}
+                href={`tel:${INSTITUTION.phone.replace(/\D/g, '')}`}
                 className="font-inter text-sm text-gray-300 hover:text-yellow-hope transition-all duration-300 flex items-center gap-2 group"
               >
                 <Phone
@@ -135,7 +149,15 @@ export default function Footer() {
                   Estrutura
                 </a>
               </li>
-              {/* Painel Administrativo desabilitado temporariamente */}
+              <li>
+                <a
+                  href="/contato"
+                  className="font-inter text-sm text-gray-300 hover:text-green-growth transition-all duration-300 flex items-center gap-2 group"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-growth group-hover:scale-150 transition-transform duration-300"></span>
+                  Contato
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -174,12 +196,20 @@ export default function Footer() {
               </a>
             </div>
           </div>
-
-          {/* Acesso Rápido - Logout desabilitado temporariamente */}
         </div>
 
-        {/* Linha Divisória */}
-        <div className="border-t border-gray-700 pt-8">
+        {/* Informações Institucionais Oficiais */}
+        <div className="border-t border-gray-700 pt-6 mb-6">
+          <p className="font-inter text-xs text-gray-500 text-center leading-relaxed">
+            O {INSTITUTION.name} possui inscrição no <strong className="text-gray-400">CME nº 03</strong> e no{" "}
+            <strong className="text-gray-400">CMDCA nº 06</strong>, com código{" "}
+            <strong className="text-gray-400">INEP: {INSTITUTION.inep}</strong>. Funciona em sede própria.{" "}
+            Registrado desde <strong className="text-gray-400">{INSTITUTION.registrationDate}</strong>.
+          </p>
+        </div>
+
+        {/* Linha Divisória — Copyright */}
+        <div className="border-t border-gray-800 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-inter text-sm text-gray-400 text-center md:text-left">
               © {new Date().getFullYear()} {INSTITUTION.shortName}. Todos os
