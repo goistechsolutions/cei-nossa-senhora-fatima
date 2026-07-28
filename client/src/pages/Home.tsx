@@ -76,7 +76,8 @@ export default function Home() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-white/65" />
+        {/* overlay calibrado: imagem respira mais */}
+        <div className="absolute inset-0 bg-white/45" />
         <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -108,7 +109,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="/historia"
-                  className="btn-primary inline-flex items-center justify-center px-7 py-3.5 gap-2 text-base font-semibold rounded-xl"
+                  className="btn-primary inline-flex items-center justify-center px-7 py-3.5 gap-2 text-base font-semibold"
                 >
                   Conheça Nossa História
                   <ArrowRight size={18} />
@@ -117,7 +118,7 @@ export default function Home() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary inline-flex items-center justify-center px-7 py-3.5 gap-2 text-base font-semibold rounded-xl"
+                  className="btn-secondary inline-flex items-center justify-center px-7 py-3.5 gap-2 text-base font-semibold"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
@@ -138,7 +139,7 @@ export default function Home() {
                 className="w-full max-w-lg h-auto object-cover rounded-2xl shadow-xl"
               />
               {/* Badge de funcionamento flutuante */}
-              <div className="absolute -bottom-4 left-6 bg-white rounded-xl shadow-lg px-4 py-3 flex items-center gap-3 border border-teal-100">
+              <div className="absolute -bottom-4 left-6 bg-white rounded-xl shadow-teal px-4 py-3 flex items-center gap-3 border border-teal-100">
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                 <div>
                   <p className="text-xs text-gray-500 font-inter">Funcionamento</p>
@@ -153,7 +154,7 @@ export default function Home() {
       {/* ─── STATS ────────────────────────────────────────────── */}
       <section
         ref={statsRef}
-        className="py-14 bg-teal-600"
+        className="py-14 gradient-stats"
       >
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -161,13 +162,13 @@ export default function Home() {
               <div
                 key={idx}
                 className={`${
-                  statsVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  statsVisible ? 'animate-count-up' : 'opacity-0'
                 }`}
-                style={{ animationDelay: statsVisible ? `${idx * 0.12}s` : '0s' }}
+                style={{ animationDelay: statsVisible ? `${idx * 0.13}s` : '0s' }}
               >
                 <p className="font-fredoka text-5xl md:text-6xl font-bold text-white leading-none">
                   {stat.valor}
-                  <span className="text-3xl">{stat.sufixo}</span>
+                  <span className="text-3xl" style={{ color: 'var(--color-accent-gold-light)' }}>{stat.sufixo}</span>
                 </p>
                 <p className="font-inter text-sm md:text-base text-white/80 mt-2 font-medium">
                   {stat.label}
@@ -189,9 +190,10 @@ export default function Home() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-white/70" />
+        <div className="absolute inset-0 hero-overlay-medium" />
         <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <div className="mb-14 text-center">
+            <span className="accent-teal-bar mb-4 mx-auto block" />
             <h2 className="text-teal-700 font-fredoka text-3xl md:text-4xl font-bold mb-4">
               Nossos Diferenciais Pedagógicos
             </h2>
@@ -200,16 +202,16 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {diferenciais.map(({ titulo, descricao, Icone }, idx) => (
               <div
                 key={idx}
-                className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 group ${
+                className={`bg-white rounded-2xl border border-teal-100 p-6 hover:shadow-teal hover:border-teal-200 transition-all duration-300 group hover:translate-y-[-3px] ${
                   diferencialVisible ? 'animate-fade-in-up' : 'opacity-0'
                 }`}
                 style={{ animationDelay: diferencialVisible ? `${idx * 0.1}s` : '0s' }}
               >
-                <div className="w-11 h-11 mb-4 flex items-center justify-center rounded-xl bg-teal-50 text-teal-600 group-hover:bg-teal-100 transition-colors duration-200">
+                <div className="w-11 h-11 mb-4 flex items-center justify-center rounded-xl bg-teal-50 text-teal-600 group-hover:bg-teal-100 group-hover:text-teal-700 transition-all duration-200">
                   <Icone size={22} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-fredoka text-xl text-gray-900 mb-2 font-semibold">
@@ -235,7 +237,7 @@ export default function Home() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-white/70" />
+        <div className="absolute inset-0 bg-white/55" />
         <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <PublicGallery sectionKey="galeria" columns={3} showTitle={true} />
         </div>
@@ -252,9 +254,10 @@ export default function Home() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-white/70" />
+        <div className="absolute inset-0 bg-white/55" />
         <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
+            <span className="accent-teal-bar mb-4 mx-auto block" />
             <h2 className="text-teal-700 font-fredoka text-3xl md:text-4xl font-bold mb-4">
               Notícias e Eventos
             </h2>
@@ -266,7 +269,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {noticiasLoading ? (
               Array.from({ length: 2 }).map((_, i) => (
-                <div key={i} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 animate-pulse">
+                <div key={i} className="bg-white rounded-2xl border border-gray-100 p-6 animate-pulse">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-gray-200 flex-shrink-0" />
                     <div className="flex-1 space-y-3">
@@ -282,7 +285,7 @@ export default function Home() {
               noticias.slice(0, 4).map((noticia, idx) => (
                 <div
                   key={noticia.id}
-                  className={`bg-white rounded-2xl shadow-sm border-l-4 border-teal-500 p-6 ${
+                  className={`bg-white rounded-2xl border-l-4 border-teal-500 shadow-soft hover:shadow-teal transition-all duration-300 p-6 ${
                     noticiasVisible ? 'animate-fade-in-up' : 'opacity-0'
                   }`}
                   style={{ animationDelay: noticiasVisible ? `${idx * 0.1}s` : '0s' }}
@@ -312,23 +315,25 @@ export default function Home() {
               ))
             ) : (
               <div className="col-span-full flex flex-col items-center text-center py-16 px-8">
-                <div className="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center mb-5">
-                  <Newspaper size={32} className="text-teal-300" strokeWidth={1.5} />
+                <div className="w-20 h-20 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center mb-6 animate-glow">
+                  <Newspaper size={36} className="text-teal-400" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-fredoka text-xl text-gray-800 font-semibold mb-2">
+                <h3 className="font-fredoka text-2xl text-gray-800 font-semibold mb-3">
                   Em breve, novidades por aqui!
                 </h3>
-                <p className="font-inter text-gray-500 text-sm max-w-xs leading-relaxed">
+                <p className="font-inter text-gray-500 text-base max-w-sm leading-relaxed mb-6">
                   Estamos preparando conteúdos sobre as atividades, projetos e eventos do CEI. Volte em breve.
                 </p>
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-700 transition-colors"
+                  className="btn-primary inline-flex items-center gap-2 text-sm px-6 py-3"
                 >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                  </svg>
                   Receber novidades pelo WhatsApp
-                  <ArrowRight size={14} />
                 </a>
               </div>
             )}
@@ -359,13 +364,14 @@ export default function Home() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-white/70" />
+        <div className="absolute inset-0 bg-white/48" />
         <div
           className={`relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ${
             ctaVisible ? 'animate-fade-in-up' : 'opacity-0'
           }`}
         >
           <div className="max-w-2xl mx-auto text-center">
+            <span className="accent-gold-bar mb-5 mx-auto block" />
             <h2 className="text-teal-700 font-fredoka text-3xl md:text-4xl font-bold mb-6">
               Venha conhecer o CEI pessoalmente
             </h2>
@@ -377,7 +383,7 @@ export default function Home() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center justify-center px-8 py-4 gap-3 text-base font-semibold rounded-xl"
+                className="btn-primary inline-flex items-center justify-center px-8 py-4 gap-3 text-base font-semibold"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
@@ -386,7 +392,7 @@ export default function Home() {
               </a>
               <a
                 href="/contato"
-                className="btn-secondary inline-flex items-center justify-center px-8 py-4 gap-2 text-base font-semibold rounded-xl"
+                className="btn-secondary inline-flex items-center justify-center px-8 py-4 gap-2 text-base font-semibold"
               >
                 <Phone size={18} />
                 Página de Contato
