@@ -104,7 +104,9 @@
     "vite-plugin-manus-runtime": "^0.0.57",
     "vitest": "^3.2.6"
   },
-  "overrides": {
-    "tailwindcss>nanoid": "3.3.7"
+"overrides": {
+  "tailwindcss": {
+    "nanoid": "3.3.7"
   }
+}
 }
