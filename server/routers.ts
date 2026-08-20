@@ -339,7 +339,7 @@ export const appRouter = router({
             sectionKey: input.sectionKey,
             tags: input.tags,
             uploadedBy: ctx.user.id,
-            metadata: JSON.stringify({ originalSize, compressedSize, compressionRatio: `${compressionRatio}%` }),
+            
           });
 
           return { success: true, url, storageKey, compression: { originalSize, compressedSize, ratio: compressionRatio } };

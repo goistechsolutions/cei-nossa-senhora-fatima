@@ -315,11 +315,13 @@ export async function getAllGalleryImages(sectionKey?: string) {
   }
 
   try {
-    let query = db.select().from(galleryImages);
-    if (sectionKey) {
-      query = query.where(eq(galleryImages.sectionKey, sectionKey));
-    }
-    const result = await query.orderBy(desc(galleryImages.uploadedAt));
+    const result = sectionKey
+      ? await db
+          .select()
+          .from(galleryImages)
+          .where(eq(galleryImages.sectionKey, sectionKey))
+          .orderBy(desc(galleryImages.uploadedAt))
+      : await db.select().from(galleryImages).orderBy(desc(galleryImages.uploadedAt));
     return result;
   } catch (error) {
     console.error("[Database] Failed to get gallery images:", error);

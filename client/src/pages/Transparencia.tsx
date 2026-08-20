@@ -59,7 +59,7 @@ export default function Transparencia() {
   // Get unique years for filter
   const availableYears = useMemo(() => {
     if (!documents) return [];
-    const years = [...new Set(documents.map((d) => d.year))].sort((a, b) => b - a);
+    const years = Array.from(new Set(documents.map((d) => d.year))).sort((a, b) => b - a);
     return years;
   }, [documents]);
 
