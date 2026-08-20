@@ -67,7 +67,7 @@ export default function Editais() {
   // Get unique years
   const availableYears = useMemo(() => {
     if (!documents) return [];
-    return [...new Set(documents.map((d) => d.year))].sort((a, b) => b - a);
+    return Array.from(new Set(documents.map((d) => d.year))).sort((a, b) => b - a);
   }, [documents]);
 
   const handleDownload = (doc: { id: number; fileUrl: string; title: string }) => {

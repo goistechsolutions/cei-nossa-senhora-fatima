@@ -3,8 +3,14 @@
 .pnpm-store/
 
 # Build outputs
-# dist/ - Comentado para permitir commit do build no Cloudflare Pages
+
+dist/
+
 build/
+
+# Local source assets not consumed by the web build
+img/
+
 *.dist
 
 # Environment variables
