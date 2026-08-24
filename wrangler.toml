@@ -1,3 +1,7 @@
 name = "demo-cei-nossa-senhora-fatima"
 compatibility_date = "2026-08-09"
+<<<<<<< HEAD
 pages_build_output_dir = "./dist/public"
+=======
+pages_build_output_dir = "./dist"
+>>>>>>> ac83a1b5bcdadd78f64e169fe5437dd0ff02f7c7

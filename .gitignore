@@ -3,9 +3,13 @@
 .pnpm-store/
 
 # Build outputs
+<<<<<<< HEAD
 
 dist/
 
+=======
+# dist/ - Comentado para permitir commit do build no Cloudflare Pages
+>>>>>>> ac83a1b5bcdadd78f64e169fe5437dd0ff02f7c7
 build/
 
 # Local source assets not consumed by the web build

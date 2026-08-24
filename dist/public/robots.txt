@@ -1,0 +1,44 @@
+# Robots.txt para CEI Nossa Senhora de Fátima
+# Otimizado para Google, Bing e outros search engines
+
+# Permitir todos os bots
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /build/
+Disallow: /src/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Google Bot específico
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 0
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 1
+
+# Yandex Bot
+User-agent: YandexBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://ceinossafat-bkrd93cp.manus.space/sitemap.xml
+
+# Configurações gerais
+User-agent: *
+Crawl-delay: 1
+Request-rate: 1/1s
