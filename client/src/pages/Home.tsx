@@ -70,7 +70,7 @@ export default function Home() {
         id="home"
         className="relative py-20 md:py-28 bg-white overflow-hidden"
         style={{
-          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/hero-background-home-QpMp3MTCVAJpAXNSndTBMy.webp)',
+          backgroundImage: `url(${VISUAL_ASSETS.backgroundPattern})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -184,7 +184,7 @@ export default function Home() {
         ref={diferencialRef}
         className="py-20 md:py-28 bg-white relative"
         style={{
-          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-diferenciais-cW7k5WfyJhr2um3vmtPLoD.webp)',
+          backgroundImage: `url(${VISUAL_ASSETS.pillarIcons})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -231,7 +231,7 @@ export default function Home() {
         ref={galeriaRef}
         className="py-20 md:py-28 bg-gray-50 relative"
         style={{
-          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-galeria-S7FcsVcRz3iZgEzXC3aWFP.webp)',
+          backgroundImage: `url(${VISUAL_ASSETS.galeriaFrente})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -248,7 +248,7 @@ export default function Home() {
         ref={noticiasRef}
         className="py-20 bg-gray-50 relative"
         style={{
-          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-diferenciais-2Hs8mNxQrJ5Wq9kL3pT7vM.webp)',
+          backgroundImage: `url(${VISUAL_ASSETS.galeriaAtividade})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -358,7 +358,7 @@ export default function Home() {
         ref={ctaRef}
         className="py-20 md:py-28 bg-white relative"
         style={{
-          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/bg-cta-35R8mWoXtcKxrpPaGhsa9w.webp)',
+          backgroundImage: `url(${VISUAL_ASSETS.footerIllustration})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
