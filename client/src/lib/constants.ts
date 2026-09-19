@@ -130,14 +130,14 @@ export const TRANSPARENCY_ITEMS = [
   },
 ] as const
 
-// Ativos Visuais
+// Ativos Visuais — imagens hospedadas localmente em /public/images/
 export const VISUAL_ASSETS = {
-  heroBanner: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-hero-banner-cei-f3Da2qwULHaxEzrCsoSsTB.webp',
-  pillarIcons: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-pilares-icons-cei-md7PLbWQCVuH3SUqkVHchp.webp',
-  backgroundPattern: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-background-pattern-cei-Wmts7453t97XgnY5NmLGKZ.webp',
-  footerIllustration: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663411046841/BKrd93cpBc2Rp4CJz2T9xd/vibrant-footer-illustration-cei-byjUL82PTFcZjGK4iHZcTD.webp',
+  heroBanner:         '/images/hero-banner.jpg',
+  pillarIcons:        '/images/bg-diferenciais.jpg',
+  backgroundPattern:  '/images/hero-bg.jpg',
+  footerIllustration: '/images/bg-cta.jpg',
   // Imagens Reais da Instituição
-  galeriaAtividade: '/manus-storage/Atividade_085eb567.jpg',
-  galeriaEquipe: '/manus-storage/Equipe_5f88a22b.jpg',
-  galeriaFrente: '/manus-storage/frente_c9cf08e6.jpg',
+  galeriaAtividade:   '/images/galeria-atividade.jpg',
+  galeriaEquipe:      '/images/galeria-equipe.jpg',
+  galeriaFrente:      '/images/galeria-frente.jpg',
 } as const
